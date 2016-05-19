@@ -1,0 +1,73 @@
+{
+  "name": "MessagesKit",
+  "version": "0.1",
+  "summary": "reTXT messaging framework for iOS/OSX",
+  "homepage": "https://github.com/reTXT/MessagesKit",
+  "license": "MIT",
+  "authors": {
+    "Kevin Wooten": "kevin@retxt.com"
+  },
+  "source": {
+    "git": "https://github.com/reTXT/MessagesKit.git",
+    "tag": "0.1"
+  },
+  "requires_arc": true,
+  "source_files": "MessagesKit/*.{h,m,swift}",
+  "resources": [
+    "Certificates",
+    "Migrations"
+  ],
+  "dependencies": {
+    "OpenSSLCrypto": [
+
+    ],
+    "CocoaLumberjack/Swift": [
+
+    ],
+    "DeviceKit": [
+
+    ],
+    "FMDB/standalone/swift": [
+
+    ],
+    "FMDBMigrationManager": [
+
+    ],
+    "HTMLReader": [
+
+    ],
+    "PromiseKit/DietFoundation": [
+
+    ],
+    "PromiseKit/AddressBook": [
+
+    ],
+    "PromiseKit/AssetsLibrary": [
+
+    ],
+    "PromiseKit/AVFoundation": [
+
+    ],
+    "PSOperations": [
+
+    ],
+    "SocketRocket": [
+
+    ],
+    "SSKeychain": [
+
+    ],
+    "Thrift": [
+
+    ],
+    "YOLOKit": [
+
+    ]
+  },
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

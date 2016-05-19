@@ -1,0 +1,320 @@
+PODS:
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.3.0):
+    - CocoaLumberjack/Default
+  - CocoaLumberjack/Swift (2.3.0):
+    - CocoaLumberjack/Extensions
+  - DeviceKit (0.3.2)
+  - FLAnimatedImage (1.0.12)
+  - FMDB/standalone/swift (2.6.2):
+    - FMDB/swift
+    - sqlite3
+  - FMDB/standard (2.6.2)
+  - FMDB/swift (2.6.2):
+    - FMDB/standard
+  - FMDBMigrationManager (1.4.1):
+    - FMDBMigrationManager/System (= 1.4.1)
+  - FMDBMigrationManager/System (1.4.1):
+    - FMDB/standard (>= 2.3)
+  - HTMLReader (0.9.6)
+  - MessagesKit (0.1):
+    - CocoaLumberjack/Swift
+    - DeviceKit
+    - FMDB/standalone/swift
+    - FMDBMigrationManager
+    - HTMLReader
+    - OpenSSLCrypto
+    - PromiseKit/AddressBook
+    - PromiseKit/AssetsLibrary
+    - PromiseKit/AVFoundation
+    - PromiseKit/DietFoundation
+    - PSOperations
+    - SocketRocket
+    - SSKeychain
+    - Thrift
+    - YOLOKit
+  - OpenSSLCrypto (0.1)
+  - PromiseKit/AddressBook (3.0.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/AssetsLibrary (3.0.3):
+    - PromiseKit/UIKit
+  - PromiseKit/AVFoundation (3.0.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (3.0.3)
+  - PromiseKit/DietFoundation (3.0.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.0.3):
+    - PromiseKit/CorePromise
+  - PSOperations (2.2.0):
+    - PSOperations/CloudKit (= 2.2.0)
+    - PSOperations/Core (= 2.2.0)
+    - PSOperations/CoreLocation (= 2.2.0)
+    - PSOperations/EventKit (= 2.2.0)
+    - PSOperations/HealthKit (= 2.2.0)
+    - PSOperations/PassKit (= 2.2.0)
+    - PSOperations/Photos (= 2.2.0)
+    - PSOperations/SystemConfiguration (= 2.2.0)
+  - PSOperations/CloudKit (2.2.0)
+  - PSOperations/Core (2.2.0)
+  - PSOperations/CoreLocation (2.2.0)
+  - PSOperations/EventKit (2.2.0)
+  - PSOperations/HealthKit (2.2.0)
+  - PSOperations/PassKit (2.2.0)
+  - PSOperations/Photos (2.2.0)
+  - PSOperations/SystemConfiguration (2.2.0)
+  - SnapKit (0.21.0)
+  - SocketRocket (0.5.1)
+  - sqlite3 (3.12.2):
+    - sqlite3/common (= 3.12.2)
+  - sqlite3/common (3.12.2)
+  - SSKeychain (1.4.0)
+  - Thrift (1.0.0)
+  - YOLOKit (11.1.3):
+    - YOLOKit/all (= 11.1.3)
+    - YOLOKit/any (= 11.1.3)
+    - YOLOKit/array (= 11.1.3)
+    - YOLOKit/base (= 11.1.3)
+    - YOLOKit/chunk (= 11.1.3)
+    - YOLOKit/concat (= 11.1.3)
+    - YOLOKit/dict (= 11.1.3)
+    - YOLOKit/each (= 11.1.3)
+    - YOLOKit/extend (= 11.1.3)
+    - YOLOKit/find (= 11.1.3)
+    - YOLOKit/first (= 11.1.3)
+    - YOLOKit/flatMap (= 11.1.3)
+    - YOLOKit/flatten (= 11.1.3)
+    - YOLOKit/fmap (= 11.1.3)
+    - YOLOKit/get (= 11.1.3)
+    - YOLOKit/groupBy (= 11.1.3)
+    - YOLOKit/has (= 11.1.3)
+    - YOLOKit/indexOf (= 11.1.3)
+    - YOLOKit/inject (= 11.1.3)
+    - YOLOKit/join (= 11.1.3)
+    - YOLOKit/last (= 11.1.3)
+    - YOLOKit/map (= 11.1.3)
+    - YOLOKit/max (= 11.1.3)
+    - YOLOKit/min (= 11.1.3)
+    - YOLOKit/none (= 11.1.3)
+    - YOLOKit/partition (= 11.1.3)
+    - YOLOKit/pick (= 11.1.3)
+    - YOLOKit/pluck (= 11.1.3)
+    - YOLOKit/pmap (= 11.1.3)
+    - YOLOKit/pop (= 11.1.3)
+    - YOLOKit/push (= 11.1.3)
+    - YOLOKit/reduce (= 11.1.3)
+    - YOLOKit/reverse (= 11.1.3)
+    - YOLOKit/rotate (= 11.1.3)
+    - YOLOKit/sample (= 11.1.3)
+    - YOLOKit/select (= 11.1.3)
+    - YOLOKit/shift (= 11.1.3)
+    - YOLOKit/shuffle (= 11.1.3)
+    - YOLOKit/skip (= 11.1.3)
+    - YOLOKit/slice (= 11.1.3)
+    - YOLOKit/snip (= 11.1.3)
+    - YOLOKit/sort (= 11.1.3)
+    - YOLOKit/split (= 11.1.3)
+    - YOLOKit/transpose (= 11.1.3)
+    - YOLOKit/uniq (= 11.1.3)
+    - YOLOKit/unshift (= 11.1.3)
+    - YOLOKit/upTo (= 11.1.3)
+    - YOLOKit/without (= 11.1.3)
+  - YOLOKit/all (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/any (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/array (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/base (11.1.3)
+  - YOLOKit/chunk (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/slice
+  - YOLOKit/concat (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/dict (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/transpose
+  - YOLOKit/each (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/extend (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/find (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/first (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/slice
+  - YOLOKit/flatMap (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/flatten (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/fmap (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/map
+  - YOLOKit/get (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/groupBy (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/has (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/indexOf (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/inject (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/join (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/pluck
+  - YOLOKit/last (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/slice
+  - YOLOKit/map (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/max (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/min (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/none (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/partition (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/pick (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/pluck (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/pmap (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/pop (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/push (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/reduce (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/last
+  - YOLOKit/reverse (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/rotate (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/concat
+    - YOLOKit/skip
+    - YOLOKit/snip
+  - YOLOKit/sample (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/select (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/shift (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/shuffle (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/skip (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/last
+  - YOLOKit/slice (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/snip (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/slice
+  - YOLOKit/sort (11.1.3):
+    - YOLOKit/all
+    - YOLOKit/base
+    - YOLOKit/transpose
+  - YOLOKit/split (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/transpose (11.1.3):
+    - YOLOKit/base
+    - YOLOKit/each
+    - YOLOKit/max
+    - YOLOKit/select
+  - YOLOKit/uniq (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/unshift (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/upTo (11.1.3):
+    - YOLOKit/base
+  - YOLOKit/without (11.1.3):
+    - YOLOKit/base
+
+DEPENDENCIES:
+  - CocoaLumberjack/Swift
+  - FLAnimatedImage
+  - FMDB/standalone/swift (from `https://github.com/reTXT/fmdb.git`, branch `current`)
+  - FMDBMigrationManager (from `https://github.com/reTXT/FMDBMigrationManager.git`, branch `master`)
+  - MessagesKit (from `../MessagesKit`)
+  - OpenSSLCrypto (from `https://github.com/reTXT/OpenSSLCrypto.git`)
+  - PromiseKit/AddressBook (from `https://github.com/reTXT/PromiseKit.git`, branch `master`)
+  - PromiseKit/AssetsLibrary (from `https://github.com/reTXT/PromiseKit.git`, branch `master`)
+  - PromiseKit/AVFoundation (from `https://github.com/reTXT/PromiseKit.git`, branch `master`)
+  - PromiseKit/DietFoundation (from `https://github.com/reTXT/PromiseKit.git`, branch `master`)
+  - PSOperations/Core (from `https://github.com/reTXT/PSOperations.git`, branch `current`)
+  - PSOperations/SystemConfiguration (from `https://github.com/reTXT/PSOperations.git`, branch `current`)
+  - SnapKit
+  - Thrift (from `https://github.com/reTXT/thrift.git`, branch `master`)
+  - YOLOKit (from `https://github.com/reTXT/YOLOKit.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  FMDB:
+    :branch: current
+    :git: https://github.com/reTXT/fmdb.git
+  FMDBMigrationManager:
+    :branch: master
+    :git: https://github.com/reTXT/FMDBMigrationManager.git
+  MessagesKit:
+    :path: ../MessagesKit
+  OpenSSLCrypto:
+    :git: https://github.com/reTXT/OpenSSLCrypto.git
+  PromiseKit:
+    :branch: master
+    :git: https://github.com/reTXT/PromiseKit.git
+  PSOperations:
+    :branch: current
+    :git: https://github.com/reTXT/PSOperations.git
+  Thrift:
+    :branch: master
+    :git: https://github.com/reTXT/thrift.git
+  YOLOKit:
+    :branch: master
+    :git: https://github.com/reTXT/YOLOKit.git
+
+CHECKOUT OPTIONS:
+  FMDB:
+    :commit: a02d60e054766e9756453c3dfa5fca584cb37a3f
+    :git: https://github.com/reTXT/fmdb.git
+  FMDBMigrationManager:
+    :commit: 969baab3f604dc4637f086b6f447458296f978fb
+    :git: https://github.com/reTXT/FMDBMigrationManager.git
+  OpenSSLCrypto:
+    :commit: 52fc5ad0c435affff4a73ddb940b16a2d6346e5d
+    :git: https://github.com/reTXT/OpenSSLCrypto.git
+  PromiseKit:
+    :commit: 6720b50d7ed4ccf83824bd65a6883113e97b67a1
+    :git: https://github.com/reTXT/PromiseKit.git
+  PSOperations:
+    :commit: 626d266cf45b814d001c467e112b2c0c6fb2593b
+    :git: https://github.com/reTXT/PSOperations.git
+  Thrift:
+    :commit: 8c213489cf31389ea4b4b7147ca8ae49ebcd462f
+    :git: https://github.com/reTXT/thrift.git
+  YOLOKit:
+    :commit: d14756998a48a505b459a86d5d2f0a723396dd62
+    :git: https://github.com/reTXT/YOLOKit.git
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  DeviceKit: 79182140c0aa8daaf4f4b3920e0b079f5fa9db79
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 29b696c579f66357b9a60b2e7e93600c61255063
+  FMDBMigrationManager: d52007f328ea0665e8985ca8a33500707aef084f
+  HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
+  MessagesKit: 02d948db0c0b01cef4561f5166d9d85c177521e6
+  OpenSSLCrypto: d564cb8d948f83c941a740ee0409043a563faf08
+  PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
+  PSOperations: a6b64f5bd214d6c28665026e4e9310db6d4e32a4
+  SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  sqlite3: 5724400abcbfbc8d13c60d6a4123361faf0c62e3
+  SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
+  Thrift: 95f37a5ae6dfa9312accfb79010902e107f3d40c
+  YOLOKit: bcd64e00fb81469a1ac54013b1ff78ca60eb93a2
+
+PODFILE CHECKSUM: 65a4b110e023f8a872f415b7e0912acd3aebf2c0
+
+COCOAPODS: 1.0.0

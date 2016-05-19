@@ -1,0 +1,6 @@
+framework module MessagesKit {
+  umbrella header "MessagesKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

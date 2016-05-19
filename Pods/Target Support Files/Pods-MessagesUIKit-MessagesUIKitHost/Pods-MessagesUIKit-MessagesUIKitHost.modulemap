@@ -1,0 +1,6 @@
+framework module Pods_MessagesUIKit_MessagesUIKitHost {
+  umbrella header "Pods-MessagesUIKit-MessagesUIKitHost-umbrella.h"
+
+  export *
+  module * { export * }
+}
