@@ -21,7 +21,6 @@ target :MessagesUIKit do
   
   pod 'MessagesKit', :git => 'https://github.com/reTXT/MessagesKit.git', :branch => 'master'
   
-  pod 'FLAnimatedImage'
   pod 'CocoaLumberjack/Swift'
   pod 'SnapKit'
   

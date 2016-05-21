@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import MessagesKit
-import FLAnimatedImage
 import CocoaLumberjack
 
 
@@ -677,7 +676,7 @@ extension MessagesViewController : MessageCellDelegate {
         var info : [String: AnyObject] = [MessageCellMediaDataAvailableNotificationMediaIdKey: key]
         
         switch object {
-        case is UIImage, is FLAnimatedImage:
+        case is UIImage, is AnimatedImage:
           info[MessageCellMediaDataAvailableNotificationImage] = object
           
         case let audioFile as AudioFile:

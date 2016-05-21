@@ -36,10 +36,14 @@
 		AA0B346C1CE9A65500DEFE33 /* AudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B346A1CE9A65500DEFE33 /* AudioFile.m */; };
 		AA1AA3A91CEBBE7A005B127C /* test.db in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3A71CEBBE69005B127C /* test.db */; };
 		AA1AA3AB1CED126B005B127C /* MessagesUIKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */; };
-		AA1AA3AF1CED3E89005B127C /* FLAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1AA3AE1CED3E89005B127C /* FLAnimatedImage.swift */; };
 		AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AAB535CD1CE8DF7E00A38281 /* MessagesUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */; };
 		AAB535D21CE8DF7E00A38281 /* MessagesUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB535D11CE8DF7E00A38281 /* MessagesUIKitTests.swift */; };
+		AAC4258D1CF0D86C00145EDB /* AnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = AAC425891CF0D86C00145EDB /* AnimatedImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAC4258E1CF0D86C00145EDB /* AnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC4258A1CF0D86C00145EDB /* AnimatedImage.m */; };
+		AAC4258F1CF0D86C00145EDB /* AnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = AAC4258B1CF0D86C00145EDB /* AnimatedImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAC425901CF0D86C00145EDB /* AnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC4258C1CF0D86C00145EDB /* AnimatedImageView.m */; };
+		AAC425951CF0DBD400145EDB /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = AAC425941CF0DBD400145EDB /* Log.h */; };
 		AAD4DC1C1CE9A7E20032B5CE /* UserBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4DC1B1CE9A7E20032B5CE /* UserBadgeView.swift */; };
 		AAD4DC1E1CE9B2830032B5CE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4DC1D1CE9B2830032B5CE /* String.swift */; };
 		AAD4DC211CE9B8B40032B5CE /* NSBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4DC201CE9B8B40032B5CE /* NSBundle.swift */; };
@@ -130,13 +134,17 @@
 		AA1AA3A01CEBB6F5005B127C /* Pods_MessagesUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MessagesUIKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MessagesUIKit-gpxwgjvqssapsfdgmsojbdutixkt/Build/Products/Debug-iphonesimulator/Pods_MessagesUIKit.framework"; sourceTree = "<group>"; };
 		AA1AA3A71CEBBE69005B127C /* test.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.db; path = MessagesUIKitHost/test.db; sourceTree = SOURCE_ROOT; };
 		AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = MessagesUIKit.podspec; sourceTree = "<group>"; };
-		AA1AA3AE1CED3E89005B127C /* FLAnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLAnimatedImage.swift; sourceTree = "<group>"; };
 		AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessagesUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesUIKit.h; sourceTree = "<group>"; };
 		AAB535C71CE8DF7E00A38281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAB535CC1CE8DF7E00A38281 /* MessagesUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessagesUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB535D11CE8DF7E00A38281 /* MessagesUIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUIKitTests.swift; sourceTree = "<group>"; };
 		AAB535D31CE8DF7E00A38281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAC425891CF0D86C00145EDB /* AnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedImage.h; sourceTree = "<group>"; };
+		AAC4258A1CF0D86C00145EDB /* AnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedImage.m; sourceTree = "<group>"; };
+		AAC4258B1CF0D86C00145EDB /* AnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedImageView.h; sourceTree = "<group>"; };
+		AAC4258C1CF0D86C00145EDB /* AnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedImageView.m; sourceTree = "<group>"; };
+		AAC425941CF0DBD400145EDB /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		AAD4DC1B1CE9A7E20032B5CE /* UserBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBadgeView.swift; sourceTree = "<group>"; };
 		AAD4DC1D1CE9B2830032B5CE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		AAD4DC201CE9B8B40032B5CE /* NSBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundle.swift; sourceTree = "<group>"; };
@@ -223,7 +231,6 @@
 				AA0B34381CE98F6700DEFE33 /* UIEdgeInsets.swift */,
 				AAD4DC1D1CE9B2830032B5CE /* String.swift */,
 				AAD4DC7E1CEA2A370032B5CE /* RelativeHistoryDateFormatter.swift */,
-				AA1AA3AE1CED3E89005B127C /* FLAnimatedImage.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -297,9 +304,11 @@
 				AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */,
 				AAD4DC221CE9B9B10032B5CE /* InternalStyle.swift */,
 				AA0B34611CE9A02200DEFE33 /* ImageId.swift */,
+				AAC425941CF0DBD400145EDB /* Log.h */,
 				AAD4DC791CEA28560032B5CE /* Common */,
 				AA9952CD1CEB6392004ABFA4 /* Chat Summaries View Controller */,
 				AA0B34541CE9901100DEFE33 /* Messages View Controller */,
+				AAC425921CF0D95900145EDB /* Animated Image (GIF) */,
 				AAD4DC1F1CE9B7DB0032B5CE /* Audio */,
 				AA0B343C1CE98F7700DEFE33 /* Utils */,
 				AA0B343D1CE98F8200DEFE33 /* Resources */,
@@ -314,6 +323,17 @@
 				AAB535D31CE8DF7E00A38281 /* Info.plist */,
 			);
 			path = MessagesUIKitTests;
+			sourceTree = "<group>";
+		};
+		AAC425921CF0D95900145EDB /* Animated Image (GIF) */ = {
+			isa = PBXGroup;
+			children = (
+				AAC425891CF0D86C00145EDB /* AnimatedImage.h */,
+				AAC4258A1CF0D86C00145EDB /* AnimatedImage.m */,
+				AAC4258B1CF0D86C00145EDB /* AnimatedImageView.h */,
+				AAC4258C1CF0D86C00145EDB /* AnimatedImageView.m */,
+			);
+			name = "Animated Image (GIF)";
 			sourceTree = "<group>";
 		};
 		AAD4DC1F1CE9B7DB0032B5CE /* Audio */ = {
@@ -381,6 +401,9 @@
 			files = (
 				AA0B345F1CE9918E00DEFE33 /* BubbleView.h in Headers */,
 				AA0B34671CE9A39F00DEFE33 /* AudioPlot.h in Headers */,
+				AAC4258F1CF0D86C00145EDB /* AnimatedImageView.h in Headers */,
+				AAC425951CF0DBD400145EDB /* Log.h in Headers */,
+				AAC4258D1CF0D86C00145EDB /* AnimatedImage.h in Headers */,
 				AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */,
 				AA0B346B1CE9A65500DEFE33 /* AudioFile.h in Headers */,
 			);
@@ -700,14 +723,15 @@
 				AA0B34641CE9A35400DEFE33 /* CGPoint.swift in Sources */,
 				AA0B34621CE9A02200DEFE33 /* ImageId.swift in Sources */,
 				AA0B344D1CE9900900DEFE33 /* EnterExitMessageCell.swift in Sources */,
+				AAC4258E1CF0D86C00145EDB /* AnimatedImage.m in Sources */,
 				AAD4DC7F1CEA2A370032B5CE /* RelativeHistoryDateFormatter.swift in Sources */,
 				AA0B343A1CE98F6700DEFE33 /* CGSize.swift in Sources */,
 				AA0B34601CE9918E00DEFE33 /* BubbleView.m in Sources */,
+				AAC425901CF0D86C00145EDB /* AnimatedImageView.m in Sources */,
 				AA0B344F1CE9900900DEFE33 /* LocationMessageCell.swift in Sources */,
 				AA0B343B1CE98F6700DEFE33 /* UIEdgeInsets.swift in Sources */,
 				AA0B34501CE9900900DEFE33 /* MessageCell.swift in Sources */,
 				AAD4DC1C1CE9A7E20032B5CE /* UserBadgeView.swift in Sources */,
-				AA1AA3AF1CED3E89005B127C /* FLAnimatedImage.swift in Sources */,
 				AAD4DC7C1CEA29150032B5CE /* ChatSummaryTableViewCell.swift in Sources */,
 				AAD4DC231CE9B9B10032B5CE /* InternalStyle.swift in Sources */,
 				AA0B346C1CE9A65500DEFE33 /* AudioFile.m in Sources */,

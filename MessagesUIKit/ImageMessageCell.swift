@@ -9,14 +9,13 @@
 import Foundation
 import MessagesKit
 import ImageIO
-import FLAnimatedImage
 import CocoaLumberjack
 
 
 public class ImageMessageCell : MessageCell {
   
   
-  @IBOutlet var thumbnailImageView : FLAnimatedImageView!
+  @IBOutlet var thumbnailImageView : AnimatedImageView!
   @IBOutlet var loadingView : UIActivityIndicatorView!
   @IBOutlet var maxWidthConstraint : NSLayoutConstraint!
   
@@ -32,7 +31,7 @@ public class ImageMessageCell : MessageCell {
     
     super.updateWithMessage(message)
     
-    let thumbnailKey = message.id.UUIDString() + "@thumb"
+    let thumbnailKey = message.id.UUIDString + "@thumb"
 
     listenForMediaAvailableWithKey(thumbnailKey)
     
@@ -41,27 +40,35 @@ public class ImageMessageCell : MessageCell {
       
       DDLogDebug("Caching message thumbnail \(message.id.UUIDString)")
     
-      let imageData = try! DataReferences.readAllDataFromReference(message.thumbnailOrImageData)
+      do {
     
-      let image : AnyObject
-    
-      if let animatedImage = FLAnimatedImage(animatedGIFData: imageData) {
+        let imageData = message.thumbnailOrImageData
+        let imageSource = try imageData.createImageSource().takeRetainedValue()
         
-        image = animatedImage
+        let image : AnyObject
         
-      }
-      else if let stillImage = UIImage(data: imageData) {
-    
-        image = stillImage
+        if let animatedImage = AnimatedImage(source: imageSource) {
           
-      }
-      else {
+          image = animatedImage
+          
+        }
+        else if let stillImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
+          
+          image = UIImage(CGImage: stillImage)
+          
+        }
+        else {
+          
+          image = UIImage(id: .ImageError)
+          
+        }
         
-        image = UIImage(id: .ImageError)
+        resolve(image, try imageData.dataSize().integerValue)
         
       }
-    
-      resolve(image, imageData.length)
+      catch let error {
+        fail(error as NSError)
+      }
     
     }) {
       
