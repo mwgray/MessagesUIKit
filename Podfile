@@ -19,7 +19,7 @@ target :MessagesUIKit do
   pod 'PromiseKit/AssetsLibrary', :git => 'https://github.com/reTXT/PromiseKit.git', :branch => 'master'
   pod 'PromiseKit/AVFoundation', :git => 'https://github.com/reTXT/PromiseKit.git', :branch => 'master'
   
-  pod 'MessagesKit', :git => 'https://github.com/reTXT/MessagesKit.git', :branch => 'master'
+  pod 'MessagesKit', :path => '../MessagesKit' #:git => 'https://github.com/reTXT/MessagesKit.git', :branch => 'master'
   
   pod 'CocoaLumberjack/Swift'
   pod 'SnapKit'
