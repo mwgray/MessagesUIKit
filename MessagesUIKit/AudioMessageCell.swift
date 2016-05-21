@@ -51,7 +51,7 @@ class AudioMessageCell : MessageCell {
     
     super.updateWithMessage(message)
     
-    let clipKey = message.id.UUIDString() + "@clip"
+    let clipKey = message.id.UUIDString + "@clip"
     
     // Update playback progress with current playing state
     audioPlot.progress = audioDelegate.progressOfAudioPlayingWithKey(clipKey)
@@ -67,33 +67,39 @@ class AudioMessageCell : MessageCell {
     if let audioFile = delegate.loadCachedMediaForKey(clipKey, loader: { resolve, fail in
     
       DDLogDebug("Caching audio clip \(message.id.UUIDString)")
-      
-      //FIXME: 
-      //let audioURL = DataReferences.duplicateDataReferenceToTemporaryFile(message.data, withExtension: "m4a").URL
-      //let audioFile = AudioFile(URL: audioURL)
-      
-      let audioFile = AudioFile(URL: NSURL())
-      
+
       do {
+    
+        let audioTempURL = try message.data.saveToTemporaryURL()
+    
+        defer {
+          // Remove the temporary file/URL once the audio file 
+          // is open, will remove the file upon closing
+          let _ = try? NSFileManager.defaultManager().removeItemAtURL(audioTempURL)
+        }
+      
+        let audioFile = AudioFile(URL: audioTempURL)
         try audioFile.open()
+        
+        audioFile.generateSampleData(neededSampleCount, completion: {
+
+          resolve(audioFile, audioFile.size)
+        
+        },
+        error: { error in
+      
+          DDLogError("Error generating audio samples \(error)")
+            
+          fail(error)
+            
+        })
+        
       }
       catch let error {
         fail(error as NSError)
         return
       }
     
-      audioFile.generateSampleData(neededSampleCount, completion: {
-      
-        //FIXME: resolve(message.dataURL, audioFile, audioFile.size)
-        
-      }, error: { error in
-        
-        DDLogError("Error generating audio samples \(error)")
-        
-        fail(error)
-        
-      })
-      
     }) as? AudioFile {
       
       if audioFile.hasSamples {

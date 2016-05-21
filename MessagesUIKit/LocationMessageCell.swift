@@ -42,13 +42,13 @@ public class LocationMessageCell : MessageCell {
     let locationURLBuilder = NSURLComponents()
     locationURLBuilder.scheme = "message"
     locationURLBuilder.host = "location"
-    locationURLBuilder.path = message.id.UUIDString()
+    locationURLBuilder.path = message.id.UUIDString
     
     let locationURL = locationURLBuilder.URL!
     
     self.locationURL = locationURL
 
-    let thumbnailKey = message.id.UUIDString() + "-thumb"
+    let thumbnailKey = message.id.UUIDString + "-thumb"
     
     listenForMediaAvailableWithKey(thumbnailKey)
     

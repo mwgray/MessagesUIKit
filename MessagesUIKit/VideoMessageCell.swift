@@ -31,7 +31,7 @@ public class VideoMessageCell : MessageCell {
     
     super.updateWithMessage(message)
     
-    let thumbnailKey = message.id.UUIDString() + "@thumb"
+    let thumbnailKey = message.id.UUIDString + "@thumb"
     
     listenForMediaAvailableWithKey(thumbnailKey)
     
@@ -39,7 +39,7 @@ public class VideoMessageCell : MessageCell {
     
       DDLogDebug("Caching message thumbnail \(message.id.UUIDString)")
       
-      let imageData = try! DataReferences.readAllDataFromReference(message.thumbnailData!)
+      let imageData = message.thumbnailData ?? NSData()
       
       let image = UIImage(data: imageData) ?? UIImage(id: .VideoError)
       
