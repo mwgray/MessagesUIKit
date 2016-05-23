@@ -52,17 +52,13 @@ public class AudioPlot : UIView {
   
   private var path: UIBezierPath?
     
-  public func updateSamples(sampleBuffer: UnsafePointer<Float>?, sampleCount: UInt) {
+  public func updateSamples(sampleBuffer: UnsafePointer<Float>, sampleCount: UInt) {
     
     let groupCount = self.sampleCount
     let groupSampleCount = ((sampleCount ?? 0) + groupCount - 1) / groupCount
     
     var sampleGroups = [Float](count: Int(groupCount), repeatedValue: 0)
 
-    guard let sampleBuffer = sampleBuffer else {
-      return
-    }
-    
     let samples = UnsafeBufferPointer(start: sampleBuffer, count: Int(sampleCount))
     var sample: Int = 0
     var maxSample: Float = 0
