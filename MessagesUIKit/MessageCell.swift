@@ -12,28 +12,26 @@ import SnapKit
 
 
 
-protocol MessageCellDelegate {
+public protocol MessageCellDelegate {
 
-  func loadCachedMediaForKey(key: String, loader: (resolved: (AnyObject, Int) -> Void, failed: (NSError?) -> Void ) -> Void) -> AnyObject?
+  func loadCachedMediaForKey(key: AnyObject, loader: (resolved: (AnyObject, Int) -> Void, failed: (NSError?) -> Void ) -> Void) -> AnyObject?
   
 }
 
 
 
-let MessageCellMediaDataAvailableNotification = "MessageCellMediaDataAvailable"
-let MessageCellMediaDataAvailableNotificationMediaIdKey = "mediaId"
-let MessageCellMediaDataAvailableNotificationImage = "image"
-let MessageCellMediaDataAvailableNotificationDuration = "duration"
-let MessageCellMediaDataAvailableNotificationAudioSamples = "audioSamples"
-let MessageCellMediaDataAvailableNotificationAudioSampleCount = "audioSampleCount"
+public let MessageCellMediaDataAvailableNotification = "MessageCellMediaDataAvailable"
+public let MessageCellMediaDataAvailableNotificationMediaIdKey = "mediaId"
+public let MessageCellMediaDataAvailableNotificationImage = "image"
+public let MessageCellMediaDataAvailableNotificationAudio = "audio"
 
-let MessageCellMediaPlayProgressNotification = "MessageCellMediaPlayProgressNotification"
-let MessageCellMediaPlayProgressNotificationMediaIdKey = "mediaId"
-let MessageCellMediaPlayProgressNotificationPercentKey = "percent"
-let MessageCellMediaPlayProgressNotificationStatusKey = "status"
+public let MessageCellMediaPlayProgressNotification = "MessageCellMediaPlayProgressNotification"
+public let MessageCellMediaPlayProgressNotificationMediaIdKey = "mediaId"
+public let MessageCellMediaPlayProgressNotificationPercentKey = "percent"
+public let MessageCellMediaPlayProgressNotificationStatusKey = "status"
 
 
-enum MessageCellMediaPlayStatus : Int {
+public enum MessageCellMediaPlayStatus : Int {
   case Stopped
   case Paused
   case Playing
@@ -77,8 +75,7 @@ public class MessageCell : AutoLayoutCollectionViewCell {
   public override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
     super.applyLayoutAttributes(layoutAttributes)
     
-    if let
-      layoutAttributes = layoutAttributes as? MessagesViewLayoutAttributes {
+    if let layoutAttributes = layoutAttributes as? MessagesViewLayoutAttributes {
 
         // Enable quote
         if let ornaments = layoutAttributes.ornaments {
@@ -95,7 +92,7 @@ public class MessageCell : AutoLayoutCollectionViewCell {
         
   }
   
-  public func listenForMediaAvailableWithKey(key: String) {
+  public func listenForMediaAvailableWithKey(key: AnyObject) {
     
     NSNotificationCenter.defaultCenter()
       .addObserver(self, selector: #selector(MessageCell.mediaAvailable(_:)), name: MessageCellMediaDataAvailableNotification, object: key)
@@ -110,7 +107,7 @@ public class MessageCell : AutoLayoutCollectionViewCell {
     
   }
   
-  public func listenForMediaPlayProgressWithKey(key: String) {
+  public func listenForMediaPlayProgressWithKey(key: AnyObject) {
     
     NSNotificationCenter.defaultCenter()
       .addObserver(self, selector: #selector(MessageCell.mediaPlayProgress(_:)), name: MessageCellMediaPlayProgressNotification, object: key)

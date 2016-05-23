@@ -14,41 +14,21 @@ import CocoaLumberjack
 
 public class MessagesViewController: UICollectionViewController, MessagesViewLayoutDelegate, FetchedResultsControllerDelegate {
   
+  public var messageResultsController : FetchedResultsController?
+  
+  public var showAvatars = false {
+    didSet {
+      collectionView?.reloadData()
+    }
+  }
+  
   enum Section : Int {
     case Message = 0
     case Status = 1
   }
   
-  public var messageAPI : MessageAPI!
-  
   private let timeHeaderDateFormatter = RelativeHistoryDateFormatter()
   private let recieptFooterDateFormatter = RelativeHistoryDateFormatter()
-  
-  private var _messagesController : FetchedResultsController?
-  
-  private var messagesController : FetchedResultsController? {
-    
-    if let chat = chat where _messagesController == nil {
-      
-      _messagesController =
-        messageAPI.fetchMessagesMatchingPredicate(
-          NSPredicate(format: "chat = %@", chat),
-          offset:0,
-          limit:0,
-          sortedBy:[NSSortDescriptor(key:"sent", ascending:true)])
-      _messagesController!.delegate = self
-      
-      try! _messagesController!.execute()
-    }
-    
-    return _messagesController
-  }
-  
-  public var chat : Chat? {
-    didSet {
-      _messagesController = nil
-    }
-  }
   
   private var messagesViewLayout : MessagesViewLayout {
     return collectionViewLayout as! MessagesViewLayout
@@ -56,7 +36,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
   
   
   private struct UserStatusInfo {
-    let user : AnyObject
+    let user : String
     var status : UserStatus
   }
   private var userStatuses = [UserStatusInfo]()
@@ -76,17 +56,17 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     }
     view.addGestureRecognizer(panner)
     
-    collectionView!.registerNib(UINib(nibName: "MessagesViewTimeHeader", bundle: NSBundle.mainBundle()),
+    collectionView!.registerNib(UINib(nibName: "MessagesViewTimeHeader", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.TimeHeader.rawValue, withReuseIdentifier: MessagesViewCellOrnament.TimeHeader.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewSenderHeader", bundle: NSBundle.mainBundle()),
+    collectionView!.registerNib(UINib(nibName: "MessagesViewSenderHeader", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.SenderHeader.rawValue, withReuseIdentifier: MessagesViewCellOrnament.SenderHeader.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewStatusFooter", bundle: NSBundle.mainBundle()),
+    collectionView!.registerNib(UINib(nibName: "MessagesViewStatusFooter", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.StatusFooter.rawValue, withReuseIdentifier: MessagesViewCellOrnament.StatusFooter.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewIcon", bundle: NSBundle.mainBundle()),
+    collectionView!.registerNib(UINib(nibName: "MessagesViewIcon", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.Clarify.rawValue, withReuseIdentifier: MessagesViewCellOrnament.Clarify.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewActionMenuRight", bundle: NSBundle.mainBundle()),
+    collectionView!.registerNib(UINib(nibName: "MessagesViewActionMenuRight", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.ActionMenu.rawValue, withReuseIdentifier: MessagesViewCellOrnament.ActionMenu.rawValue + "Right")
-    collectionView!.registerNib(UINib(nibName: "MessagesViewActionMenuLeft", bundle: NSBundle.mainBundle()),
+    collectionView!.registerNib(UINib(nibName: "MessagesViewActionMenuLeft", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.ActionMenu.rawValue, withReuseIdentifier: MessagesViewCellOrnament.ActionMenu.rawValue + "Left")
     
     messagesViewLayout.cellMargins = UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5)
@@ -114,9 +94,9 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
   // MARK: Collection View Data Source
   
   func loadSurroundingMessagesAtIndexPath(indexPath: NSIndexPath) -> (Message?, Message, Message?) {
-    let message = messagesController![indexPath.item] as! Message
-    let previousMessage : Message? = indexPath.item > 0 ? messagesController?[indexPath.item-1] as? Message : nil
-    let nextMessage : Message? = indexPath.item < messagesController?.lastIndex() ? messagesController?[indexPath.item+1] as? Message : nil
+    let message = messageResultsController![indexPath.item] as! Message
+    let previousMessage : Message? = indexPath.item > 0 ? messageResultsController?[indexPath.item-1] as? Message : nil
+    let nextMessage : Message? = indexPath.item < messageResultsController?.lastIndex() ? messageResultsController?[indexPath.item+1] as? Message : nil
     return (previousMessage, message, nextMessage)
   }
 
@@ -128,7 +108,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     
     switch Section(rawValue: section)! {
     case .Message:
-      return messagesController?.numberOfObjects() ?? 0
+      return messageResultsController?.numberOfObjects() ?? 0
       
     case .Status:
       return 0
@@ -141,8 +121,8 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     switch Section(rawValue: indexPath.section)! {
     case .Message:
       
-      let messagesController = self.messagesController!
-      let message = messagesController[indexPath.item] as! Message
+      let messageResultsController = self.messageResultsController!
+      let message = messageResultsController[indexPath.item] as! Message
       
       let cellId : String
       
@@ -156,7 +136,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
       
       let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! MessageCell
       
-      if indexPath.item % 2 == 1 {
+      if message.sentByMe {
         cell.bubbleView.color = InternalStyle.brandYellow
         cell.bubbleView.quoteStyle = .Down
       }
@@ -179,24 +159,13 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
       
       // Update badge
       
-      if chat!.isGroup {
+      if showAvatars {
         
         cell.badge.hidden = false
         
-        if let aliasDisplay = info.user as? AliasDisplay {
-          
-          cell.badge.initials = aliasDisplay.fullName.extractInitials()
-          if let avatar = aliasDisplay.avatar {
-            cell.badge.avatar = avatar
-          }
-          
-        }
-        else {
-          
-          cell.badge.initials = nil
-          cell.badge.avatar = nil
-          
-        }
+        let aliasDisplay = AliasDisplayManager.sharedProvider.displayForAlias(info.user)
+        cell.badge.initials = aliasDisplay.initials
+        cell.badge.avatar = aliasDisplay.avatar
         
       }
       else {
@@ -241,10 +210,10 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     
     let view : UICollectionReusableView
     
-    if let kind = MessagesViewCellOrnament(rawValue: kind), messagesController = messagesController {
+    if let kind = MessagesViewCellOrnament(rawValue: kind), messageResultsController = messageResultsController {
       
-      let message = messagesController[indexPath.item] as! Message
-      let sentByMe = indexPath.item % 2 == 1
+      let message = messageResultsController[indexPath.item] as! Message
+      let sentByMe = message.sentByMe
       
       var reuseIdentifer = kind.rawValue
       if kind == .ActionMenu {
@@ -271,9 +240,13 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
             actionImage = UIImage(id: .Edit)
             actionMenu.defaultButtonTitle = "Update"
             
+          case is AudioMessage:
+            actionImage = UIImage(id: .Audio)
+            actionMenu.defaultButtonTitle = "Record"
+            
           case is VideoMessage:
             actionImage = UIImage(id: .Video)
-            actionMenu.defaultButtonTitle = "Update"
+            actionMenu.defaultButtonTitle = "Record"
             
           case is LocationMessage:
             actionImage = UIImage(id: .Location)
@@ -380,13 +353,13 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     switch Section(rawValue: indexPath.section)! {
     case .Message:
       
-      _ = messagesController![indexPath.item] as! Message
+      let message = messageResultsController![indexPath.item] as! Message
       
       if indexPath.item > 5 && indexPath.item < 12 {
         return .Flow
       }
       
-      if indexPath.item % 2 == 1 {
+      if message.sentByMe {
         return .RightAlign
       }
       else {
@@ -417,7 +390,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
       ornaments.insert(.TimeHeader)
     }
     
-    if indexPath.item % 2 == 1 {
+    if msg.sentByMe {
       
       if !(next?.sentByMe ?? false) {
         ornaments.insert(.Quote)
@@ -430,17 +403,18 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     }
     else {
       
-      if !(prev?.sentByMe ?? false) {
-        ornaments.insert(.Quote)
-      }
-      
       if msg.sender != prev?.sender ?? "" {
-        ornaments.insert(.SenderHeader)
+        
+        if showAvatars {
+          ornaments.insert(.SenderHeader)
+        }
+        
+        ornaments.insert(.Quote)
       }
       
     }
     
-    if msg.clarifyFlag || true {
+    if msg.clarifyFlag {
       ornaments.insert(.Clarify)
     }
     
@@ -478,7 +452,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
   
   public func scrollToLatestItemAnimated(animated: Bool) {
         
-    let lastIndexPath = NSIndexPath(forItem: messagesController!.lastIndex(), inSection: 0)
+    let lastIndexPath = NSIndexPath(forItem: messageResultsController!.lastIndex(), inSection: 0)
     collectionView!.scrollToItemAtIndexPath(lastIndexPath, atScrollPosition: .Bottom, animated: animated)
   }
   
@@ -487,7 +461,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     //collectionView!.contentInset = insets
     //collectionView!.scrollIndicatorInsets = insets
     
-//    if (_editingIndexPath) {
+//    if let editingIndex = editingIndexPath {
 //      [self _scrollToItemAtIndexPath:_editingIndexPath animated:YES]
 //    }
   }
@@ -643,7 +617,7 @@ extension MessagesViewController : UIGestureRecognizerDelegate {
 
 extension MessagesViewController : MessageCellDelegate {
   
-  func loadCachedMediaForKey(key: String, loader: (resolved: (AnyObject, Int) -> Void, failed: (NSError?) -> Void) -> Void) -> AnyObject? {
+  public func loadCachedMediaForKey(key: AnyObject, loader: (resolved: (AnyObject, Int) -> Void, failed: (NSError?) -> Void) -> Void) -> AnyObject? {
     
     var cached : AnyObject?
     
@@ -680,15 +654,13 @@ extension MessagesViewController : MessageCellDelegate {
           info[MessageCellMediaDataAvailableNotificationImage] = object
           
         case let audioFile as AudioFile:
-          info[MessageCellMediaDataAvailableNotificationAudioSampleCount] = audioFile.sampleCount
-          info[MessageCellMediaDataAvailableNotificationAudioSamples] = NSValue(pointer: audioFile.samples)
-          info[MessageCellMediaDataAvailableNotificationDuration] = audioFile.duration
+          info[MessageCellMediaDataAvailableNotificationAudio] = audioFile
           
         default:
           break
         }
         
-        let notification = NSNotification(name: MessageCellMediaDataAvailableNotification, object: self, userInfo: info)
+        let notification = NSNotification(name: MessageCellMediaDataAvailableNotification, object: key, userInfo: info)
         
         GCD.mainQueue.async {
           NSNotificationCenter.defaultCenter().postNotification(notification)
@@ -697,7 +669,7 @@ extension MessagesViewController : MessageCellDelegate {
       }, failed: { error in
         
         GCD.mainQueue.async {
-          NSNotificationCenter.defaultCenter().postNotificationName(MessageCellMediaDataAvailableNotification, object: self)
+          NSNotificationCenter.defaultCenter().postNotificationName(MessageCellMediaDataAvailableNotification, object: key)
         }
         
       })
@@ -705,6 +677,20 @@ extension MessagesViewController : MessageCellDelegate {
     }
     
     return nil
+  }
+  
+}
+
+
+
+extension MessagesViewController : AudioMessageCellDelegate {
+  
+  public func checkAudioPlayingWithKey(key: String) -> Bool {
+    return false
+  }
+  
+  public func progressOfAudioPlayingWithKey(key: String) -> CGFloat {
+    return 0
   }
   
 }

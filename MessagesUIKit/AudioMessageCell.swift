@@ -11,7 +11,7 @@ import MessagesKit
 import CocoaLumberjack
 
 
-protocol AudioMessageCellDelegate : MessageCellDelegate {
+public protocol AudioMessageCellDelegate : MessageCellDelegate {
   
   func checkAudioPlayingWithKey(key: String) -> Bool
   func progressOfAudioPlayingWithKey(key: String) -> CGFloat
@@ -19,7 +19,7 @@ protocol AudioMessageCellDelegate : MessageCellDelegate {
 }
 
 
-class AudioMessageCell : MessageCell {
+public class AudioMessageCell : MessageCell {
   
   
   @IBOutlet var playbackButton : UIButton!
@@ -43,7 +43,7 @@ class AudioMessageCell : MessageCell {
     super.willBeginDisplaying()
   }
   
-  override func updateWithMessage(message: Message) {
+  public override func updateWithMessage(message: Message) {
 
     guard let message = message as? AudioMessage else {
       fatalError("invalid message class")
@@ -104,7 +104,7 @@ class AudioMessageCell : MessageCell {
       
       if audioFile.hasSamples {
         audioPlot.hidden = false
-        audioPlot.updateSamples(audioFile.samples, count: audioFile.sampleCount)
+        audioPlot.updateSamples(audioFile.samples, sampleCount: audioFile.sampleCount)
       }
       
       durationLabel.text = AudioMessageCell.timeFormatter.stringFromTimeInterval(audioFile.duration)
@@ -112,29 +112,26 @@ class AudioMessageCell : MessageCell {
     }
     else {
       
+      loadingView.hidden = false
       loadingView.startAnimating()
       
     }
     
   }
   
-  override func mediaAvailableWithInfo(info: [String : AnyObject]) {
+  public override func mediaAvailableWithInfo(info: [String : AnyObject]) {
     
-    guard let
-      samples = info[MessageCellMediaDataAvailableNotificationAudioSamples] as? UnsafeMutablePointer<Float>,
-      sampleCount = info[MessageCellMediaDataAvailableNotificationAudioSampleCount] as? UInt,
-      duration = info[MessageCellMediaDataAvailableNotificationDuration] as? NSTimeInterval
-    else {
+    guard let audioFile = info[MessageCellMediaDataAvailableNotificationAudio] as? AudioFile else {
       return
     }
 
     audioPlot.hidden = false
-    audioPlot.updateSamples(samples, count: sampleCount)
+    audioPlot.updateSamples(UnsafePointer(audioFile.samples), sampleCount: audioFile.sampleCount)
     
-    durationLabel.text = AudioMessageCell.timeFormatter.stringFromTimeInterval(duration)
+    durationLabel.text = AudioMessageCell.timeFormatter.stringFromTimeInterval(audioFile.duration)
   }
   
-  override func mediaPlayProgressWithInfo(info: [String : AnyObject]) {
+  public override func mediaPlayProgressWithInfo(info: [String : AnyObject]) {
     
     guard let
       percent = info[MessageCellMediaPlayProgressNotificationPercentKey] as? CGFloat,

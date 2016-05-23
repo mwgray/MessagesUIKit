@@ -17,7 +17,7 @@
 @property (readonly, nonatomic) SInt64 totalFrames;
 
 @property (readonly, nonatomic) BOOL hasSamples;
-@property (readonly, nonatomic) float *samples;
+@property (readonly, nonatomic) const float * const samples;
 @property (readonly, nonatomic) NSUInteger sampleCount;
 
 -(instancetype) initWithURL:(NSURL *)url;

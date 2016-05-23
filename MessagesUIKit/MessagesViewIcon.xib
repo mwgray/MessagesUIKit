@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="zZK-fz-vTm" customClass="MessagesViewIcon" customModule="MessagesUIKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0z5-4Z-YWo">
+                    <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="0z5-4Z-YWo" firstAttribute="top" secondItem="zZK-fz-vTm" secondAttribute="top" id="12T-xj-scj"/>
+                <constraint firstItem="0z5-4Z-YWo" firstAttribute="leading" secondItem="zZK-fz-vTm" secondAttribute="leading" id="KEX-Qz-OzO"/>
+                <constraint firstAttribute="bottom" secondItem="0z5-4Z-YWo" secondAttribute="bottom" id="hSe-eu-5nG"/>
+                <constraint firstAttribute="trailing" secondItem="0z5-4Z-YWo" secondAttribute="trailing" id="t2M-Um-dhG"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="0z5-4Z-YWo" id="NVI-c7-yOC"/>
+            </connections>
+            <point key="canvasLocation" x="724" y="445"/>
+        </collectionReusableView>
+    </objects>
+</document>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="750" reuseIdentifier="StatusFooter" id="Pyc-1F-5TQ" customClass="MessagesViewStatusFooter" customModule="MessagesUIKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="165" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="800" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="MKK-AR-xEh">
+                    <rect key="frame" x="0.0" y="2" width="165" height="58"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inL-Ky-21H" userLabel="Status Verb Label">
+                            <rect key="frame" x="0.0" y="0.0" width="81" height="58"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                            <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" text="10:30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EN-4Y-Cqy" userLabel="Status Time Label">
+                            <rect key="frame" x="84" y="0.0" width="81" height="58"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                            <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MKK-AR-xEh" firstAttribute="top" secondItem="Pyc-1F-5TQ" secondAttribute="top" constant="2" id="WBb-rx-fCS"/>
+                <constraint firstAttribute="trailing" secondItem="MKK-AR-xEh" secondAttribute="trailing" id="fcV-uo-rBi"/>
+                <constraint firstAttribute="bottom" secondItem="MKK-AR-xEh" secondAttribute="bottom" id="vgf-Lt-NAd"/>
+                <constraint firstItem="MKK-AR-xEh" firstAttribute="leading" secondItem="Pyc-1F-5TQ" secondAttribute="leading" id="xfx-m9-8Ru"/>
+            </constraints>
+            <connections>
+                <outlet property="statusTimeLabel" destination="0EN-4Y-Cqy" id="Qxk-SW-uQW"/>
+                <outlet property="statusVerbLabel" destination="inL-Ky-21H" id="sGF-ke-AIV"/>
+            </connections>
+            <point key="canvasLocation" x="594.5" y="436"/>
+        </collectionReusableView>
+    </objects>
+</document>

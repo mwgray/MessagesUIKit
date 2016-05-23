@@ -22,6 +22,7 @@ typedef SInt32 LocalAudioSampleType;
 
 
 @interface AudioFile () {
+  float *_samples;
   ExtAudioFileRef _audioFile;
   AudioStreamBasicDescription _fileFormat;
 }

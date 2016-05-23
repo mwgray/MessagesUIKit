@@ -15,6 +15,10 @@ struct InternalStyle {
   static let brandGreen =   UIColor(red:0.808, green:0.871, blue:0.000, alpha:1.000)
   static let brandGray =    UIColor(red:0.808, green: 0.808, blue: 0.808, alpha: 1)
   static let brandBlack =   UIColor(red:0, green: 0, blue: 0, alpha: 1)
+  
   static let bubbleGray =   UIColor(red:0.902, green: 0.902, blue: 0.902, alpha: 1)
+  
+  static let dotLightGray = UIColor(red:0.692, green: 0.692, blue: 0.692, alpha: 1)
+  static let dotDarkGray =  UIColor(red:0.322, green: 0.322, blue: 0.322, alpha: 1)
 
 }

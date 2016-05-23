@@ -22,11 +22,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let launchEnvironment = NSProcessInfo.processInfo().environment
     
-    switch launchEnvironment["testTarget"] ?? "none" {
-    case "summaries":
+    let dbName = launchEnvironment["testData"] ?? "test"
+    let dbPath = NSBundle(forClass: AppDelegate.self).pathForResource(dbName, ofType: "db")!
+    let dbManager = try! DBManager(path: dbPath, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
+    
+    switch launchEnvironment["testTarget"] ?? "messages" {
+    case "messages":
       
-      let dbPath = NSBundle(forClass: AppDelegate.self).pathForResource("test", ofType: "db")!
-      let dbManager = try! DBManager(path: dbPath, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
+      let request = FetchRequest()
+      request.resultClass = Message.self
+      request.predicate = NSPredicate(value: true)
+      request.includeSubentities = true
+      request.sortDescriptors = [NSSortDescriptor(key: "sent", ascending: true)]
+      request.fetchOffset = 0
+      request.fetchLimit = 0
+      request.fetchBatchSize = 0
+      
+      let messageResultsController = FetchedResultsController(DBManager: dbManager, request: request)
+      
+      try! messageResultsController.execute()
+      
+      let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Messages") as! MessagesViewController
+      mvc.messageResultsController = messageResultsController
+      
+      window?.rootViewController = UINavigationController(rootViewController: mvc)
+      
+    case "summaries":
       
       let request = FetchRequest()
       request.resultClass = Chat.self

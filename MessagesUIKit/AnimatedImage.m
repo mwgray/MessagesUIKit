@@ -187,9 +187,13 @@ static NSHashTable *allAnimatedImagesWeak;
     return nil;
   }
   
-  return [self initWithSource:source
-                   optimalFrameCacheSize:0
-                       predrawingEnabled:YES];
+  self = [self initWithSource:source
+        optimalFrameCacheSize:0
+            predrawingEnabled:YES];
+  
+  CFRelease(source);
+  
+  return self;
 }
 
 
@@ -202,9 +206,13 @@ static NSHashTable *allAnimatedImagesWeak;
     return nil;
   }
   
-  return [self initWithSource:source
+  self = [self initWithSource:source
         optimalFrameCacheSize:0
             predrawingEnabled:YES];
+  
+  CFRelease(source);
+  
+  return self;
 }
 
 
@@ -235,7 +243,7 @@ static NSHashTable *allAnimatedImagesWeak;
     _cachedFramesForIndexes = [[NSMutableDictionary alloc] init];
     _cachedFrameIndexes = [[NSMutableIndexSet alloc] init];
     _requestedFrameIndexes = [[NSMutableIndexSet alloc] init];
-    _imageSource = source;
+    _imageSource = (CGImageSourceRef)CFRetain(source);
 
     // Get `LoopCount`
     // Note: 0 means repeating the animation indefinitely.

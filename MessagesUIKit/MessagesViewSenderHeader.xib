@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SenderHeader" id="TkX-90-9Nb" customClass="MessagesViewSenderHeader" customModule="MessagesUIKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPp-ll-O6H" userLabel="Sender Badge" customClass="UserBadgeView" customModule="MessagesUIKit" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="SPp-ll-O6H" secondAttribute="height" multiplier="1:1" id="qrT-Jo-cOF"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnc-7T-vVK" userLabel="Sender">
+                    <rect key="frame" x="30" y="5" width="290" height="15"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                    <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Nnc-7T-vVK" secondAttribute="trailing" id="EDo-Ds-j4J"/>
+                <constraint firstItem="Nnc-7T-vVK" firstAttribute="centerY" secondItem="SPp-ll-O6H" secondAttribute="centerY" id="JzV-bb-uNA"/>
+                <constraint firstAttribute="bottom" secondItem="SPp-ll-O6H" secondAttribute="bottom" constant="6" id="VgZ-8F-2UM"/>
+                <constraint firstItem="Nnc-7T-vVK" firstAttribute="leading" secondItem="SPp-ll-O6H" secondAttribute="trailing" constant="6" id="Wgu-md-U86"/>
+                <constraint firstItem="SPp-ll-O6H" firstAttribute="top" secondItem="TkX-90-9Nb" secondAttribute="top" id="YGM-W1-kAg"/>
+                <constraint firstItem="SPp-ll-O6H" firstAttribute="leading" secondItem="TkX-90-9Nb" secondAttribute="leading" id="Zuo-aH-NZt"/>
+                <constraint firstItem="SPp-ll-O6H" firstAttribute="height" secondItem="Nnc-7T-vVK" secondAttribute="height" multiplier="1.6" id="tl3-cV-lJF"/>
+            </constraints>
+            <connections>
+                <outlet property="senderBadgeView" destination="SPp-ll-O6H" id="LxT-5j-9rT"/>
+                <outlet property="senderNameLabel" destination="Nnc-7T-vVK" id="RN8-D7-jPb"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>

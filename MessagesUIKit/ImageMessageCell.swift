@@ -19,6 +19,7 @@ public class ImageMessageCell : MessageCell {
   @IBOutlet var loadingView : UIActivityIndicatorView!
   @IBOutlet var maxWidthConstraint : NSLayoutConstraint!
   
+  
   override func willBeginDisplaying() {
     super.willBeginDisplaying()
   }
@@ -34,7 +35,6 @@ public class ImageMessageCell : MessageCell {
     let thumbnailKey = message.id.UUIDString + "@thumb"
 
     listenForMediaAvailableWithKey(thumbnailKey)
-    
     
     if let image = delegate?.loadCachedMediaForKey(thumbnailKey, loader: { resolve, fail in
       
@@ -63,7 +63,8 @@ public class ImageMessageCell : MessageCell {
           
         }
         
-        resolve(image, try imageData.dataSize().integerValue)
+        let cost = try imageData.dataSize().integerValue
+        resolve(image, cost)
         
       }
       catch let error {
@@ -75,13 +76,22 @@ public class ImageMessageCell : MessageCell {
       updateImage(image)
       
       loadingView.stopAnimating()
+      loadingView.hidden = true
     }
     else {
       
-      thumbnailImageView.snp_makeConstraints { make in
-        make.size.equalTo(message.thumbnailSize)
+      thumbnailImageView.snp_updateConstraints { make in
+        
+        make.width
+          .equalTo(message.thumbnailSize.width)
+          .priorityHigh()
+        
+        make.height
+          .equalTo(thumbnailImageView.snp_width)
+          .multipliedBy(message.thumbnailSize.height/message.thumbnailSize.width).priorityHigh()
       }
       
+      loadingView.hidden = false
       loadingView.startAnimating()
       
     }
@@ -93,10 +103,18 @@ public class ImageMessageCell : MessageCell {
     thumbnailImageView.anyImage = image
     
     let size = thumbnailImageView.intrinsicContentSize()
-    thumbnailImageView.snp_remakeConstraints { make in
-      make.width.equalTo(thumbnailImageView.snp_height).multipliedBy(size.width/size.height)
+    thumbnailImageView.snp_updateConstraints { make in
+      
+      make.width
+        .lessThanOrEqualTo(size.width)
+        .priorityHigh()
+      
+      make.height
+        .lessThanOrEqualTo(thumbnailImageView.snp_width)
+        .multipliedBy(size.height/size.width)
+        .priorityHigh()
     }
-
+    
   }
   
   override public func mediaAvailableWithInfo(info: [String : AnyObject]) {

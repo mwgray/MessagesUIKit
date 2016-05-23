@@ -16,10 +16,7 @@ FOUNDATION_EXPORT const unsigned char MessagesUIKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MessagesUIKit/PublicHeader.h>
 
-#import "BubbleView.h"
-
 #import "AnimatedImage.h"
 #import "AnimatedImageView.h"
 
 #import "AudioFile.h"
-#import "AudioPlot.h"

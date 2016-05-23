@@ -36,9 +36,8 @@ public class TextMessageCell : MessageCell {
       
     }
     else {
-      
-      let attrs = (valueForKey("layoutAttributes") as! MessagesViewLayoutAttributes).indexPath
-      textView.text = "Hello \(attrs.item)"
+     
+      textView.text = message.text
       
     }
     

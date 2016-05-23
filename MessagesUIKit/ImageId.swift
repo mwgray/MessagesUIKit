@@ -16,6 +16,7 @@ struct ImageId {
     case Delete = "action-icon-delete"
     case Edit = "action-icon-update"
     case Image = "action-icon-image"
+    case Audio = "action-icon-audio"
     case Video = "action-icon-video"
     case Phone = "action-icon-phone"
     case Contact = "action-icon-contact"
@@ -31,6 +32,7 @@ struct ImageId {
   enum MessageViewIcon : String {
     case ClarifyLight = "clarify-light"
     case ClarifyDark = "clarify-dark"
+    case AvatarSender = "contact-icon"
   }
 
   enum MessageButton : String {

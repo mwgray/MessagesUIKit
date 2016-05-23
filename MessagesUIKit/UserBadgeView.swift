@@ -29,8 +29,8 @@ public class UserBadgeView: UIView {
     }
   }
 
-  @IBOutlet weak var initialsLabel : UILabel!
-  @IBOutlet weak var avatarImageView : UIImageView!
+  var initialsLabel : UILabel!
+  var avatarImageView : UIImageView!
   
   override public init(frame: CGRect) {
     super.init(frame: frame)
@@ -113,7 +113,7 @@ public class UserBadgeView: UIView {
     else {
       initialsLabel.hidden = true
       avatarImageView.hidden = false
-      avatarImageView.image = UIImage(named:"contact-icon")
+      avatarImageView.image = UIImage(id: .AvatarSender)
     }
     
     setNeedsLayout()
