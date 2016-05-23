@@ -13,7 +13,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'MessagesKit'
   s.dependency 'CocoaLumberjack/Swift'
-  s.dependency 'FLAnimatedImage'
   s.dependency 'SnapKit'
   
 end
