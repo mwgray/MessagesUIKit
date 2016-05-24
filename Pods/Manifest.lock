@@ -70,6 +70,7 @@ PODS:
   - sqlite3/common (3.13.0)
   - SSKeychain (1.4.0)
   - Thrift (1.0.0)
+  - TURecipientBar (2.0.1)
   - YOLOKit (11.1.3):
     - YOLOKit/all (= 11.1.3)
     - YOLOKit/any (= 11.1.3)
@@ -246,6 +247,7 @@ DEPENDENCIES:
   - PSOperations/SystemConfiguration (from `https://github.com/reTXT/PSOperations.git`, branch `current`)
   - SnapKit
   - Thrift (from `https://github.com/reTXT/thrift.git`, branch `master`)
+  - TURecipientBar (from `https://github.com/reTXT/TURecipientBar.git`, branch `master`)
   - YOLOKit (from `https://github.com/reTXT/YOLOKit.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -268,6 +270,9 @@ EXTERNAL SOURCES:
   Thrift:
     :branch: master
     :git: https://github.com/reTXT/thrift.git
+  TURecipientBar:
+    :branch: master
+    :git: https://github.com/reTXT/TURecipientBar.git
   YOLOKit:
     :branch: master
     :git: https://github.com/reTXT/YOLOKit.git
@@ -291,6 +296,9 @@ CHECKOUT OPTIONS:
   Thrift:
     :commit: 8c213489cf31389ea4b4b7147ca8ae49ebcd462f
     :git: https://github.com/reTXT/thrift.git
+  TURecipientBar:
+    :commit: 59e16d78d0a257c805e5f48f4d863776095f30a1
+    :git: https://github.com/reTXT/TURecipientBar.git
   YOLOKit:
     :commit: d14756998a48a505b459a86d5d2f0a723396dd62
     :git: https://github.com/reTXT/YOLOKit.git
@@ -301,7 +309,7 @@ SPEC CHECKSUMS:
   FMDB: 29b696c579f66357b9a60b2e7e93600c61255063
   FMDBMigrationManager: d52007f328ea0665e8985ca8a33500707aef084f
   HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
-  MessagesKit: 02d948db0c0b01cef4561f5166d9d85c177521e6
+  MessagesKit: dc61179c22ecba0c588da982af147e028c7f8213
   OpenSSLCrypto: d564cb8d948f83c941a740ee0409043a563faf08
   PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
   PSOperations: a6b64f5bd214d6c28665026e4e9310db6d4e32a4
@@ -310,8 +318,9 @@ SPEC CHECKSUMS:
   sqlite3: c8b1b937fe823ab46411e471cdc1aa92d1b106ce
   SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
   Thrift: 95f37a5ae6dfa9312accfb79010902e107f3d40c
+  TURecipientBar: 2670dcab642e2b1a7ae28ce7868f0bd3f08ac852
   YOLOKit: bcd64e00fb81469a1ac54013b1ff78ca60eb93a2
 
-PODFILE CHECKSUM: 3af33b0f0725df3c30092b8e0aade4481b4eabe0
+PODFILE CHECKSUM: 48671fc492405f47f2c58e59ba4dffba72ffddd2
 
 COCOAPODS: 1.0.0

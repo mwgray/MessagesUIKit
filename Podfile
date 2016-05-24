@@ -18,6 +18,8 @@ target :MessagesUIKit do
   pod 'PromiseKit/AddressBook', :git => 'https://github.com/reTXT/PromiseKit.git', :branch => 'master'
   pod 'PromiseKit/AssetsLibrary', :git => 'https://github.com/reTXT/PromiseKit.git', :branch => 'master'
   pod 'PromiseKit/AVFoundation', :git => 'https://github.com/reTXT/PromiseKit.git', :branch => 'master'
+
+  pod 'TURecipientBar', :git => 'https://github.com/reTXT/TURecipientBar.git', :branch => 'master'
   
   pod 'MessagesKit', :path => '../MessagesKit' #:git => 'https://github.com/reTXT/MessagesKit.git', :branch => 'master'
   

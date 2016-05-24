@@ -20,3 +20,5 @@ FOUNDATION_EXPORT const unsigned char MessagesUIKitVersionString[];
 #import "AnimatedImageView.h"
 
 #import "AudioFile.h"
+
+#import "MessageTextView.h"

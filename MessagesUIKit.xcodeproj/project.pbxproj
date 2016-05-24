@@ -33,6 +33,21 @@
 		AA0EAD441CF2104600B51C34 /* AudioPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EAD431CF2104600B51C34 /* AudioPlot.swift */; };
 		AA1AA3A91CEBBE7A005B127C /* test.db in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3A71CEBBE69005B127C /* test.db */; };
 		AA1AA3AB1CED126B005B127C /* MessagesUIKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */; };
+		AA6328891CF3A16900DD6034 /* ChatRecipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328851CF3A16900DD6034 /* ChatRecipients.swift */; };
+		AA63288A1CF3A16900DD6034 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328861CF3A16900DD6034 /* ChatViewController.swift */; };
+		AA63288F1CF3A1EF00DD6034 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63288E1CF3A1EF00DD6034 /* Contacts.swift */; };
+		AA6328921CF49B8800DD6034 /* MessageTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6328901CF49B8800DD6034 /* MessageTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA6328931CF49B8800DD6034 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6328911CF49B8800DD6034 /* MessageTextView.m */; };
+		AA6328981CF4CC4B00DD6034 /* UIImage+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6328961CF4CC4B00DD6034 /* UIImage+Extras.h */; };
+		AA6328991CF4CC4B00DD6034 /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6328971CF4CC4B00DD6034 /* UIImage+Extras.m */; };
+		AA63289C1CF4CC5C00DD6034 /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = AA63289A1CF4CC5C00DD6034 /* UIImage+Alpha.h */; };
+		AA63289D1CF4CC5C00DD6034 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63289B1CF4CC5C00DD6034 /* UIImage+Alpha.m */; };
+		AA6328A01CF4CCC200DD6034 /* UIImage+ImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = AA63289E1CF4CCC200DD6034 /* UIImage+ImageEffects.h */; };
+		AA6328A11CF4CCC200DD6034 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63289F1CF4CCC200DD6034 /* UIImage+ImageEffects.m */; };
+		AA6328A31CF4D18D00DD6034 /* ChatToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */; };
+		AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */; };
+		AA6328A61CF4E14B00DD6034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD4DC3A1CEA1E890032B5CE /* Main.storyboard */; };
+		AA6328AF1CF4ECC300DD6034 /* ChatToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */; };
 		AAA251271CF181C600EB2706 /* PieProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA251261CF181C600EB2706 /* PieProgressView.swift */; };
 		AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AAB535CD1CE8DF7E00A38281 /* MessagesUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */; };
@@ -139,6 +154,20 @@
 		AA1AA3A01CEBB6F5005B127C /* Pods_MessagesUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MessagesUIKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MessagesUIKit-gpxwgjvqssapsfdgmsojbdutixkt/Build/Products/Debug-iphonesimulator/Pods_MessagesUIKit.framework"; sourceTree = "<group>"; };
 		AA1AA3A71CEBBE69005B127C /* test.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.db; path = MessagesUIKitHost/test.db; sourceTree = SOURCE_ROOT; };
 		AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = MessagesUIKit.podspec; sourceTree = "<group>"; };
+		AA6328851CF3A16900DD6034 /* ChatRecipients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRecipients.swift; sourceTree = "<group>"; };
+		AA6328861CF3A16900DD6034 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		AA63288E1CF3A1EF00DD6034 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		AA6328901CF49B8800DD6034 /* MessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
+		AA6328911CF49B8800DD6034 /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
+		AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatToolBarView.swift; sourceTree = "<group>"; };
+		AA6328961CF4CC4B00DD6034 /* UIImage+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extras.h"; sourceTree = "<group>"; };
+		AA6328971CF4CC4B00DD6034 /* UIImage+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extras.m"; sourceTree = "<group>"; };
+		AA63289A1CF4CC5C00DD6034 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		AA63289B1CF4CC5C00DD6034 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		AA63289E1CF4CCC200DD6034 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		AA63289F1CF4CCC200DD6034 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatToolBarView.xib; sourceTree = "<group>"; };
+		AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
 		AAA251261CF181C600EB2706 /* PieProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieProgressView.swift; sourceTree = "<group>"; };
 		AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessagesUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesUIKit.h; sourceTree = "<group>"; };
@@ -269,6 +298,7 @@
 				AA0B34471CE9900900DEFE33 /* StatusCell.swift */,
 				AA0B34481CE9900900DEFE33 /* TextMessageCell.swift */,
 				AA0B34491CE9900900DEFE33 /* VideoMessageCell.swift */,
+				AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */,
 				AAC425961CF0F6B600145EDB /* MessagesViewActionMenuLeft.xib */,
 				AAC425971CF0F6B600145EDB /* MessagesViewActionMenuRight.xib */,
 				AAC425981CF0F6B600145EDB /* MessagesViewIcon.xib */,
@@ -277,6 +307,25 @@
 				AAC4259B1CF0F6B600145EDB /* MessagesViewTimeHeader.xib */,
 			);
 			name = "Messages View Controller";
+			sourceTree = "<group>";
+		};
+		AA63288D1CF3A17000DD6034 /* Chat View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AA6328851CF3A16900DD6034 /* ChatRecipients.swift */,
+				AA6328861CF3A16900DD6034 /* ChatViewController.swift */,
+				AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */,
+				AA6328901CF49B8800DD6034 /* MessageTextView.h */,
+				AA6328911CF49B8800DD6034 /* MessageTextView.m */,
+				AA6328961CF4CC4B00DD6034 /* UIImage+Extras.h */,
+				AA6328971CF4CC4B00DD6034 /* UIImage+Extras.m */,
+				AA63289A1CF4CC5C00DD6034 /* UIImage+Alpha.h */,
+				AA63289B1CF4CC5C00DD6034 /* UIImage+Alpha.m */,
+				AA63289E1CF4CCC200DD6034 /* UIImage+ImageEffects.h */,
+				AA63289F1CF4CCC200DD6034 /* UIImage+ImageEffects.m */,
+				AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */,
+			);
+			name = "Chat View Controller";
 			sourceTree = "<group>";
 		};
 		AA9952CD1CEB6392004ABFA4 /* Chat Summaries View Controller */ = {
@@ -323,6 +372,7 @@
 				AAB535C71CE8DF7E00A38281 /* Info.plist */,
 				AAC425A21CF0F9BA00145EDB /* Images.xcassets */,
 				AAD4DC791CEA28560032B5CE /* Common */,
+				AA63288D1CF3A17000DD6034 /* Chat View Controller */,
 				AA9952CD1CEB6392004ABFA4 /* Chat Summaries View Controller */,
 				AA0B34541CE9901100DEFE33 /* Messages View Controller */,
 				AAC425921CF0D95900145EDB /* Animated Image (GIF) */,
@@ -387,6 +437,7 @@
 		AAD4DC791CEA28560032B5CE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AA63288E1CF3A1EF00DD6034 /* Contacts.swift */,
 				AADB25E91CF16CF300D86240 /* AspectRatioImageView.swift */,
 				AAD4DC1B1CE9A7E20032B5CE /* UserBadgeView.swift */,
 				AA0B34551CE9911800DEFE33 /* AutoLayoutCollectionReusableView.swift */,
@@ -416,6 +467,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAC4258F1CF0D86C00145EDB /* AnimatedImageView.h in Headers */,
+				AA6328A01CF4CCC200DD6034 /* UIImage+ImageEffects.h in Headers */,
+				AA6328981CF4CC4B00DD6034 /* UIImage+Extras.h in Headers */,
+				AA63289C1CF4CC5C00DD6034 /* UIImage+Alpha.h in Headers */,
+				AA6328921CF49B8800DD6034 /* MessageTextView.h in Headers */,
 				AAC425951CF0DBD400145EDB /* Log.h in Headers */,
 				AAC4258D1CF0D86C00145EDB /* AnimatedImage.h in Headers */,
 				AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */,
@@ -564,7 +619,10 @@
 				AAC425A11CF0F6B600145EDB /* MessagesViewTimeHeader.xib in Resources */,
 				AAC425A01CF0F6B600145EDB /* MessagesViewStatusFooter.xib in Resources */,
 				AAC4259E1CF0F6B600145EDB /* MessagesViewIcon.xib in Resources */,
+				AA6328A61CF4E14B00DD6034 /* Main.storyboard in Resources */,
 				AAC4259D1CF0F6B600145EDB /* MessagesViewActionMenuRight.xib in Resources */,
+				AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */,
+				AA6328A31CF4D18D00DD6034 /* ChatToolBarView.xib in Resources */,
 				AAC4259F1CF0F6B600145EDB /* MessagesViewSenderHeader.xib in Resources */,
 				AA1AA3AB1CED126B005B127C /* MessagesUIKit.podspec in Resources */,
 			);
@@ -748,19 +806,24 @@
 				AAD4DC7F1CEA2A370032B5CE /* RelativeHistoryDateFormatter.swift in Sources */,
 				AA0B343A1CE98F6700DEFE33 /* CGSize.swift in Sources */,
 				AAC425901CF0D86C00145EDB /* AnimatedImageView.m in Sources */,
+				AA63288F1CF3A1EF00DD6034 /* Contacts.swift in Sources */,
+				AA6328AF1CF4ECC300DD6034 /* ChatToolBarView.swift in Sources */,
 				AA0B344F1CE9900900DEFE33 /* LocationMessageCell.swift in Sources */,
 				AA0B343B1CE98F6700DEFE33 /* UIEdgeInsets.swift in Sources */,
 				AA0B34501CE9900900DEFE33 /* MessageCell.swift in Sources */,
 				AA0EAD441CF2104600B51C34 /* AudioPlot.swift in Sources */,
 				AAD4DC1C1CE9A7E20032B5CE /* UserBadgeView.swift in Sources */,
 				AAD4DC7C1CEA29150032B5CE /* ChatSummaryTableViewCell.swift in Sources */,
+				AA6328A11CF4CCC200DD6034 /* UIImage+ImageEffects.m in Sources */,
 				AADB25E81CF15ED600D86240 /* StatusDotsView.swift in Sources */,
 				AAD4DC231CE9B9B10032B5CE /* InternalStyle.swift in Sources */,
+				AA6328931CF49B8800DD6034 /* MessageTextView.m in Sources */,
 				AA0B346C1CE9A65500DEFE33 /* AudioFile.m in Sources */,
 				AA0B34351CE98D9F00DEFE33 /* MessagesViewController.swift in Sources */,
 				AAD4DC7D1CEA29150032B5CE /* ChatSummariesViewController.swift in Sources */,
 				AA0B344C1CE9900900DEFE33 /* ContactMessageCell.swift in Sources */,
 				AAA251271CF181C600EB2706 /* PieProgressView.swift in Sources */,
+				AA6328891CF3A16900DD6034 /* ChatRecipients.swift in Sources */,
 				AA0B34581CE9911800DEFE33 /* AutoLayoutCollectionViewCell.swift in Sources */,
 				AA0B344E1CE9900900DEFE33 /* ImageMessageCell.swift in Sources */,
 				AA0B344B1CE9900900DEFE33 /* ConferenceMessageCell.swift in Sources */,
@@ -768,10 +831,13 @@
 				AA0B34571CE9911800DEFE33 /* AutoLayoutCollectionReusableView.swift in Sources */,
 				AAD4DC1E1CE9B2830032B5CE /* String.swift in Sources */,
 				AA0B343F1CE98FC300DEFE33 /* UICollectionViewLayoutAttributes.swift in Sources */,
+				AA63289D1CF4CC5C00DD6034 /* UIImage+Alpha.m in Sources */,
+				AA6328991CF4CC4B00DD6034 /* UIImage+Extras.m in Sources */,
 				AADB25EA1CF16CF300D86240 /* AspectRatioImageView.swift in Sources */,
 				AA0B34391CE98F6700DEFE33 /* CGRect.swift in Sources */,
 				AA0B34511CE9900900DEFE33 /* StatusCell.swift in Sources */,
 				AA0B34531CE9900900DEFE33 /* VideoMessageCell.swift in Sources */,
+				AA63288A1CF3A16900DD6034 /* ChatViewController.swift in Sources */,
 				AA0B34341CE98D9F00DEFE33 /* MessagesViewLayout.swift in Sources */,
 				AAC425A51CF14EE300145EDB /* BubbleView.swift in Sources */,
 				AA0B344A1CE9900900DEFE33 /* AudioMessageCell.swift in Sources */,

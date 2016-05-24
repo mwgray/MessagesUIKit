@@ -26,7 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let dbPath = NSBundle(forClass: AppDelegate.self).pathForResource(dbName, ofType: "db")!
     let dbManager = try! DBManager(path: dbPath, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
     
-    switch launchEnvironment["testTarget"] ?? "messages" {
+    switch launchEnvironment["testTarget"] ?? "chat" {
+    case "chat":
+      
+      let cvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Chat") as! ChatViewController
+      
+      window?.rootViewController = UINavigationController(rootViewController: cvc)
+      
+      
     case "messages":
       
       let request = FetchRequest()
