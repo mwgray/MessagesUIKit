@@ -451,9 +451,11 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
   }
   
   public func scrollToLatestItemAnimated(animated: Bool) {
-        
-    let lastIndexPath = NSIndexPath(forItem: messageResultsController!.lastIndex(), inSection: 0)
-    collectionView!.scrollToItemAtIndexPath(lastIndexPath, atScrollPosition: .Bottom, animated: animated)
+    
+    if let mrc = messageResultsController {
+      let lastIndexPath = NSIndexPath(forItem: mrc.lastIndex(), inSection: 0)
+      collectionView!.scrollToItemAtIndexPath(lastIndexPath, atScrollPosition: .Bottom, animated: animated)
+    }
   }
   
   public func updateInsets(insets: UIEdgeInsets) {
