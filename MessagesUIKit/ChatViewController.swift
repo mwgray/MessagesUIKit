@@ -1153,12 +1153,17 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
       return nil
     }
     
-    return recipient
+    return chatRecipient
   }
   
   public func recipientsDisplayController(controller: TURecipientsDisplayController!, didAddRecipient recipient: TURecipientProtocol!) {
     
-    operationQueue.addOperation(ValidateRecipientOperation(recipient: recipient as! ChatRecipient, vc: self))
+    guard let recipient = recipient as? ChatRecipient else {
+      DDLogWarn("Recipient is not a ChatRecipient (and it should be!")
+      return
+    }
+    
+    operationQueue.addOperation(ValidateRecipientOperation(recipient: recipient, vc: self))
   }
   
   public func recipientsDisplayController(controller: TURecipientsDisplayController!, didRemoveRecipient recipient: TURecipientProtocol!) {
