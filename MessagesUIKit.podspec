@@ -14,5 +14,6 @@ Pod::Spec.new do |s|
   s.dependency 'MessagesKit'
   s.dependency 'CocoaLumberjack/Swift'
   s.dependency 'SnapKit'
+  s.dependency 'TURecipientBar'
   
 end
