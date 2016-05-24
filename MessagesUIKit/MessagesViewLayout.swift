@@ -313,7 +313,7 @@ class MessagesViewLayout: UICollectionViewLayout {
   
   override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     
-    if sectionItemCounts.count == 1 && sectionItemCounts[0] == 0 {
+    if sectionItemCounts.reduce(0, combine: { $0 + $1 }) == 0 {
       return []
     }
     
