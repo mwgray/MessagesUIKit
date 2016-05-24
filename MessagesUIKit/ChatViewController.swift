@@ -1095,7 +1095,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
         // Exclude contacts that have already been added by matching up aliases
         let resultsContacts = foundContacts.filter { Set($0.aliases.map { $0.rawValue }).intersect(recipientAliases).isEmpty }
         
-        self.recipientsSearchResults = resultsContacts
+        self.recipientsSearchResults = resultsContacts.isEmpty ? nil : resultsContacts
         
         self.recipientsDisplayController.searchResultsTableView.reloadData()
         
