@@ -116,7 +116,7 @@ public class ChatViewController: UIViewController {
     messagesViewController = UIStoryboard(name: "Main", bundle: NSBundle.muik_frameworkBundle()).instantiateViewControllerWithIdentifier("Messages") as! MessagesViewController
     messagesViewController.willMoveToParentViewController(self)
     
-    view.addSubview(messagesViewController.view)
+    view.insertSubview(messagesViewController.view, atIndex: 0)
     messagesViewController.view.snp_makeConstraints { make in
       make.edges.equalTo(view.snp_edges)
     }
