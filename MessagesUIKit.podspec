@@ -11,7 +11,6 @@ Pod::Spec.new do |s|
   
   s.source_files = 'MessagesUIKit/*.{h,m,swift}'
   s.resources = 'MessagesUIKit/*.xib','MessagesUIKit/*.xcassets'
-  s.resources = 'MessagesUIKitHost/Main.storyboard'
 
   s.dependency 'MessagesKit'
   s.dependency 'CocoaLumberjack/Swift'
