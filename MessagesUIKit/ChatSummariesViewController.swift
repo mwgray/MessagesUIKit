@@ -12,28 +12,16 @@ import MessagesKit
 
 public class ChatSummariesViewController : UITableViewController, FetchedResultsControllerDelegate {
   
-
-  public var chatResultsController : FetchedResultsController?
-//    = {
-//    
-//    guard let api = RTAppDelegate.app().messageAPI else {
-//      return nil
-//    }
-//    
-//    let predicate = NSPredicate(value: true)
-//    let sortedDescriptors = [NSSortDescriptor(key: "lastMessage.sent", ascending: false)]
-//    
-//    let val = api.fetchChatsMatchingPredicate(predicate, offset: 0, limit: 0, sortedBy: sortedDescriptors)
-//    val.delegate = self
-//    
-//    try! val.execute()
-//    
-//    return val
-//    
-//  }()
+  public var chatResultsController : FetchedResultsController? {
+    willSet {
+      chatResultsController?.delegate = nil
+    }
+    didSet {
+      chatResultsController?.delegate = self
+    }
+  }
   
   let receivedDateFormatter = RelativeHistoryDateFormatter()
-  
   
   public override func viewDidLoad() {
     super.viewDidLoad()

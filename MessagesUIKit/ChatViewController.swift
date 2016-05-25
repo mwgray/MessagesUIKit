@@ -35,7 +35,7 @@ public class ChatViewController: UIViewController {
   let insetPadding = CGFloat(5)
   
   
-  var chat : Chat? {
+  public var chat : Chat? {
     didSet {
       GCD.mainQueue.async { self.updateChat() }
     }
