@@ -873,6 +873,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="SLD-cN-1X3" customClass="TURecipientsBar">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <subviews>
+                                    <visualEffectView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FE4-tX-8Rs">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nJc-fx-2OH">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="extraLight"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="FE4-tX-8Rs" secondAttribute="bottom" id="GLF-cf-RqK"/>
+                                    <constraint firstItem="FE4-tX-8Rs" firstAttribute="leading" secondItem="SLD-cN-1X3" secondAttribute="leading" id="Ll9-lx-RpX"/>
+                                    <constraint firstAttribute="trailing" secondItem="FE4-tX-8Rs" secondAttribute="trailing" id="jUF-E5-UIu"/>
+                                    <constraint firstItem="FE4-tX-8Rs" firstAttribute="top" secondItem="SLD-cN-1X3" secondAttribute="top" id="sda-f3-Kj9"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsAddButton" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsShadows" value="NO"/>
@@ -897,22 +913,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="chatInfoButtonItem" destination="CYB-dM-Wlk" id="jwa-fy-mQw"/>
-                        <outlet property="inputAccessoryView" destination="d3F-RH-mL8" id="bKS-jI-DPK"/>
                         <outlet property="inputView" destination="QWH-Fl-H0Y" id="Cqh-Rz-PGP"/>
                         <outlet property="recipientsBar" destination="SLD-cN-1X3" id="MYF-fQ-DZK"/>
                         <outlet property="recipientsDisplayController" destination="gm2-M9-haf" id="ZIP-yP-wpK"/>
-                        <outlet property="toolbar" destination="d3F-RH-mL8" id="8zO-iu-lXi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLo-53-grM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="d3F-RH-mL8" userLabel="Chat Toolbar View" customClass="ChatToolBarView" customModule="MessagesUIKit">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="delegate" destination="pCd-4r-toy" id="9WW-xf-m2C"/>
-                    </connections>
-                </view>
                 <view contentMode="scaleToFill" id="QWH-Fl-H0Y" userLabel="Empty Input View">
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

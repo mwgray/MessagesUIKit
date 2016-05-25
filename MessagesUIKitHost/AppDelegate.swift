@@ -7,29 +7,37 @@
 //
 
 import UIKit
-import MessagesKit
-import MessagesUIKit
+@testable import MessagesKit
+@testable import MessagesUIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  let docDir = NSFileManager.defaultManager()
+    .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     window = UIWindow()
     
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "io.retxt.debug.RandomUniqueDeviceId")
+    
+    MessageAPI.initialize(target: ServerTarget(scheme: .HTTPS, hostName: "master.dev.retxt.io"))
+    
     let launchEnvironment = NSProcessInfo.processInfo().environment
     
     let dbName = launchEnvironment["testData"] ?? "test"
-    let dbPath = NSBundle(forClass: AppDelegate.self).pathForResource(dbName, ofType: "db")!
-    let dbManager = try! DBManager(path: dbPath, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
+    let dbURL = NSBundle(forClass: AppDelegate.self).URLForResource(dbName, withExtension: "db")!
+    let dbManager = try! DBManager(path: dbURL.path!, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
     
     switch launchEnvironment["testTarget"] ?? "chat" {
     case "chat":
-      
+
       let cvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Chat") as! ChatViewController
+      
+      cvc.messageAPI = try! register()
       
       window?.rootViewController = UINavigationController(rootViewController: cvc)
       
@@ -83,5 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
+  func register() throws -> MessageAPI {
+  
+    let alias = String(randomAlphaNumericOfLength: 8)
+    let password = String(randomAlphaNumericOfLength: 10)
+    
+    return try Promise<Void>()
+      .then(on: GCD.backgroundQueue) {
+        return MessageAPI.registerUserWithAliases([alias: "$#$#"], password: password)
+      }
+      .then(on: zalgo) { creds in
+        return try MessageAPI(credentials: creds, documentDirectoryURL: self.docDir)
+      }
+      .wait()
+  }
+  
 }
-
