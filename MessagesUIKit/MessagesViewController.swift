@@ -68,6 +68,7 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.delaysContentTouches = true
     collectionView.canCancelContentTouches = true
+    collectionView.keyboardDismissMode = .Interactive
     
     let panner = UIPanGestureRecognizer(target: self, action: #selector(MessagesViewController.panned(_:)))
     panner.delegate = self
