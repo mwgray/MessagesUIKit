@@ -18,7 +18,18 @@ import AddressBook
 import CoreLocation
 
 
-public enum MessageData {
+
+
+
+@objc public protocol ChatViewControllerDelegate {
+  
+  var preferredAlias : String { get }
+  
+}
+
+
+
+enum MessageData {
   case Text(String)
   case Image(NSURL?, UIImage?, [String: AnyObject]?)
   case Audio(NSURL)
@@ -61,6 +72,8 @@ public class ChatViewController: UIViewController {
   private let operationQueue = OperationQueue()
   
   private var notificationHandlers = [AnyObject]()
+  
+  private var delegate : ChatViewControllerDelegate?
   
   @IBOutlet public override var inputView : UIView? {
     get { return _inputView }
@@ -1810,7 +1823,7 @@ private class ResolveChatOperation : Operation {
       return
     }
     
-    let localAlias = vc.messageAPI.credentials.preferredAlias
+    let localAlias = vc.delegate?.preferredAlias ?? vc.messageAPI.credentials.allAliases.first!
     
     if recipientAliases.count == 1 {
       vc.chat = try! vc.messageAPI.loadUserChatForAlias(recipientAliases[0], localAlias: localAlias)
