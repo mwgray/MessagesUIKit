@@ -435,16 +435,10 @@ public class ChatViewController: UIViewController {
   private func saveMessageWithData(data: MessageData) {
     
     let save = SaveOperation(data: data, previousMessage: currentlyEditingMessage, vc: self)
-    
-    if chat == nil {
-      let resolve = ResolveChatOperation(vc: self)
-      save.addDependency(resolve)
-      operationQueue.addOperation(resolve)
-    }
-    
     operationQueue.addOperation(save)
     
     endCurrentMessageEditing()
+    
     lastSentUserStatus = .NoStatus
   }
   
@@ -552,6 +546,26 @@ public class ChatViewController: UIViewController {
 
 // MARK: Toolbar Delegate
 extension ChatViewController : ChatToolBarViewDelegate {
+  
+  public func chatToolBarViewDidTapSend(chatToolBarView: ChatToolBarView) {
+    
+    for message in chatToolBarView.currentMessages {
+
+      let data : MessageData
+      
+      switch message {
+      case let image as UIImage:
+        data = .Image(nil, image, nil)
+        
+      default:
+        data = .Text(message.description)
+      }
+      
+      let save = SaveOperation(data: data, previousMessage: currentlyEditingMessage, vc: self)
+      operationQueue.addOperation(save)
+    }
+    
+  }
   
   public func chatToolBarViewWillShowButtons(chatToolBarView: ChatToolBarView) {
     
@@ -1489,7 +1503,8 @@ private class SaveOperation : Operation {
     
     super.init()
     
-    addCondition(ChatResolvedCondition(vc: vc))
+    addCondition(ChatResolvedCondition(vc: vc))       // Ensure a chat is loaded
+    addCondition(MutuallyExclusive<SaveOperation>())  // Ensure saves happen in order
   }
   
   override func execute() {
