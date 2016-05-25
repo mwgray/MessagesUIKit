@@ -53,6 +53,8 @@ public class ChatViewController: UIViewController {
   }
 
   public var messageAPI : MessageAPI!
+
+  public var delegate : ChatViewControllerDelegate?
   
   private var lastSentUserStatus = UserStatus.NoStatus
   
@@ -72,8 +74,6 @@ public class ChatViewController: UIViewController {
   private let operationQueue = OperationQueue()
   
   private var notificationHandlers = [AnyObject]()
-  
-  private var delegate : ChatViewControllerDelegate?
   
   @IBOutlet public override var inputView : UIView? {
     get { return _inputView }
