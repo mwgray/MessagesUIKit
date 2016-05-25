@@ -1065,16 +1065,17 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
   
   public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-    guard let
-      cell = tableView.cellForRowAtIndexPath(indexPath),
-      results = recipientsSearchResults
-    else {
+    guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {
       return
     }
     
-    // Did they
+    // Did they click the suggestion to enable contacts access in settings?
     if cell.reuseIdentifier == OpenSettingsCellIdentifier {
       UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+      return
+    }
+
+    guard let results = recipientsSearchResults else {
       return
     }
     
