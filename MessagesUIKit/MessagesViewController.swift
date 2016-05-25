@@ -14,7 +14,12 @@ import CocoaLumberjack
 
 public class MessagesViewController: UICollectionViewController, MessagesViewLayoutDelegate {
   
-  public var messageResultsController : FetchedResultsController?
+  public var messageResultsController : FetchedResultsController? {
+    didSet {
+      messageResultsController?.delegate = self
+      collectionView?.reloadData()
+    }
+  }
   
   public var showAvatars = false {
     didSet {
