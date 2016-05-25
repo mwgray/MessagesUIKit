@@ -93,14 +93,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func register() throws -> MessageAPI {
   
-    let alias = String(randomAlphaNumericOfLength: 8)
+    let alias = String(randomAlphaNumericOfLength: 8) + "@m.retxt.io"
     let password = String(randomAlphaNumericOfLength: 10)
     
     return try Promise<Void>()
       .then(on: GCD.backgroundQueue) {
         return MessageAPI.registerUserWithAliases([alias: "$#$#"], password: password)
       }
-      .then(on: zalgo) { creds in
+      .then(on: zalgo) { creds -> MessageAPI in
+        
+        print("##### Registered account: \(alias)")
+        
         return try MessageAPI(credentials: creds, documentDirectoryURL: self.docDir)
       }
       .wait()
