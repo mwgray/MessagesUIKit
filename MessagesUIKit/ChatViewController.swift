@@ -308,8 +308,9 @@ public class ChatViewController: UIViewController {
                                                             offset: 0,
                                                             limit: 0,
                                                             sortedBy: [NSSortDescriptor(key: "sent", ascending: true)])
-    
     messagesViewController.messageResultsController = results
+    
+    try! results.execute()
   }
   
   func updateChat() {
