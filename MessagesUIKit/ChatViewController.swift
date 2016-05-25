@@ -110,6 +110,10 @@ public class ChatViewController: UIViewController {
     
     super.viewDidLoad()
     
+    toolbar = ChatToolBarView(frame: CGRectZero)
+    toolbar.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+    inputAccessoryView = toolbar
+    
     // EMBED: MesasgesViewController
     //
     
