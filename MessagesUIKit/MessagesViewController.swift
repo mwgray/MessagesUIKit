@@ -12,7 +12,7 @@ import MessagesKit
 import CocoaLumberjack
 
 
-public class MessagesViewController: UICollectionViewController, MessagesViewLayoutDelegate, FetchedResultsControllerDelegate {
+public class MessagesViewController: UICollectionViewController, MessagesViewLayoutDelegate {
   
   public var messageResultsController : FetchedResultsController?
   
@@ -557,6 +557,29 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     layout.invalidateLayoutWithContext(context)
     
     self.actionMenuDragTarget = nil
+  }
+  
+}
+
+
+extension MessagesViewController : FetchedResultsControllerDelegate {
+  
+  public func controller(controller: FetchedResultsController, didChangeObject object: AnyObject, atIndex index: Int, forChangeType changeType: FetchedResultsChangeType, newIndex: Int) {
+    
+    switch changeType {
+    case .Insert:
+      collectionView?.insertItemsAtIndexPaths([NSIndexPath(forItem: newIndex, inSection: 0)])
+    
+    case .Update:
+      collectionView?.reloadItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
+      
+    case .Move:
+      collectionView?.moveItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0), toIndexPath: NSIndexPath(forItem: newIndex, inSection: 0))
+      
+    case .Delete:
+      collectionView?.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])      
+    }
+    
   }
   
 }
