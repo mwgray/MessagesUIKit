@@ -146,8 +146,8 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   @IBOutlet private weak var videoPlaybackResetButton: UIButton!
   
   // Constraints
-  private var showButtonsConstraints: [Constraint]!
-  private var hideButtonsConstraints: [Constraint]!
+  private var showButtonsConstraints = [Constraint]()
+  private var hideButtonsConstraints = [Constraint]()
   private var textViewHeightConstraint: Constraint!
   private var waveformViewHeightConstraint: Constraint!
   
@@ -167,11 +167,9 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
     let nib: UINib = UINib(nibName: "ChatToolBarView", bundle: NSBundle.muik_frameworkBundle())
     nib.instantiateWithOwner(self, options: nil)
     
-    internalView.frame = bounds
     addSubview(internalView)
-    
     internalView.snp_makeConstraints { make in
-      make.edges.equalTo(self.snp_edges)
+      make.edges.equalTo(self)
     }
     
     audioPlaybackView.hidden = true
@@ -195,10 +193,8 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   
   deinit {
     delegate = nil
-    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
-  
   var currentMessages: [AnyObject] {
     get {
       
@@ -276,7 +272,7 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
     }
   }
   
-  @IBOutlet weak var delegate: ChatToolBarViewDelegate!
+  @IBOutlet weak var delegate: ChatToolBarViewDelegate?
   
   
   @IBAction func hideToolBarButtons() {
@@ -289,25 +285,32 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   func showWaveformView() {
+    
     waveformView.hidden = false
     waveformViewHeightConstraint.updateOffset(kWaveformHeight)
+    
     animateWithDuration(0.2) {
-      self.superview?.layoutIfNeeded()
+      self.layoutIfNeeded()
     }
   }
   
   func hideWaveformView() {
+    
     waveformViewHeightConstraint.updateOffset(0)
+    
     animateWithDuration(0.2) {
-      self.superview?.layoutIfNeeded()
+      self.layoutIfNeeded()
     }
   }
   
   func updateWaveformView(level: CGFloat) {
+    
     if waveformView.hidden {
       return
     }
+    
     //FIXME: waveformView.updateWithLevel(level)
+    
     setNeedsDisplay()
   }
   
@@ -316,16 +319,20 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   func showAudioPlaybackControls() {
+    
     audioPlaybackView.alpha = 0
     audioPlaybackView.hidden = false
-    animateWithDuration(0.2, animations: {() -> Void in
+    
+    animateWithDuration(0.2) {
       self.audioPlaybackView.alpha = 1
-    })
+    }
   }
   
   func hideAudioPlaybackControls() {
+    
     audioPlaybackView.alpha = 1
-    animateWithDuration(0.2, animations: {() -> Void in
+    
+    animateWithDuration(0.2, animations: {
         self.audioPlaybackView.alpha = 0
       }, completion: {(finished: Bool) -> Void in
         // This ensures the blurry toolbar refreshes its blurriness
@@ -335,7 +342,7 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
         if finished {
           self.audioPlaybackView.hidden = true
         }
-    })
+      })
   }
   
   func updateAudioPlaybackDataWithTime(duration: NSTimeInterval, samples: UnsafePointer<Float>, count sampleCount: UInt) {
@@ -397,21 +404,21 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   func showVideoPlaybackControls() {
     videoPlaybackView.alpha = 0
     videoPlaybackView.hidden = false
-    animateWithDuration(0.2, animations: {() -> Void in
+    animateWithDuration(0.2) {
       self.videoPlaybackView.alpha = 1
-    })
+    }
   }
   
   func hideVideoPlaybackControls() {
     animateWithDuration(0.2, animations: {
-      self.videoPlaybackView.alpha = 0
-    }, completion: { finished in
-      // This ensures the blurry toolbar refreshes its blurriness
-      self.internalView.subviews.forEach {subview in
-        subview.setNeedsDisplay()
-      }
-      self.videoPlaybackView.hidden = true
-    })
+        self.videoPlaybackView.alpha = 0
+      }, completion: { finished in
+        // This ensures the blurry toolbar refreshes its blurriness
+        self.internalView.subviews.forEach {subview in
+          subview.setNeedsDisplay()
+        }
+        self.videoPlaybackView.hidden = true
+      })
   }
   
   func updateVideoPlaybackDataWithTime(duration: NSTimeInterval) {
@@ -466,15 +473,17 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   func buildConstraints() {
+    
     sendButton.snp_makeConstraints { make in
       make.centerY.equalTo(self.menuButton.snp_centerY)
     }
+    
     waveformView.snp_makeConstraints { make in
       make.bottom.equalTo(self.textView.snp_top).offset(-5)
       make.top.equalTo(self.snp_top)
       make.leading.equalTo(self.snp_leading)
       make.trailing.equalTo(self.snp_trailing)
-      self.waveformViewHeightConstraint = make.height.equalTo(0).priorityHigh().constraint
+      self.waveformViewHeightConstraint = make.height.equalTo(0).constraint
     }
     
     textView.snp_makeConstraints { make in
@@ -539,11 +548,11 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
     showButtonsConstraints.appendContentsOf(sendButton.snp_prepareConstraints { make in
       make.leading.equalTo(self.snp_trailing)
     })
+    showButtonsConstraints.forEach { $0.deactivate() }
   }
   
   public override func intrinsicContentSize() -> CGSize {
-    let size = internalView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-    return size
+    return internalView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
   }
   
   func scrollToEndFix() {
@@ -556,18 +565,23 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
 
   func animateWithDuration(duration: NSTimeInterval, animations: () -> Void, completion: ((Bool) -> Void)?) {
-    UIView.animateWithDuration(duration, delay: 0, options: .BeginFromCurrentState, animations: animations, completion: completion)
+    UIView.animateWithDuration(duration, delay: 0, options: [], animations: animations, completion: completion)
   }
   
   func adjustTextViewHeight() {
+    
     if buttonsAreVisible {
       _hideToolBarButtons()
       return
     }
+    
     let textHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textView.frame.size.width, 0)).height
     textViewHeightConstraint.updateOffset(textHeight)
+    
     invalidateIntrinsicContentSize()
+    
     superview?.layoutIfNeeded()
+    
     scrollToEndFix()
   }
   
@@ -581,32 +595,39 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   func _showToolBarButtons() {
+    
     if buttonsAreVisible {
       return
     }
+    
     textViewTapGesture.enabled = true
     hideButtonsConstraints.forEach { $0.deactivate() }
     showButtonsConstraints.forEach { $0.activate() }
-    delegate.chatToolBarViewWillShowButtons?(self)
-    animateWithDuration(0.2, animations: {() -> Void in
-      self.cameraButton.alpha = 1
-      self.videoButton.alpha = 1
-      self.audioButton.alpha = 1
-      self.contactButton.alpha = 1
-      self.locationButton.alpha = 1
-      self.menuButton.alpha = 0
-      self.sendButton.alpha = 0
-      self.superview?.layoutIfNeeded()
+    
+    delegate?.chatToolBarViewWillShowButtons?(self)
+    
+    animateWithDuration(0.2, animations: {
+        self.cameraButton.alpha = 1
+        self.videoButton.alpha = 1
+        self.audioButton.alpha = 1
+        self.contactButton.alpha = 1
+        self.locationButton.alpha = 1
+        self.menuButton.alpha = 0
+        self.sendButton.alpha = 0
+        self.layoutIfNeeded()
       }, completion: { finished in
-        self.delegate.chatToolBarViewDidShowButtons?(self)
-    })
-    self.buttonsAreVisible = true
+        self.delegate?.chatToolBarViewDidShowButtons?(self)
+      })
+    
+    buttonsAreVisible = true
   }
   
   func _hideToolBarButtons() {
-    if !self.buttonsAreVisible {
+    
+    if !buttonsAreVisible {
       return
     }
+    
     // Remove & save any current position animations (in case the keyboard is
     //  sliding up)
     let positionAnim = layer.animationForKey("position")
@@ -615,26 +636,30 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
     textViewTapGesture.enabled = false
     showButtonsConstraints.forEach { $0.deactivate() }
     hideButtonsConstraints.forEach { $0.activate() }
-    delegate.chatToolBarViewWillHideButtons?(self)
+    delegate?.chatToolBarViewWillHideButtons?(self)
     
     self.animateWithDuration(0.2, animations: {
-      self.cameraButton.alpha = 0
-      self.videoButton.alpha = 0
-      self.audioButton.alpha = 0
-      self.contactButton.alpha = 0
-      self.locationButton.alpha = 0
-      self.menuButton.alpha = 1
-      self.sendButton.alpha = 1
-      self.superview?.layoutIfNeeded()
+        self.cameraButton.alpha = 0
+        self.videoButton.alpha = 0
+        self.audioButton.alpha = 0
+        self.contactButton.alpha = 0
+        self.locationButton.alpha = 0
+        self.menuButton.alpha = 1
+        self.sendButton.alpha = 1
+        self.layoutIfNeeded()
       }, completion: { finished in
-        self.delegate.chatToolBarViewDidHideButtons?(self)
-    })
+        self.delegate?.chatToolBarViewDidHideButtons?(self)
+      })
+    
     // Add back the previous position animation as an extra animation
     if let positionAnim = positionAnim {
       layer.addAnimation(positionAnim, forKey: "position-prev")
     }
+    
     buttonsAreVisible = false
+    
     textView.selectedRange = NSMakeRange(textView.text.characters.count, 0)
+    
     updateButtons()
   }
   
@@ -658,10 +683,10 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
     let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: text)
     
     if oldText.length == 0 && newText.length > 0 {
-      delegate.chatToolBarViewDidStartTyping?(self)
+      delegate?.chatToolBarViewDidStartTyping?(self)
     }
     else if oldText.length > 0 && newText.length == 0 {
-      delegate.chatToolBarViewDidEndTyping?(self)
+      delegate?.chatToolBarViewDidEndTyping?(self)
     }
     
     return true
@@ -680,22 +705,22 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   @IBAction func cameraTapped(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapCamera?(self)
+    delegate?.chatToolBarViewDidTapCamera?(self)
   }
   
   @IBAction func cameraPressed(gr: UILongPressGestureRecognizer) {
     
     switch gr.state {
     case .Began:
-      delegate.chatToolBarViewBeganPressingCamera?(self)
+      delegate?.chatToolBarViewBeganPressingCamera?(self)
       
     case .Ended:
       let pt: CGPoint = gr.locationInView(cameraButton)
       let flicked: Bool = pt.y < -kMinimumDistanceForFlick
-      delegate.chatToolBarViewEndedPressingCamera?(self, flicked: flicked)
+      delegate?.chatToolBarViewEndedPressingCamera?(self, flicked: flicked)
       
     case .Cancelled, .Failed:
-      delegate.chatToolBarViewCanceledPressingCamera?(self)
+      delegate?.chatToolBarViewCanceledPressingCamera?(self)
       
     default:
       break
@@ -704,21 +729,21 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   @IBAction func audioTapped(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudio?(self)
+    delegate?.chatToolBarViewDidTapAudio?(self)
   }
   
   @IBAction func audioPressed(gr: UIGestureRecognizer) {
     switch gr.state {
     case .Began:
-      delegate.chatToolBarViewBeganPressingAudio?(self)
+      delegate?.chatToolBarViewBeganPressingAudio?(self)
       
     case .Ended:
       let pt: CGPoint = gr.locationInView(audioButton)
       let flicked: Bool = pt.y < -kMinimumDistanceForFlick
-      delegate.chatToolBarViewEndedPressingAudio?(self, flicked: flicked)
+      delegate?.chatToolBarViewEndedPressingAudio?(self, flicked: flicked)
       
     case .Cancelled, .Failed:
-      delegate.chatToolBarViewCanceledPressingAudio?(self)
+      delegate?.chatToolBarViewCanceledPressingAudio?(self)
       
     default:
       break
@@ -727,22 +752,22 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   @IBAction func videoTapped(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideo?(self)
+    delegate?.chatToolBarViewDidTapVideo?(self)
   }
   
   @IBAction func videoPressed(gr: UIGestureRecognizer) {
 
     switch gr.state {
     case .Began:
-      delegate.chatToolBarViewBeganPressingVideo?(self)
+      delegate?.chatToolBarViewBeganPressingVideo?(self)
       
     case .Ended:
       let pt: CGPoint = gr.locationInView(videoButton)
       let flicked: Bool = pt.y < -kMinimumDistanceForFlick
-      delegate.chatToolBarViewEndedPressingVideo?(self, flicked: flicked)
+      delegate?.chatToolBarViewEndedPressingVideo?(self, flicked: flicked)
       
     case .Cancelled, .Failed:
-      delegate.chatToolBarViewCanceledPressingVideo?(self)
+      delegate?.chatToolBarViewCanceledPressingVideo?(self)
       
     default:
       break
@@ -751,72 +776,72 @@ public class ChatToolBarView: UIView, UITextViewDelegate {
   }
   
   @IBAction func contactTapped(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapContact?(self)
+    delegate?.chatToolBarViewDidTapContact?(self)
   }
   
   @IBAction func locationTapped(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapLocation?(self)
+    delegate?.chatToolBarViewDidTapLocation?(self)
   }
   
   @IBAction func sendTapped(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapSend?(self)
+    delegate?.chatToolBarViewDidTapSend?(self)
     currentMessages = []
   }
   
   @IBAction func audioPlay(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackPlay?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackPlay?(self)
   }
   
   @IBAction func audioPause(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackPause?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackPause?(self)
   }
   
   @IBAction func audioCancel(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackCancel?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackCancel?(self)
   }
   
   @IBAction func audioReset(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackReset?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackReset?(self)
   }
   
   @IBAction func audioRecord(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackRecord?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackRecord?(self)
   }
   
   @IBAction func audioStop(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackStop?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackStop?(self)
   }
   
   @IBAction func audioSend(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapAudioPlaybackSend?(self)
+    delegate?.chatToolBarViewDidTapAudioPlaybackSend?(self)
   }
   
   @IBAction func videoPlay(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackPlay?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackPlay?(self)
   }
   
   @IBAction func videoPause(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackPause?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackPause?(self)
   }
   
   @IBAction func videoCancel(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackCancel?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackCancel?(self)
   }
   
   @IBAction func videoReset(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackReset?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackReset?(self)
   }
   
   @IBAction func videoRecord(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackRecord?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackRecord?(self)
   }
   
   @IBAction func videoStop(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackStop?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackStop?(self)
   }
   
   @IBAction func videoSend(sender: AnyObject) {
-    delegate.chatToolBarViewDidTapVideoPlaybackSend?(self)
+    delegate?.chatToolBarViewDidTapVideoPlaybackSend?(self)
   }
   
 }

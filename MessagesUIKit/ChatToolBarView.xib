@@ -44,6 +44,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4aJ-mx-ca2">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a1C-H7-bbw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
                 <button opaque="NO" alpha="0.0" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xu3-sX-kUX" userLabel="Expose Button">
                     <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
                     <gestureRecognizers/>
@@ -130,7 +138,7 @@
                         <action selector="sendTapped:" destination="-1" eventType="touchUpInside" id="oWE-de-Y1b"/>
                     </connections>
                 </button>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74x-hd-wtB" customClass="SCSiriWaveformView" customModule="MessagesUIKit" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74x-hd-wtB">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
                     <color key="backgroundColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -150,8 +158,10 @@
             <constraints>
                 <constraint firstItem="XT1-zy-T5X" firstAttribute="leading" secondItem="p2O-45-O2Z" secondAttribute="trailing" placeholder="YES" id="1G4-K3-Efh"/>
                 <constraint firstItem="xu3-sX-kUX" firstAttribute="height" secondItem="p2O-45-O2Z" secondAttribute="height" placeholder="YES" id="5Zu-Z0-EYX"/>
+                <constraint firstAttribute="trailing" secondItem="4aJ-mx-ca2" secondAttribute="trailing" id="9i9-P3-BPe"/>
                 <constraint firstItem="xu3-sX-kUX" firstAttribute="width" secondItem="dyq-na-V04" secondAttribute="width" placeholder="YES" id="9oH-CK-efg"/>
                 <constraint firstItem="xu3-sX-kUX" firstAttribute="leading" secondItem="BXT-2e-1pF" secondAttribute="leading" placeholder="YES" id="Afj-ts-a46"/>
+                <constraint firstItem="4aJ-mx-ca2" firstAttribute="top" secondItem="BXT-2e-1pF" secondAttribute="top" id="CW1-NE-sYf"/>
                 <constraint firstItem="74x-hd-wtB" firstAttribute="leading" secondItem="BXT-2e-1pF" secondAttribute="leading" placeholder="YES" id="Cto-92-AQM"/>
                 <constraint firstItem="rwd-1E-66G" firstAttribute="leading" secondItem="dyq-na-V04" secondAttribute="trailing" placeholder="YES" id="F6s-c1-2RT"/>
                 <constraint firstItem="xu3-sX-kUX" firstAttribute="width" secondItem="p2O-45-O2Z" secondAttribute="width" placeholder="YES" id="HAH-VP-nKO"/>
@@ -167,12 +177,14 @@
                 <constraint firstItem="VuI-7q-4kL" firstAttribute="leading" secondItem="3aD-iZ-BOe" secondAttribute="trailing" constant="8" placeholder="YES" id="avm-29-iLr"/>
                 <constraint firstItem="xu3-sX-kUX" firstAttribute="width" secondItem="rwd-1E-66G" secondAttribute="width" placeholder="YES" id="ayt-nd-2mK"/>
                 <constraint firstAttribute="trailing" secondItem="VuI-7q-4kL" secondAttribute="trailing" constant="8" placeholder="YES" id="bFP-tv-Sdu"/>
+                <constraint firstItem="4aJ-mx-ca2" firstAttribute="leading" secondItem="BXT-2e-1pF" secondAttribute="leading" id="by2-DS-Icx"/>
                 <constraint firstItem="74x-hd-wtB" firstAttribute="top" secondItem="BXT-2e-1pF" secondAttribute="top" placeholder="YES" id="ccO-Ow-WXq"/>
                 <constraint firstItem="xu3-sX-kUX" firstAttribute="height" secondItem="XT1-zy-T5X" secondAttribute="height" placeholder="YES" id="gk3-BI-lOI"/>
                 <constraint firstAttribute="bottom" secondItem="XT1-zy-T5X" secondAttribute="bottom" placeholder="YES" id="grY-4U-8sk"/>
                 <constraint firstAttribute="bottom" secondItem="rwd-1E-66G" secondAttribute="bottom" placeholder="YES" id="gtd-qj-vHD"/>
                 <constraint firstAttribute="bottom" secondItem="xu3-sX-kUX" secondAttribute="bottom" placeholder="YES" id="hbS-bd-kq8"/>
                 <constraint firstItem="3aD-iZ-BOe" firstAttribute="centerY" secondItem="VuI-7q-4kL" secondAttribute="centerY" placeholder="YES" id="iCD-AV-Lqs"/>
+                <constraint firstAttribute="bottom" secondItem="4aJ-mx-ca2" secondAttribute="bottom" id="jau-ts-deX"/>
                 <constraint firstItem="3aD-iZ-BOe" firstAttribute="top" secondItem="74x-hd-wtB" secondAttribute="bottom" constant="5" placeholder="YES" id="jl6-le-h3u"/>
                 <constraint firstAttribute="bottom" secondItem="yhl-QT-hGN" secondAttribute="bottom" placeholder="YES" id="kAE-9V-hnq"/>
                 <constraint firstAttribute="bottom" secondItem="dyq-na-V04" secondAttribute="bottom" placeholder="YES" id="kdf-c9-805"/>
