@@ -111,6 +111,7 @@ public class ChatViewController: UIViewController {
     super.viewDidLoad()
     
     toolbar = ChatToolBarView(frame: CGRectZero)
+    toolbar.delegate = self
     toolbar.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     inputAccessoryView = toolbar
     
