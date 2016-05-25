@@ -1,6 +1,6 @@
 //
 //  VideoMessageCell.swift
-//  ReTxt
+//  MessagesUIKit
 //
 //  Created by Kevin Wooten on 10/14/15.
 //  Copyright © 2015 reTXT Labs, LLC. All rights reserved.

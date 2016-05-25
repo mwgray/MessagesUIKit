@@ -1,6 +1,6 @@
 //
 //  ChatViewController.swift
-//  reTXT
+//  MessagesUIKit
 //
 //  Created by Kevin Wooten on 9/22/15.
 //  Copyright © 2015 reTXT Labs, LLC. All rights reserved.

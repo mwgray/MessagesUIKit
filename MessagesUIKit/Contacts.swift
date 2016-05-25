@@ -1,6 +1,6 @@
 //
 //  Contact.swift
-//  reTXT
+//  MessagesUIKit
 //
 //  Created by Kevin Wooten on 5/15/16.
 //  Copyright © 2016 reTXT Labs, LLC. All rights reserved.
