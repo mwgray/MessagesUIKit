@@ -1848,6 +1848,10 @@ private class ValidateRecipientOperation : Operation {
 
       }
       
+      GCD.mainQueue.async {
+        self.vc.updateToolbar()
+      }
+      
       self.finish()
     
     }.recover { error in
@@ -1879,130 +1883,131 @@ private class InviteOperation : Operation {
     
     super.init()
     
-    //FIXME: need public modal condition
-    //addCondition(ModalCondition())
+    addCondition(AlertPresentation())
   }
   
   override func execute() {
     
     let message = "\(self.recipient.recipientTitle) is not a reTXT user yet!"
 
-    firstly { () -> Promise<UIAlertAction> in
+    GCD.mainQueue.async {
       
       let ask = PMKAlertController(title: "Unknown User", message: message)
 
       ask.addActionWithTitle("Ok", style: .Cancel)
       ask.addActionWithTitle("Invite", style: .Default)
     
-      return self.vc.promiseViewController(ask)
+      self.vc.promiseViewController(ask)
+        .then { action -> Promise<(Recipient, NSNumber?)> in
       
-    }.then { action -> Promise<(Recipient, NSNumber?)> in
-      
-      let inviterRecipient = Recipient()
-      inviterRecipient.name = self.recipient.recipientTitle
-      //FIXME:
-//      inviterRecipient.alias = self.recipient.alias
-//      inviterRecipient.aliasType = self.recipient.alias.typeOfAlias()
-//      
-//      return RTAppDelegate.showViralSheetWithViewController(self.vc, initialRecipient: inviterRecipient).then(on: zalgo) { loaded in
-//        return (inviterRecipient, loaded as? NSNumber)
-//      }
-      
-      return Promise<(Recipient, NSNumber?)>((Recipient(), nil as NSNumber?))
-      
-    }.then { recipient, loaded -> Promise<Any?> in
+          let inviterRecipient = Recipient()
+          inviterRecipient.name = self.recipient.recipientTitle
+
+          //FIXME:
+//          inviterRecipient.alias = self.recipient.alias
+//          inviterRecipient.aliasType = self.recipient.alias.typeOfAlias()
+//          
+//          return RTAppDelegate.showViralSheetWithViewController(self.vc, initialRecipient: inviterRecipient).then(on: zalgo) { loaded in
+//            return (inviterRecipient, loaded as? NSNumber)
+//          }
           
-      guard let loaded = loaded where loaded == false else {
-        return Promise(true)
-      }
-        
-      switch recipient.aliasType {
-      case .PhoneNumber:
-        
-        if !MFMessageComposeViewController.canSendText() {
-          return Promise(error: Error.CannotSendSMS)
-        }
+          return Promise<(Recipient, NSNumber?)>((Recipient(), nil as NSNumber?))
+      
+        }.then { recipient, loaded -> Promise<Any?> in
+          
+          guard let loaded = loaded where loaded == false else {
+            return Promise(true)
+          }
+          
+        switch recipient.aliasType {
+        case .PhoneNumber:
+          
+          if !MFMessageComposeViewController.canSendText() {
+            return Promise(error: Error.CannotSendSMS)
+          }
 
-        return Promise<Any?>(nil)
-        //FIXME: invites are no longer part of messageapi
-//        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
-//          
-//          guard let invite = invite as? RTInvite else {
-//            return Promise(error: Error.Failed)
-//          }
-//          
-//          let composer = MFMessageComposeViewController()
-//          
-//          composer.recipients = [recipient.alias]
-//          composer.body = invite.bodyText
-//          
-//          return self.vc.promiseViewController(composer).then { () -> Any? in
-//
-//            return true
-//          }
-//          
-//        }
-        
-      case .EMailAddress:
-        
-        if !MFMailComposeViewController.canSendMail() {
-          return Promise(error: Error.CannotSendEmail)
-        }
+          return Promise<Any?>(nil)
+          //FIXME: invites are no longer part of messageapi
+  //        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
+  //          
+  //          guard let invite = invite as? RTInvite else {
+  //            return Promise(error: Error.Failed)
+  //          }
+  //          
+  //          let composer = MFMessageComposeViewController()
+  //          
+  //          composer.recipients = [recipient.alias]
+  //          composer.body = invite.bodyText
+  //          
+  //          return self.vc.promiseViewController(composer).then { () -> Any? in
+  //
+  //            return true
+  //          }
+  //          
+  //        }
+          
+        case .EMailAddress:
+          
+          if !MFMailComposeViewController.canSendMail() {
+            return Promise(error: Error.CannotSendEmail)
+          }
 
-        return Promise<Any?>(nil)
-        //FIXME: invites are no longer part of messageapi
-//        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
-//          
-//          guard let invite = invite as? RTInvite else {
-//            return Promise(error: Error.Failed)
-//          }
-//          
-//          let composer = MFMailComposeViewController()
-//          
-//          composer.setToRecipients([recipient.alias])
-//          composer.setSubject(invite.subject)
-//          composer.setMessageBody(invite.bodyHtml ?? invite.bodyText, isHTML: invite.bodyHtml != nil)
-//          
-//          return self.vc.promiseViewController(composer).then { result -> Any? in
-//            
-//            return true
-//          }
-//          
-//        }
+          return Promise<Any?>(nil)
+          //FIXME: invites are no longer part of messageapi
+  //        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
+  //          
+  //          guard let invite = invite as? RTInvite else {
+  //            return Promise(error: Error.Failed)
+  //          }
+  //          
+  //          let composer = MFMailComposeViewController()
+  //          
+  //          composer.setToRecipients([recipient.alias])
+  //          composer.setSubject(invite.subject)
+  //          composer.setMessageBody(invite.bodyHtml ?? invite.bodyText, isHTML: invite.bodyHtml != nil)
+  //          
+  //          return self.vc.promiseViewController(composer).then { result -> Any? in
+  //            
+  //            return true
+  //          }
+  //          
+  //        }
+          
+        }
+          
+      }
+      .recover { error -> Promise<Any?> in
+      
+        switch error {
+          
+        case Error.CannotSendSMS:
+          return self.showErrorAlertWithTitle("Invite",
+            message: "Unfortunately your device is not setup to send SMS messages.")
+          
+        case Error.CannotSendEmail:
+          return self.showErrorAlertWithTitle("Invite",
+            message: "Unfortunately your device is not setup to send e-mail messages.")
+          
+        case let err as CancellableErrorType:
+          if err.cancelled {
+            return Promise(true)
+          }
+          fallthrough
+          
+        default:
+          return self.showErrorAlertWithTitle("Invite",
+            message: "An error occurred trying to invite. Please try again.")
+        }
         
       }
+      .always {
         
+        self.finish()
+          
+      }
+      
     }
-    .recover { error -> Promise<Any?> in
     
-      switch error {
-        
-      case Error.CannotSendSMS:
-        return self.showErrorAlertWithTitle("Invite",
-          message: "Unfortunately your device is not setup to send SMS messages.")
-        
-      case Error.CannotSendEmail:
-        return self.showErrorAlertWithTitle("Invite",
-          message: "Unfortunately your device is not setup to send e-mail messages.")
-        
-      case let err as CancellableErrorType:
-        if err.cancelled {
-          return Promise(true)
-        }
-        fallthrough
-        
-      default:
-        return self.showErrorAlertWithTitle("Invite",
-          message: "An error occurred trying to invite. Please try again.")
-      }
-      
-    }
-    .always {
-      
-      self.finish()
-        
-    }
-  
   }
   
   func showErrorAlertWithTitle(title: String, message: String) -> Promise<Any?> {
