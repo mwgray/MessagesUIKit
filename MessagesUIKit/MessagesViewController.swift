@@ -54,6 +54,12 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
   override public func viewDidLoad() {
     super.viewDidLoad()
     
+    guard let collectionView = collectionView else {
+      fatalError("No collection view")
+    }
+    
+    collectionView.backgroundColor = nil
+    
     let panner = UIPanGestureRecognizer(target: self, action: #selector(MessagesViewController.panned(_:)))
     panner.delegate = self
     if let nav = navigationController, popper = nav.interactivePopGestureRecognizer {
@@ -61,17 +67,22 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     }
     view.addGestureRecognizer(panner)
     
-    collectionView!.registerNib(UINib(nibName: "MessagesViewTimeHeader", bundle: NSBundle.muik_frameworkBundle()),
+    for cellType in ["Text", "Audio", "Image", "Video", "Contact", "Location", "Conference", "EnterExit", "Status"] {
+      let nib = UINib(nibName: cellType + "MessageCell", bundle: NSBundle.muik_frameworkBundle())
+      collectionView.registerNib(nib, forCellWithReuseIdentifier: cellType)
+    }
+    
+    collectionView.registerNib(UINib(nibName: "MessagesViewTimeHeader", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.TimeHeader.rawValue, withReuseIdentifier: MessagesViewCellOrnament.TimeHeader.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewSenderHeader", bundle: NSBundle.muik_frameworkBundle()),
+    collectionView.registerNib(UINib(nibName: "MessagesViewSenderHeader", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.SenderHeader.rawValue, withReuseIdentifier: MessagesViewCellOrnament.SenderHeader.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewStatusFooter", bundle: NSBundle.muik_frameworkBundle()),
+    collectionView.registerNib(UINib(nibName: "MessagesViewStatusFooter", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.StatusFooter.rawValue, withReuseIdentifier: MessagesViewCellOrnament.StatusFooter.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewIcon", bundle: NSBundle.muik_frameworkBundle()),
+    collectionView.registerNib(UINib(nibName: "MessagesViewIcon", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.Clarify.rawValue, withReuseIdentifier: MessagesViewCellOrnament.Clarify.rawValue)
-    collectionView!.registerNib(UINib(nibName: "MessagesViewActionMenuRight", bundle: NSBundle.muik_frameworkBundle()),
+    collectionView.registerNib(UINib(nibName: "MessagesViewActionMenuRight", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.ActionMenu.rawValue, withReuseIdentifier: MessagesViewCellOrnament.ActionMenu.rawValue + "Right")
-    collectionView!.registerNib(UINib(nibName: "MessagesViewActionMenuLeft", bundle: NSBundle.muik_frameworkBundle()),
+    collectionView.registerNib(UINib(nibName: "MessagesViewActionMenuLeft", bundle: NSBundle.muik_frameworkBundle()),
       forSupplementaryViewOfKind: MessagesViewCellOrnament.ActionMenu.rawValue, withReuseIdentifier: MessagesViewCellOrnament.ActionMenu.rawValue + "Left")
     
     messagesViewLayout.cellMargins = UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5)

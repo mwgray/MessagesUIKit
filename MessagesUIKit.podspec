@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   
   s.source_files = 'MessagesUIKit/*.{h,m,swift}'
-  s.resources = 'MessagesUIKit/*.xib','MessagesUIKitHost/*.xcassets'
+  s.resources = 'MessagesUIKit/*.xib','MessagesUIKit/*.xcassets'
   s.resources = 'MessagesUIKitHost/Main.storyboard'
 
   s.dependency 'MessagesKit'

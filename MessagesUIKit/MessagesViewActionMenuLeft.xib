@@ -11,18 +11,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFQ-Eq-ByB" userLabel="Delete">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFQ-Eq-ByB" userLabel="Delete">
                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                     <state key="normal" image="action-icon-delete" backgroundImage="action-button-bg-red"/>
                 </button>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5RX-S9-ycT" userLabel="Divider">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RX-S9-ycT" userLabel="Divider">
                     <rect key="frame" x="49" y="0.0" width="1" height="44"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="lmj-E4-c4r"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBd-7z-g36" userLabel="Other">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBd-7z-g36" userLabel="Other">
                     <rect key="frame" x="55" y="0.0" width="265" height="44"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="tintColor" red="1" green="0.83529411760000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

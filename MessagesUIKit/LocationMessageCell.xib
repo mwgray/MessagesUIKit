@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Location" id="1wI-Je-Jdv" userLabel="Location" customClass="LocationMessageCell" customModule="MessagesUIKit">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="45" placeholderIntrinsicHeight="68" translatesAutoresizingMaskIntoConstraints="NO" id="PlH-3g-JZe" customClass="BubbleView" customModule="MessagesUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eH3-AW-0Gc">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="Lyd-fd-LsA"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="irf-kW-ANf">
+                                <rect key="frame" x="32" y="31" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eH3-AW-0Gc" secondAttribute="trailing" id="51D-bW-UMn"/>
+                            <constraint firstAttribute="bottom" secondItem="eH3-AW-0Gc" secondAttribute="bottom" id="8eN-eD-VuN"/>
+                            <constraint firstItem="irf-kW-ANf" firstAttribute="centerX" secondItem="PlH-3g-JZe" secondAttribute="centerX" id="Ddm-JB-bLA"/>
+                            <constraint firstItem="eH3-AW-0Gc" firstAttribute="leading" secondItem="PlH-3g-JZe" secondAttribute="leading" id="Dht-B1-cGH"/>
+                            <constraint firstItem="eH3-AW-0Gc" firstAttribute="height" relation="greaterThanOrEqual" secondItem="irf-kW-ANf" secondAttribute="height" id="H8u-iw-2EE"/>
+                            <constraint firstItem="eH3-AW-0Gc" firstAttribute="leading" secondItem="PlH-3g-JZe" secondAttribute="leading" id="Lwo-Sb-aGy"/>
+                            <constraint firstItem="eH3-AW-0Gc" firstAttribute="top" secondItem="PlH-3g-JZe" secondAttribute="top" id="TRZ-qT-5RO"/>
+                            <constraint firstAttribute="trailing" secondItem="eH3-AW-0Gc" secondAttribute="trailing" id="VfD-gJ-a59"/>
+                            <constraint firstItem="irf-kW-ANf" firstAttribute="centerY" secondItem="PlH-3g-JZe" secondAttribute="centerY" id="eL8-f3-n8d"/>
+                            <constraint firstItem="eH3-AW-0Gc" firstAttribute="top" secondItem="PlH-3g-JZe" secondAttribute="top" id="fKf-HB-EhX"/>
+                            <constraint firstAttribute="bottom" secondItem="eH3-AW-0Gc" secondAttribute="bottom" id="kUr-eF-BB0"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskSubviews" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="PlH-3g-JZe" firstAttribute="top" secondItem="1wI-Je-Jdv" secondAttribute="top" id="EYk-Oj-IAz"/>
+                <constraint firstItem="PlH-3g-JZe" firstAttribute="leading" secondItem="1wI-Je-Jdv" secondAttribute="leading" id="TlK-zp-ZEu"/>
+                <constraint firstAttribute="bottom" secondItem="PlH-3g-JZe" secondAttribute="bottom" id="YjY-Tu-dxE"/>
+                <constraint firstAttribute="trailing" secondItem="PlH-3g-JZe" secondAttribute="trailing" id="nVE-4n-fHd"/>
+            </constraints>
+            <size key="customSize" width="100" height="100"/>
+            <connections>
+                <outlet property="bubbleView" destination="PlH-3g-JZe" id="JxS-mk-KOf"/>
+                <outlet property="loadingView" destination="irf-kW-ANf" id="Jrn-kd-zVH"/>
+                <outlet property="maxWidthConstraint" destination="Lyd-fd-LsA" id="j7P-NK-xaZ"/>
+                <outlet property="thumbnailImageView" destination="eH3-AW-0Gc" id="sbU-3t-YYq"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

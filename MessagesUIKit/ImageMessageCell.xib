@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Image" id="gJF-DJ-xFt" userLabel="Image" customClass="ImageMessageCell" customModule="MessagesUIKit">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="45" placeholderIntrinsicHeight="68" translatesAutoresizingMaskIntoConstraints="NO" id="Z4o-xZ-cr6" customClass="BubbleView" customModule="MessagesUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <subviews>
+                            <view hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.64999997615814209" contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="KXO-5u-xEE" customClass="PieProgressView" customModule="MessagesUIKit">
+                                <rect key="frame" x="25" y="25" width="50" height="50"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kch-bv-dtk" customClass="AnimatedImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="5Nj-p6-TdQ"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="iLw-wp-z8z">
+                                <rect key="frame" x="32" y="32" width="37" height="37"/>
+                                <color key="color" red="1" green="0.83529411760000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="kch-bv-dtk" secondAttribute="trailing" id="052-y4-Y8Z"/>
+                            <constraint firstItem="iLw-wp-z8z" firstAttribute="centerX" secondItem="Z4o-xZ-cr6" secondAttribute="centerX" id="7Wo-ut-xNJ"/>
+                            <constraint firstItem="iLw-wp-z8z" firstAttribute="centerY" secondItem="Z4o-xZ-cr6" secondAttribute="centerY" id="7Ys-YC-8jJ"/>
+                            <constraint firstAttribute="bottom" secondItem="kch-bv-dtk" secondAttribute="bottom" id="B9Y-lQ-Wfm"/>
+                            <constraint firstItem="kch-bv-dtk" firstAttribute="top" secondItem="Z4o-xZ-cr6" secondAttribute="top" id="DXK-m9-uyz"/>
+                            <constraint firstAttribute="centerX" secondItem="KXO-5u-xEE" secondAttribute="centerX" id="R27-ob-tuD"/>
+                            <constraint firstAttribute="centerY" secondItem="KXO-5u-xEE" secondAttribute="centerY" id="RZY-ba-EMk"/>
+                            <constraint firstItem="kch-bv-dtk" firstAttribute="leading" secondItem="Z4o-xZ-cr6" secondAttribute="leading" id="ZND-eB-eWS"/>
+                            <constraint firstItem="kch-bv-dtk" firstAttribute="width" relation="greaterThanOrEqual" secondItem="iLw-wp-z8z" secondAttribute="width" id="vh0-58-0IP"/>
+                            <constraint firstItem="kch-bv-dtk" firstAttribute="height" relation="greaterThanOrEqual" secondItem="iLw-wp-z8z" secondAttribute="height" id="xEt-b7-aVR"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskSubviews" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="Z4o-xZ-cr6" firstAttribute="leading" secondItem="gJF-DJ-xFt" secondAttribute="leading" id="Avh-T2-iuf"/>
+                <constraint firstAttribute="bottom" secondItem="Z4o-xZ-cr6" secondAttribute="bottom" id="BQa-Dc-zfJ"/>
+                <constraint firstItem="Z4o-xZ-cr6" firstAttribute="top" secondItem="gJF-DJ-xFt" secondAttribute="top" id="IXo-kx-9fw"/>
+                <constraint firstAttribute="trailing" secondItem="Z4o-xZ-cr6" secondAttribute="trailing" id="fVj-K0-ehw"/>
+            </constraints>
+            <size key="customSize" width="100" height="100"/>
+            <connections>
+                <outlet property="bubbleView" destination="Z4o-xZ-cr6" id="bTB-gF-4pt"/>
+                <outlet property="loadingView" destination="iLw-wp-z8z" id="n67-gb-UXg"/>
+                <outlet property="maxWidthConstraint" destination="5Nj-p6-TdQ" id="8Sc-33-kka"/>
+                <outlet property="thumbnailImageView" destination="kch-bv-dtk" id="T9a-Ju-bU9"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

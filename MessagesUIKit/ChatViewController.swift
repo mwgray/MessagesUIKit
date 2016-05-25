@@ -117,12 +117,16 @@ public class ChatViewController: UIViewController {
     // EMBED: MesasgesViewController
     //
     
-    messagesViewController = UIStoryboard(name: "Main", bundle: NSBundle.muik_frameworkBundle()).instantiateViewControllerWithIdentifier("Messages") as! MessagesViewController
+    messagesViewController = MessagesViewController(collectionViewLayout: MessagesViewLayout())
     messagesViewController.willMoveToParentViewController(self)
     
+    messagesViewController.view.backgroundColor = UIColor.clearColor()
+    messagesViewController.collectionView?.backgroundColor = UIColor.clearColor()
+
     view.insertSubview(messagesViewController.view, atIndex: 0)
+    messagesViewController.view.frame = view.frame
     messagesViewController.view.snp_makeConstraints { make in
-      make.edges.equalTo(view.snp_edges)
+      make.edges.equalTo(view)
     }
     
     messagesViewController.didMoveToParentViewController(self)

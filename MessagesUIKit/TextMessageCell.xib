@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Text" id="sow-8X-Ocv" userLabel="Text" customClass="TextMessageCell" customModule="MessagesUIKit">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="45" placeholderIntrinsicHeight="68" translatesAutoresizingMaskIntoConstraints="NO" id="OHQ-7y-26G" customClass="BubbleView" customModule="MessagesUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                        <subviews>
+                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="This is some text" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-pE-5q3">
+                                <rect key="frame" x="0.0" y="8" width="100" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="A5C-2m-Sr8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="WBO-cW-Lbw"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="bbe-gX-Hiw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="1Bo-pE-5q3" firstAttribute="trailing" secondItem="OHQ-7y-26G" secondAttribute="trailing" id="BIW-6J-7vb"/>
+                            <constraint firstItem="1Bo-pE-5q3" firstAttribute="leading" secondItem="OHQ-7y-26G" secondAttribute="leading" id="ST4-5Z-Fc9"/>
+                            <constraint firstItem="1Bo-pE-5q3" firstAttribute="top" secondItem="OHQ-7y-26G" secondAttribute="topMargin" id="lab-uB-am8"/>
+                            <constraint firstItem="1Bo-pE-5q3" firstAttribute="bottom" secondItem="OHQ-7y-26G" secondAttribute="bottomMargin" id="nva-ZW-aFV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="OHQ-7y-26G" firstAttribute="top" secondItem="sow-8X-Ocv" secondAttribute="top" id="BEP-5P-qk2"/>
+                <constraint firstAttribute="bottom" secondItem="OHQ-7y-26G" secondAttribute="bottom" id="U7v-rT-BgX"/>
+                <constraint firstAttribute="trailing" secondItem="OHQ-7y-26G" secondAttribute="trailing" id="YZh-MN-sRb"/>
+                <constraint firstItem="OHQ-7y-26G" firstAttribute="leading" secondItem="sow-8X-Ocv" secondAttribute="leading" id="ybe-sy-nW2"/>
+            </constraints>
+            <edgeInsets key="layoutMargins" top="4" left="8" bottom="4" right="8"/>
+            <size key="customSize" width="100" height="80"/>
+            <connections>
+                <outlet property="bubbleView" destination="OHQ-7y-26G" id="fsv-fV-roG"/>
+                <outlet property="maxWidthConstraint" destination="A5C-2m-Sr8" id="bFb-vP-J3g"/>
+                <outlet property="textView" destination="1Bo-pE-5q3" id="jGE-IB-McD"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

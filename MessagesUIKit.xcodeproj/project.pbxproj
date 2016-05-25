@@ -31,6 +31,15 @@
 		AA0B346B1CE9A65500DEFE33 /* AudioFile.h in Headers */ = {isa = PBXBuildFile; fileRef = AA0B34691CE9A65500DEFE33 /* AudioFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA0B346C1CE9A65500DEFE33 /* AudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B346A1CE9A65500DEFE33 /* AudioFile.m */; };
 		AA0EAD441CF2104600B51C34 /* AudioPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EAD431CF2104600B51C34 /* AudioPlot.swift */; };
+		AA178DF51CF603850020C542 /* TextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178DF41CF603850020C542 /* TextMessageCell.xib */; };
+		AA178DF71CF603AA0020C542 /* AudioMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178DF61CF603AA0020C542 /* AudioMessageCell.xib */; };
+		AA178DF91CF603C60020C542 /* ImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178DF81CF603C60020C542 /* ImageMessageCell.xib */; };
+		AA178DFB1CF603E20020C542 /* VideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178DFA1CF603E20020C542 /* VideoMessageCell.xib */; };
+		AA178DFD1CF6040B0020C542 /* ContactMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178DFC1CF6040B0020C542 /* ContactMessageCell.xib */; };
+		AA178DFF1CF604160020C542 /* LocationMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178DFE1CF604160020C542 /* LocationMessageCell.xib */; };
+		AA178E021CF6044C0020C542 /* EnterExitMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178E001CF604410020C542 /* EnterExitMessageCell.xib */; };
+		AA178E041CF6046E0020C542 /* ConferenceMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178E031CF6046E0020C542 /* ConferenceMessageCell.xib */; };
+		AA178E061CF6049B0020C542 /* StatusMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA178E051CF6049B0020C542 /* StatusMessageCell.xib */; };
 		AA1AA3A91CEBBE7A005B127C /* test.db in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3A71CEBBE69005B127C /* test.db */; };
 		AA1AA3AB1CED126B005B127C /* MessagesUIKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */; };
 		AA6328891CF3A16900DD6034 /* ChatRecipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328851CF3A16900DD6034 /* ChatRecipients.swift */; };
@@ -46,7 +55,6 @@
 		AA6328A11CF4CCC200DD6034 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63289F1CF4CCC200DD6034 /* UIImage+ImageEffects.m */; };
 		AA6328A31CF4D18D00DD6034 /* ChatToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */; };
 		AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */; };
-		AA6328A61CF4E14B00DD6034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD4DC3A1CEA1E890032B5CE /* Main.storyboard */; };
 		AA6328AF1CF4ECC300DD6034 /* ChatToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */; };
 		AAA251271CF181C600EB2706 /* PieProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA251261CF181C600EB2706 /* PieProgressView.swift */; };
 		AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -151,6 +159,15 @@
 		AA0B34691CE9A65500DEFE33 /* AudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFile.h; sourceTree = "<group>"; };
 		AA0B346A1CE9A65500DEFE33 /* AudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFile.m; sourceTree = "<group>"; };
 		AA0EAD431CF2104600B51C34 /* AudioPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlot.swift; sourceTree = "<group>"; };
+		AA178DF41CF603850020C542 /* TextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextMessageCell.xib; sourceTree = "<group>"; };
+		AA178DF61CF603AA0020C542 /* AudioMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMessageCell.xib; sourceTree = "<group>"; };
+		AA178DF81CF603C60020C542 /* ImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageMessageCell.xib; sourceTree = "<group>"; };
+		AA178DFA1CF603E20020C542 /* VideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoMessageCell.xib; sourceTree = "<group>"; };
+		AA178DFC1CF6040B0020C542 /* ContactMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactMessageCell.xib; sourceTree = "<group>"; };
+		AA178DFE1CF604160020C542 /* LocationMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationMessageCell.xib; sourceTree = "<group>"; };
+		AA178E001CF604410020C542 /* EnterExitMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterExitMessageCell.xib; path = MessagesUIKitHost/EnterExitMessageCell.xib; sourceTree = SOURCE_ROOT; };
+		AA178E031CF6046E0020C542 /* ConferenceMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConferenceMessageCell.xib; sourceTree = "<group>"; };
+		AA178E051CF6049B0020C542 /* StatusMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusMessageCell.xib; sourceTree = "<group>"; };
 		AA1AA3A01CEBB6F5005B127C /* Pods_MessagesUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MessagesUIKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MessagesUIKit-gpxwgjvqssapsfdgmsojbdutixkt/Build/Products/Debug-iphonesimulator/Pods_MessagesUIKit.framework"; sourceTree = "<group>"; };
 		AA1AA3A71CEBBE69005B127C /* test.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.db; path = MessagesUIKitHost/test.db; sourceTree = SOURCE_ROOT; };
 		AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = MessagesUIKit.podspec; sourceTree = "<group>"; };
@@ -305,6 +322,15 @@
 				AAC425991CF0F6B600145EDB /* MessagesViewSenderHeader.xib */,
 				AAC4259A1CF0F6B600145EDB /* MessagesViewStatusFooter.xib */,
 				AAC4259B1CF0F6B600145EDB /* MessagesViewTimeHeader.xib */,
+				AA178DF41CF603850020C542 /* TextMessageCell.xib */,
+				AA178DF61CF603AA0020C542 /* AudioMessageCell.xib */,
+				AA178DF81CF603C60020C542 /* ImageMessageCell.xib */,
+				AA178DFA1CF603E20020C542 /* VideoMessageCell.xib */,
+				AA178DFC1CF6040B0020C542 /* ContactMessageCell.xib */,
+				AA178DFE1CF604160020C542 /* LocationMessageCell.xib */,
+				AA178E031CF6046E0020C542 /* ConferenceMessageCell.xib */,
+				AA178E001CF604410020C542 /* EnterExitMessageCell.xib */,
+				AA178E051CF6049B0020C542 /* StatusMessageCell.xib */,
 			);
 			name = "Messages View Controller";
 			sourceTree = "<group>";
@@ -617,14 +643,22 @@
 				AAC4259C1CF0F6B600145EDB /* MessagesViewActionMenuLeft.xib in Resources */,
 				AAC425A31CF0F9BA00145EDB /* Images.xcassets in Resources */,
 				AAC425A11CF0F6B600145EDB /* MessagesViewTimeHeader.xib in Resources */,
+				AA178DFB1CF603E20020C542 /* VideoMessageCell.xib in Resources */,
+				AA178DF71CF603AA0020C542 /* AudioMessageCell.xib in Resources */,
 				AAC425A01CF0F6B600145EDB /* MessagesViewStatusFooter.xib in Resources */,
+				AA178E021CF6044C0020C542 /* EnterExitMessageCell.xib in Resources */,
 				AAC4259E1CF0F6B600145EDB /* MessagesViewIcon.xib in Resources */,
-				AA6328A61CF4E14B00DD6034 /* Main.storyboard in Resources */,
+				AA178DFD1CF6040B0020C542 /* ContactMessageCell.xib in Resources */,
+				AA178DF91CF603C60020C542 /* ImageMessageCell.xib in Resources */,
 				AAC4259D1CF0F6B600145EDB /* MessagesViewActionMenuRight.xib in Resources */,
+				AA178E041CF6046E0020C542 /* ConferenceMessageCell.xib in Resources */,
 				AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */,
 				AA6328A31CF4D18D00DD6034 /* ChatToolBarView.xib in Resources */,
 				AAC4259F1CF0F6B600145EDB /* MessagesViewSenderHeader.xib in Resources */,
+				AA178DF51CF603850020C542 /* TextMessageCell.xib in Resources */,
+				AA178DFF1CF604160020C542 /* LocationMessageCell.xib in Resources */,
 				AA1AA3AB1CED126B005B127C /* MessagesUIKit.podspec in Resources */,
+				AA178E061CF6049B0020C542 /* StatusMessageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

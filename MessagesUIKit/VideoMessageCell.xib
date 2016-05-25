@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Video" id="GHC-df-tkg" userLabel="Video" customClass="VideoMessageCell" customModule="MessagesUIKit">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9q-bi-OnW" customClass="BubbleView" customModule="MessagesUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oF6-ni-NBi" userLabel="Thumbnail Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="BBM-g1-YPI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQN-Od-gro">
+                                <rect key="frame" x="25" y="25" width="51" height="51"/>
+                                <state key="normal" image="video-play"/>
+                            </button>
+                            <view hidden="YES" opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="3XC-Dp-C4e" customClass="PieProgressView" customModule="MessagesUIKit">
+                                <rect key="frame" x="25" y="25" width="50" height="50"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="u1R-AX-gb9">
+                                <rect key="frame" x="31" y="32" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="height" relation="greaterThanOrEqual" secondItem="u1R-AX-gb9" secondAttribute="height" id="3uk-Qx-59K"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="width" relation="greaterThanOrEqual" secondItem="3XC-Dp-C4e" secondAttribute="width" id="5MT-yn-BGi"/>
+                            <constraint firstItem="AQN-Od-gro" firstAttribute="centerY" secondItem="v9q-bi-OnW" secondAttribute="centerY" id="OwE-EO-7p4"/>
+                            <constraint firstItem="3XC-Dp-C4e" firstAttribute="centerY" secondItem="v9q-bi-OnW" secondAttribute="centerY" id="RAF-bA-cwb"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="width" relation="greaterThanOrEqual" secondItem="u1R-AX-gb9" secondAttribute="width" id="UCj-gq-Q2t"/>
+                            <constraint firstItem="3XC-Dp-C4e" firstAttribute="centerX" secondItem="v9q-bi-OnW" secondAttribute="centerX" id="WHO-dv-Jqd"/>
+                            <constraint firstItem="u1R-AX-gb9" firstAttribute="centerY" secondItem="v9q-bi-OnW" secondAttribute="centerY" id="YWB-xb-TRm"/>
+                            <constraint firstItem="u1R-AX-gb9" firstAttribute="centerX" secondItem="v9q-bi-OnW" secondAttribute="centerX" id="bvd-Ep-2nc"/>
+                            <constraint firstItem="AQN-Od-gro" firstAttribute="centerX" secondItem="v9q-bi-OnW" secondAttribute="centerX" id="gCi-sR-Qkp"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="height" relation="greaterThanOrEqual" secondItem="AQN-Od-gro" secondAttribute="height" id="giA-SY-ysv"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="top" secondItem="v9q-bi-OnW" secondAttribute="top" id="nuH-bM-Qfm"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="width" relation="greaterThanOrEqual" secondItem="AQN-Od-gro" secondAttribute="width" id="p0T-CJ-dsw"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="leading" secondItem="v9q-bi-OnW" secondAttribute="leading" id="rdc-Ye-PZP"/>
+                            <constraint firstAttribute="trailing" secondItem="oF6-ni-NBi" secondAttribute="trailing" id="t2a-Bt-rOI"/>
+                            <constraint firstAttribute="bottom" secondItem="oF6-ni-NBi" secondAttribute="bottom" id="uir-xb-ie6"/>
+                            <constraint firstItem="oF6-ni-NBi" firstAttribute="height" relation="greaterThanOrEqual" secondItem="3XC-Dp-C4e" secondAttribute="height" id="y2A-Al-GTf"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskSubviews" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="v9q-bi-OnW" firstAttribute="leading" secondItem="GHC-df-tkg" secondAttribute="leading" id="4Ni-gv-0Us"/>
+                <constraint firstAttribute="bottom" secondItem="v9q-bi-OnW" secondAttribute="bottom" id="el3-td-fKP"/>
+                <constraint firstItem="v9q-bi-OnW" firstAttribute="top" secondItem="GHC-df-tkg" secondAttribute="top" id="tFd-yA-x2g"/>
+                <constraint firstAttribute="trailing" secondItem="v9q-bi-OnW" secondAttribute="trailing" id="wFD-vt-PdI"/>
+            </constraints>
+            <size key="customSize" width="100" height="100"/>
+            <connections>
+                <outlet property="bubbleView" destination="v9q-bi-OnW" id="S3E-jf-DEA"/>
+                <outlet property="loadingView" destination="u1R-AX-gb9" id="SBc-L9-bNZ"/>
+                <outlet property="maxWidthConstraint" destination="BBM-g1-YPI" id="xLh-rv-XjG"/>
+                <outlet property="playbackButton" destination="AQN-Od-gro" id="AOe-0p-FLl"/>
+                <outlet property="thumbnailImageView" destination="oF6-ni-NBi" id="WIj-18-qkt"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="video-play" width="51" height="51"/>
+    </resources>
+</document>

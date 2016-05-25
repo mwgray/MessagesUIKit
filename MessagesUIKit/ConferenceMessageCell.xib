@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Conference" id="m8h-77-tW7" userLabel="Conference" customClass="ConferenceMessageCell" customModule="MessagesUIKit">
+            <rect key="frame" x="0.0" y="0.0" width="220" height="142"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="220" height="142"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51c-ta-Jhw" customClass="BubbleView" customModule="MessagesUIKit">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="142"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="oRs-VS-jBe">
+                                <rect key="frame" x="8" y="8" width="204" height="126"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lyW-Pa-yf8">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="39"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="4eH-5O-kSk" customClass="AspectRatioImageView" customModule="MessagesUIKit">
+                                                <rect key="frame" x="0.0" y="0.0" width="35" height="39"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tinted" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Wants to speak with you!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="155" translatesAutoresizingMaskIntoConstraints="NO" id="PYV-J4-k9o">
+                                                <rect key="frame" x="45" y="0.0" width="159" height="39"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbF-b7-NyO">
+                                        <rect key="frame" x="0.0" y="42" width="204" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="w3o-Zn-XQZ"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gmB-yI-YkF">
+                                        <rect key="frame" x="0.0" y="46" width="204" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="center" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xh9-cb-SYr">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Xh9-cb-SYr" secondAttribute="height" multiplier="1:1" id="29M-Hg-cZh"/>
+                                                    <constraint firstAttribute="width" constant="80" id="D7q-Xu-oha"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.55294117649999996" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="titleEdgeInsets" minX="-65" minY="60" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" title="Accept" image="phone-accept"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIh-if-6yt" userLabel="Divider">
+                                                <rect key="frame" x="102" y="0.0" width="1" height="80"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="Q9R-IL-h9U"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="center" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoX-uW-J3a">
+                                                <rect key="frame" x="124" y="0.0" width="80" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="EoX-uW-J3a" secondAttribute="height" multiplier="1:1" id="ZN2-F5-Q8l"/>
+                                                    <constraint firstAttribute="width" constant="80" id="na0-1z-HS1"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="0.1333333333" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="titleEdgeInsets" minX="-70" minY="60" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" title="Decline" image="phone-decline"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="bIh-if-6yt" firstAttribute="top" secondItem="gmB-yI-YkF" secondAttribute="top" id="Ilv-J2-bbi"/>
+                                            <constraint firstAttribute="bottom" secondItem="bIh-if-6yt" secondAttribute="bottom" id="k5Z-5q-ACx"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="oRs-VS-jBe" secondAttribute="trailing" id="ABD-6h-Lsu"/>
+                            <constraint firstItem="oRs-VS-jBe" firstAttribute="leading" secondItem="51c-ta-Jhw" secondAttribute="leadingMargin" id="Br5-RA-GfP"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="oRs-VS-jBe" secondAttribute="bottom" id="Li0-Zi-8Mg"/>
+                            <constraint firstItem="oRs-VS-jBe" firstAttribute="top" secondItem="51c-ta-Jhw" secondAttribute="topMargin" id="iDt-o7-9cZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="51c-ta-Jhw" firstAttribute="top" secondItem="m8h-77-tW7" secondAttribute="topMargin" id="25W-va-oDK"/>
+                <constraint firstItem="51c-ta-Jhw" firstAttribute="leading" secondItem="m8h-77-tW7" secondAttribute="leadingMargin" id="BBM-z0-ny8"/>
+                <constraint firstAttribute="trailingMargin" secondItem="51c-ta-Jhw" secondAttribute="trailing" id="iqM-pp-g88"/>
+                <constraint firstAttribute="bottomMargin" secondItem="51c-ta-Jhw" secondAttribute="bottom" id="rle-Ai-jC1"/>
+            </constraints>
+            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+            <size key="customSize" width="220" height="142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="phone" width="35" height="35"/>
+        <image name="phone-accept" width="70" height="70"/>
+        <image name="phone-decline" width="70" height="70"/>
+    </resources>
+</document>
