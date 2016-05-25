@@ -59,6 +59,15 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
     }
     
     collectionView.backgroundColor = nil
+    collectionView.bounces = true
+    collectionView.alwaysBounceVertical = true
+    collectionView.allowsSelection = true
+    collectionView.scrollEnabled = true
+    collectionView.directionalLockEnabled = true
+    collectionView.showsVerticalScrollIndicator = true
+    collectionView.showsHorizontalScrollIndicator = false
+    collectionView.delaysContentTouches = true
+    collectionView.canCancelContentTouches = true
     
     let panner = UIPanGestureRecognizer(target: self, action: #selector(MessagesViewController.panned(_:)))
     panner.delegate = self
