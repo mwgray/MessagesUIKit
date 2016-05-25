@@ -1514,7 +1514,7 @@ private class SaveOperation : Operation {
           }
 
           var type : NSString?
-          let data = NSData() //FIXME: image.exportOptimizedWithMetadata(metaData, type: &type)
+          let data = image.exportOptimizedWithMetadata(metaData, type: &type)
           
           guard let imageType = type, fileExt = UTTypeCopyPreferredTagWithClass(imageType as CFString, kUTTagClassFilenameExtension) else {
             self.finishWithError(ErrorCode.InvalidImageType as NSError)

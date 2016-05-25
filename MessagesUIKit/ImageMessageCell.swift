@@ -52,9 +52,9 @@ public class ImageMessageCell : MessageCell {
           image = animatedImage
           
         }
-        else if let stillImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
+        else if let stillImage = UIImage(source: imageSource) {
           
-          image = UIImage(CGImage: stillImage)
+          image = stillImage
           
         }
         else {

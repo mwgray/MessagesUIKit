@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(nullable NSDictionary *) extractMetadataFromImageData:(NSData *)data;
 
-+(UIImage *) imageWithCGImageSource:(CGImageSourceRef)imageSource;
++(nullable UIImage *) imageWithSource:(CGImageSourceRef)imageSource;
 
 @end
 

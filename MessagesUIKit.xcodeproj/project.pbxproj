@@ -38,7 +38,7 @@
 		AA63288F1CF3A1EF00DD6034 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63288E1CF3A1EF00DD6034 /* Contacts.swift */; };
 		AA6328921CF49B8800DD6034 /* MessageTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6328901CF49B8800DD6034 /* MessageTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA6328931CF49B8800DD6034 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6328911CF49B8800DD6034 /* MessageTextView.m */; };
-		AA6328981CF4CC4B00DD6034 /* UIImage+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6328961CF4CC4B00DD6034 /* UIImage+Extras.h */; };
+		AA6328981CF4CC4B00DD6034 /* UIImage+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6328961CF4CC4B00DD6034 /* UIImage+Extras.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA6328991CF4CC4B00DD6034 /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6328971CF4CC4B00DD6034 /* UIImage+Extras.m */; };
 		AA63289C1CF4CC5C00DD6034 /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = AA63289A1CF4CC5C00DD6034 /* UIImage+Alpha.h */; };
 		AA63289D1CF4CC5C00DD6034 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63289B1CF4CC5C00DD6034 /* UIImage+Alpha.m */; };

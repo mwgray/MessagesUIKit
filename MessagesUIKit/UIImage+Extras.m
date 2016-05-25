@@ -43,13 +43,14 @@ CGSize UIImageSizeConstrainedToMaxSize(CGSize size, CGSize maxSize)
 
 @implementation UIImage (Extras)
 
-+(UIImage *) imageWithCGImageSource:(CGImageSourceRef)imageSource
++(UIImage *) imageWithSource:(CGImageSourceRef)imageSource
 {
 
   CGImageRef imageSourceImage = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
   if (!imageSourceImage) {
     return nil;
   }
+  
   @try {
 
     NSDictionary *imageProps = CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(imageSource, 0, NULL));
