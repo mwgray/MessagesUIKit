@@ -1048,7 +1048,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
       let contact = results[indexPath.row]
       
       
-      cell.textLabel!.text = contact.displayFullName
+      cell.textLabel!.text = contact.fullName
 
       //FIXME: Show all aliases on recipient cell
 //      let defaultLabel = alias.type == .PhoneNumber ? "phone" : "e-mail"
@@ -1131,14 +1131,16 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
             .flatMap { ($0 as! ChatRecipient).aliases })
         
         // Exclude contacts that have already been added by matching up aliases
-        let resultsContacts = foundContacts.filter { Set($0.aliases.map { $0.rawValue }).intersect(recipientAliases).isEmpty }
+        let resultsContacts = foundContacts.filter { Set($0.aliases.map { $0.value }).intersect(recipientAliases).isEmpty }
         
         self.recipientsSearchResults = resultsContacts.isEmpty ? nil : resultsContacts
         
-        self.recipientsDisplayController.searchResultsTableView.reloadData()
-        
         self.recipientsSearchActive = false
         
+        GCD.mainQueue.async {
+          self.recipientsDisplayController.searchResultsTableView.reloadData()
+        }
+
       }
     }
     

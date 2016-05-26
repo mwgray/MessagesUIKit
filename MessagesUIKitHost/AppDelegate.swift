@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import JPSimulatorHacks
 @testable import MessagesKit
 @testable import MessagesUIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,16 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow()
     
+    JPSimulatorHacks.grantAccessToAddressBook()
+    
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "io.retxt.debug.RandomUniqueDeviceId")
     
+    let index = AddressBookIndex(ready: nil)
+    let provider = AddressBookContactsProvider(index: index)
+    AliasDisplayManager.initialize(provider: provider)
+    ContactsManager.initialize(provider: provider)
+      
     MessageAPI.initialize(target: ServerTarget(scheme: .HTTPS, hostName: "master.dev.retxt.io"))
     
     let launchEnvironment = NSProcessInfo.processInfo().environment
     
     let dbName = launchEnvironment["testData"] ?? "test"
     let dbURL = NSBundle(forClass: AppDelegate.self).URLForResource(dbName, withExtension: "db")!
-    let dbManager = try! DBManager(path: dbURL.path!, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
-    
+
     switch launchEnvironment["testTarget"] ?? "chat" {
     case "chat":
 
@@ -44,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
     case "messages":
       
+      let dbManager = try! DBManager(path: dbURL.path!, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
+
       let request = FetchRequest()
       request.resultClass = Message.self
       request.predicate = NSPredicate(value: true)
@@ -64,6 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
     case "summaries":
       
+      let dbManager = try! DBManager(path: dbURL.path!, kind: "Messages", daoClasses: [MessageDAO.self, ChatDAO.self])
+
       let request = FetchRequest()
       request.resultClass = Chat.self
       request.predicate = NSPredicate(value: true)

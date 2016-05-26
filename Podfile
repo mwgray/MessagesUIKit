@@ -27,9 +27,11 @@ target :MessagesUIKit do
   pod 'SnapKit'
   
   target :MessagesUIKitTests do
+    pod 'JPSimulatorHacks', :git => 'https://github.com/reTXT/JPSimulatorHacks.git'
   end
 
   target :MessagesUIKitHost do
+    pod 'JPSimulatorHacks', :git => 'https://github.com/reTXT/JPSimulatorHacks.git'
   end
   
 end

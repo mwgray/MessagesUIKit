@@ -57,6 +57,7 @@
 		AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */; };
 		AA6328AF1CF4ECC300DD6034 /* ChatToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */; };
 		AAA251271CF181C600EB2706 /* PieProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA251261CF181C600EB2706 /* PieProgressView.swift */; };
+		AAAB5AD81CF767C6006B631B /* AddressBookContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB5AD71CF767C6006B631B /* AddressBookContacts.swift */; };
 		AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AAB535CD1CE8DF7E00A38281 /* MessagesUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */; };
 		AAB535D21CE8DF7E00A38281 /* MessagesUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB535D11CE8DF7E00A38281 /* MessagesUIKitTests.swift */; };
@@ -186,6 +187,7 @@
 		AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatToolBarView.xib; sourceTree = "<group>"; };
 		AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
 		AAA251261CF181C600EB2706 /* PieProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieProgressView.swift; sourceTree = "<group>"; };
+		AAAB5AD71CF767C6006B631B /* AddressBookContacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookContacts.swift; sourceTree = "<group>"; };
 		AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessagesUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesUIKit.h; sourceTree = "<group>"; };
 		AAB535C71CE8DF7E00A38281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				AA63288E1CF3A1EF00DD6034 /* Contacts.swift */,
+				AAAB5AD71CF767C6006B631B /* AddressBookContacts.swift */,
 				AADB25E91CF16CF300D86240 /* AspectRatioImageView.swift */,
 				AAD4DC1B1CE9A7E20032B5CE /* UserBadgeView.swift */,
 				AA0B34551CE9911800DEFE33 /* AutoLayoutCollectionReusableView.swift */,
@@ -844,6 +847,7 @@
 				AA6328AF1CF4ECC300DD6034 /* ChatToolBarView.swift in Sources */,
 				AA0B344F1CE9900900DEFE33 /* LocationMessageCell.swift in Sources */,
 				AA0B343B1CE98F6700DEFE33 /* UIEdgeInsets.swift in Sources */,
+				AAAB5AD81CF767C6006B631B /* AddressBookContacts.swift in Sources */,
 				AA0B34501CE9900900DEFE33 /* MessageCell.swift in Sources */,
 				AA0EAD441CF2104600B51C34 /* AudioPlot.swift in Sources */,
 				AAD4DC1C1CE9A7E20032B5CE /* UserBadgeView.swift in Sources */,

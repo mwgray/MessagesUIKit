@@ -30,11 +30,11 @@ class ContactRecipient : NSObject, ChatRecipient {
   }
   
   var recipientTitle : String {
-    return contact.displayFullName
+    return contact.fullName
   }
   
   var aliases : Set<String> {
-    return Set(contact.aliases.map { $0.rawValue })
+    return Set(contact.aliases.map { $0.value })
   }
   
   override func isEqual(object: AnyObject?) -> Bool {

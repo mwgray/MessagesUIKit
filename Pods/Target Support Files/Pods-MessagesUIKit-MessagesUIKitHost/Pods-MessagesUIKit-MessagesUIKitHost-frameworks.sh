@@ -100,6 +100,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Thrift/Thrift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YOLOKit/YOLOKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/sqlite3/sqlite3.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JPSimulatorHacks/JPSimulatorHacks.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
@@ -118,4 +119,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Thrift/Thrift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YOLOKit/YOLOKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/sqlite3/sqlite3.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/JPSimulatorHacks/JPSimulatorHacks.framework"
 fi
