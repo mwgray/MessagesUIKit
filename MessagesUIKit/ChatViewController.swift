@@ -145,6 +145,7 @@ public class ChatViewController: UIViewController {
     
     messagesViewController.didMoveToParentViewController(self)
     
+    updateMessagesViewScrolled(false, animated: false)
     
     // Setup UI
     
@@ -357,7 +358,7 @@ public class ChatViewController: UIViewController {
     
     recipientsBar.hidden = chat != nil
   }
-
+  
   func updateMessagesViewScrolled(scrolled: Bool, animated: Bool) {
     
     let statusBarFrame = UIApplication.sharedApplication().statusBarFrame
@@ -367,9 +368,7 @@ public class ChatViewController: UIViewController {
   
   func updateMessagesViewWithStatusBarFrame(statusBarFrame: CGRect, scrolled: Bool, animated: Bool) {
     
-    let barHeight = navigationController?.navigationBar.frame.size.height ?? 0
-
-    let topInset = statusBarFrame.height + barHeight + insetPadding + CGFloat(recipientsBar.hidden ? 0 : recipientsBar.frame.size.height)
+    let topInset = topLayoutGuide.length + insetPadding + CGFloat(recipientsBar.hidden ? 0 : recipientsBar.frame.size.height)
     let bottomInset = insetPadding + keyboardRect.height
     
     messagesViewController.updateInsets(UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0))

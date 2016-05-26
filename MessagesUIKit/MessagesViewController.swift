@@ -486,11 +486,20 @@ public class MessagesViewController: UICollectionViewController, MessagesViewLay
   
   public func updateInsets(insets: UIEdgeInsets) {
     
-    //collectionView!.contentInset = insets
-    //collectionView!.scrollIndicatorInsets = insets
+    guard let collectionView = collectionView else {
+      return
+    }
+    
+    if collectionView.contentInset != insets {
+      collectionView.contentInset = insets
+    }
+    
+    if collectionView.scrollIndicatorInsets != insets {
+      collectionView.scrollIndicatorInsets = insets
+    }
     
 //    if let editingIndex = editingIndexPath {
-//      [self _scrollToItemAtIndexPath:_editingIndexPath animated:YES]
+//      scrollToItemAtIndexPath(editingIndexPath, animated: true)
 //    }
   }
   
