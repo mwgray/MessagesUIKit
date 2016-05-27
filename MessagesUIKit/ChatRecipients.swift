@@ -11,35 +11,35 @@ import MessagesKit
 import TURecipientBar
 
 
-@objc protocol ChatRecipient : TURecipientProtocol {
+@objc public protocol ChatRecipient : TURecipientProtocol {
   
-  var aliases : Set<String> { get }
+  var alias : String { get }
   
 }
 
-class ContactRecipient : NSObject, ChatRecipient {
+
+public class ContactChatRecipient : NSObject, ChatRecipient {
   
   let contact : Contact
   
-  init(contact: Contact) {
+  public let alias: String
+  
+  public init(contact: Contact, alias: String) {
     self.contact = contact
+    self.alias = alias
   }
   
-  func copyWithZone(zone: NSZone) -> AnyObject {
-    return ContactRecipient(contact: contact)
+  public func copyWithZone(zone: NSZone) -> AnyObject {
+    return ContactChatRecipient(contact: contact, alias: alias)
   }
   
-  var recipientTitle : String {
+  public var recipientTitle : String {
     return contact.fullName
   }
   
-  var aliases : Set<String> {
-    return Set(contact.aliases.map { $0.value })
-  }
-  
-  override func isEqual(object: AnyObject?) -> Bool {
+  public override func isEqual(object: AnyObject?) -> Bool {
     
-    if let contactRecipient = object as? ContactRecipient {
+    if let contactRecipient = object as? ContactChatRecipient {
       return contactRecipient.contact == contact
     }
     
@@ -48,31 +48,24 @@ class ContactRecipient : NSObject, ChatRecipient {
   
 }
 
-class AliasRecipient : NSObject, ChatRecipient {
+
+public class AliasChatRecipient : NSObject, ChatRecipient {
   
-  let title : String
-  let alias : String
+  public let recipientTitle : String
+  public let alias : String
   
-  init(alias: String, title: String) {
+  public init(alias: String, title: String) {
     self.alias = alias
-    self.title = title
+    self.recipientTitle = title
   }
   
-  func copyWithZone(zone: NSZone) -> AnyObject {
-    return AliasRecipient(alias: alias, title: title)
+  public func copyWithZone(zone: NSZone) -> AnyObject {
+    return AliasChatRecipient(alias: alias, title: recipientTitle)
   }
   
-  var recipientTitle : String {
-    return AliasDisplayManager.sharedProvider.displayForAlias(alias).fullName
-  }
-  
-  var aliases: Set<String> {
-    return Set([alias])
-  }
-  
-  override func isEqual(object: AnyObject?) -> Bool {
+  public override func isEqual(object: AnyObject?) -> Bool {
     
-    if let sar = object as? AliasRecipient {
+    if let sar = object as? AliasChatRecipient {
       return sar.alias == alias
     }
     

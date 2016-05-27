@@ -14,14 +14,30 @@ import MessageUI
 import MessagesKit
 import PSOperations
 import AssetsLibrary
-import AddressBook
+import AddressBookUI
 import CoreLocation
 
 
 
+@objc public class PickContactOperation : Operation {
+  
+  public var contact : Contact?
+  
+}
+
+@objc public class PickImageOperation : Operation {
+  
+  public var image : NSInputStream?
+  
+}
+
 @objc public protocol ChatViewControllerDelegate {
   
+  optional func chatViewController(chatViewController: ChatViewController, wantsRecipientForContact contact: Contact) -> ChatRecipient?
+  optional func chatViewController(chatViewController: ChatViewController, wantsRecipientForProposedAlias proposedAlias: String) -> ChatRecipient?
   
+  optional func chatViewControllerRequestedPickContactOperation(chatViewController: ChatViewController) -> PickContactOperation
+  optional func chatViewControllerRequestedPickImageOperation(chatViewController: ChatViewController) -> PickImageOperation
   
 }
 
@@ -123,12 +139,23 @@ public class ChatViewController: UIViewController {
     
     super.viewDidLoad()
     
+    // Toolbar init
+    //
+    
     toolbar = ChatToolBarView(frame: CGRectZero)
     toolbar.delegate = self
     toolbar.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
     inputAccessoryView = toolbar
     
-    // EMBED: MesasgesViewController
+    // Recipients Controller & Bar init
+    //
+    
+    recipientsDisplayController.searchResultsTableView
+      .registerNib(UINib(nibName: "ContactSearchCell", bundle: NSBundle.muik_frameworkBundle()),
+                   forCellReuseIdentifier: SearchCellIdentifier)
+    recipientsDisplayController.searchResultsTableView.estimatedRowHeight = 50
+    
+    // MesasgesViewController init & embed
     //
     
     messagesViewController = MessagesViewController(collectionViewLayout: MessagesViewLayout())
@@ -148,8 +175,6 @@ public class ChatViewController: UIViewController {
     updateMessagesViewScrolled(false, animated: false)
     
     // Setup UI
-    
-    //FIXME: applyBlurBackground(recipientsBar)
     
     if chat != nil {
       
@@ -1041,26 +1066,54 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
     
     if let results = recipientsSearchResults {
 
-      cell = tableView.dequeueReusableCellWithIdentifier(SearchCellIdentifier) ??
-        UITableViewCell(style: .Subtitle, reuseIdentifier: SearchCellIdentifier)
+      let searchCell =
+        tableView.dequeueReusableCellWithIdentifier(SearchCellIdentifier) as? ContactSearchCell ??
+        ContactSearchCell(style: .Subtitle, reuseIdentifier: SearchCellIdentifier)
       
       let contact = results[indexPath.row]
       
-      
-      cell.textLabel!.text = contact.fullName
+      searchCell.titleLabel.text = contact.fullName
 
-      //FIXME: Show all aliases on recipient cell
-//      let defaultLabel = alias.type == .PhoneNumber ? "phone" : "e-mail"
-//      cell.detailTextLabel!.text = "\(contact.displayLabel ?? defaultLabel): \(alias.displayValue)"
+      if #available(iOS 9.0, *) {
+        
+        let aliasesStackView = searchCell.aliasesStackView as! UIStackView
+        aliasesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-      //FIXME: need a place to store which aliases are on retxt
-//      if alias.registered {
-//        cell.accessoryView = UIImageView(image: UIImage(named: "logo-icon-small"))
-//      }
-//      else {
-//        cell.accessoryView = nil
-//      }
+        for kind in [ContactAliasKind.Phone, ContactAliasKind.Email, ContactAliasKind.InstantMessage, ContactAliasKind.Other] {
+          
+          let aliases = contact.aliases.filter { $0.kind == kind }
+          if !aliases.isEmpty {
+            
+            let kindLabel = UILabel()
+            kindLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption2).bold()
+            
+            switch kind {
+            case .Phone:
+              kindLabel.text = "Phones"
+            case .Email:
+              kindLabel.text = "Emails"
+            case .InstantMessage:
+              kindLabel.text = "IMs"
+            case .Other:
+              kindLabel.text = "Others"
+            }
+            
+            aliasesStackView.addArrangedSubview(kindLabel)
+            
+            for alias in aliases {
+              let aliasLabel = UILabel()
+              aliasLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+              aliasLabel.text = " \(alias.label ?? "General"): \(alias.value)"
+              aliasesStackView.addArrangedSubview(aliasLabel)
+            }
+            
+          }
+          
+        }
+        
+      }
       
+      cell = searchCell
     }
     else if !ContactsManager.sharedProvider.accessGranted {
       
@@ -1076,6 +1129,8 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
     else {
       fatalError("Invalid cell request")
     }
+    
+    cell.layoutIfNeeded()
     
     return cell
   }
@@ -1098,7 +1153,9 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
     
     let contact = results[indexPath.row]
     
-    let recipient = ContactRecipient(contact: contact)
+    guard let recipient = delegate?.chatViewController?(self, wantsRecipientForContact: contact) else {
+      return
+    }
     
     recipientsBar.addRecipient(recipient)
     recipientsDisplayController(recipientsDisplayController, didAddRecipient: recipient)
@@ -1110,7 +1167,29 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
   
   public func recipientsBarAddButtonClicked(recipientsBar: TURecipientsBar!) {
     
-    //FIXME: operationQueue.addOperation(PickRecipient(vc: self))
+    recipientsBar.text = nil
+    
+    guard let pickOp = delegate?.chatViewControllerRequestedPickContactOperation?(self) else {
+      return
+    }
+    
+    pickOp.addObserver(BlockObserver(finishHandler: { op, error in
+      
+      guard let contact = pickOp.contact else {
+        return
+      }
+      
+      guard let recipient = self.delegate?.chatViewController?(self, wantsRecipientForContact: contact) else {
+        return
+      }
+      
+      recipientsBar.addRecipient(recipient)
+      self.recipientsDisplayController(self.recipientsDisplayController, didAddRecipient: recipient)
+      
+      self.updateToolbar()
+    }))
+    
+    operationQueue.addOperation(pickOp)
   }
   
   public func recipientsDisplayController(controller: TURecipientsDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
@@ -1125,9 +1204,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
         
         // Generate set of all aliases in use by the currently selected recipients
         let recipientAliases =
-          Set(self.recipientsBar.recipients
-            .filter { $0 is ChatRecipient }
-            .flatMap { ($0 as! ChatRecipient).aliases })
+          Set(self.recipientsBar.recipients.flatMap { ($0 as? ChatRecipient)?.alias })
         
         // Exclude contacts that have already been added by matching up aliases
         let resultsContacts = foundContacts.filter { Set($0.aliases.map { $0.value }).intersect(recipientAliases).isEmpty }
@@ -1157,42 +1234,18 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
     if proposedAlias.isEmpty {
       return nil
     }
-
-    //FIXME: normalizing aliases
-//    guard let alias = proposedAlias.normalizedAliasWithDefaultRegion(nil) else {
-//      
-//      let warningAlert = UIAlertController(
-//        title: "Invalid Recipient",
-//        message: "'\(recipient.recipientTitle)' is not a valid recipient",
-//        preferredStyle: .Alert)
-//      
-//      warningAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-//      
-//      presentViewController(warningAlert, animated: true, completion: nil)
-//      
-//      return nil
-//    }
-    let alias = proposedAlias
     
-    // Try to match alias in Contacts, else use as alias
-    
-    let chatRecipient : ChatRecipient
-    
-    if let contact = ContactsManager.sharedProvider.searchWithAliases([alias]).first {
-      chatRecipient = ContactRecipient(contact: contact)
-    }
-    else {
-      let aliasDisplay = AliasDisplayManager.sharedProvider.displayForAlias(alias)
-      chatRecipient = AliasRecipient(alias: alias, title: aliasDisplay.fullName)
+    guard let recipient = delegate?.chatViewController?(self, wantsRecipientForProposedAlias: proposedAlias) else {
+      return nil
     }
     
     // If a recipient already includes this alias, don't add anything
-    if recipientsBar.recipients.contains({ !($0 as! ChatRecipient).aliases.intersect(chatRecipient.aliases).isEmpty }) {
+    if recipientsBar.recipients.flatMap({$0 as? ChatRecipient}).contains({ $0.alias == recipient.alias }) {
       recipientsBar.text = nil
       return nil
     }
     
-    return chatRecipient
+    return recipient
   }
   
   public func recipientsDisplayController(controller: TURecipientsDisplayController!, didAddRecipient recipient: TURecipientProtocol!) {
@@ -1416,85 +1469,6 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
 //      self.finish()
 //    }
 //    
-//  }
-//  
-//}
-//
-//private class PickRecipient : Operation, ABPeoplePickerNavigationControllerDelegate {
-//  
-//  let vc : ChatViewController
-//  
-//  init(vc: ChatViewController) {
-//
-//    self.vc = vc
-//    
-//    super.init()
-//    
-//    addCondition(ModalCondition())
-//  }
-//  
-//  override func execute() {
-//    
-//    let picker = ABPeoplePickerNavigationController()
-//    picker.displayedProperties = [NSNumber(int: kABPersonPhoneProperty), NSNumber(int: kABPersonEmailProperty)]
-//    picker.predicateForSelectionOfPerson = NSPredicate(value: false)
-//    picker.predicateForSelectionOfProperty = NSPredicate(value: true)
-//    picker.peoplePickerDelegate = self
-//    
-//    GCD.mainQueue.async {
-//      self.vc.presentViewController(picker, animated: true, completion: nil)
-//    }
-//  }
-//  
-//  @objc func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecord, property: ABPropertyID, identifier: ABMultiValueIdentifier) {
-//    
-//    let propertyValue : String?
-//    
-//    if identifier == kABMultiValueInvalidIdentifier {
-//      propertyValue = ABRecordCopyValue(person, property).takeRetainedValue() as? String
-//    }
-//    else {
-//      let values = ABRecordCopyValue(person, property).takeRetainedValue()
-//      propertyValue = ABMultiValueCopyValueAtIndex(values, ABMultiValueGetIndexForIdentifier(values, identifier)).takeRetainedValue() as? String
-//    }
-//    
-//    guard let userIdentifier = propertyValue, alias = userIdentifier.normalizedAliasWithDefaultRegion(nil) else {
-//
-//      //FIXME: use public alert operation
-////      let warning = AlertOperation(presentationContext: vc)
-////      
-////      warning.title = "Unrecognized Phone/Email"
-////      warning.message = "The phone number or email address you selected is not in a recognized format for your current region."
-////      warning.addAction("Ok")
-////      
-////      produceOperation(warning)
-////      
-////      finish()
-//      
-//      return
-//    }
-//    
-//    let recipient : ChatRecipient
-//    
-//    if let contact = ContactsManager.sharedProvider.searchWithAliases([alias]).first {
-//      recipient = ContactRecipient(contact: contact)
-//    }
-//    else {
-//      recipient = StringAliasRecipient(title: userIdentifier, aliases: [alias])
-//    }
-//    
-//    vc.recipientsBar.addRecipient(recipient)
-//    vc.recipientsDisplayController(vc.recipientsDisplayController, didAddRecipient: recipient)
-//    
-//    vc.dismissViewControllerAnimated(true) {
-//      self.finish()
-//    }
-//  }
-//  
-//  @objc func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController) {
-//    vc.dismissViewControllerAnimated(true) {
-//      self.finish()
-//    }
 //  }
 //  
 //}
@@ -1817,8 +1791,7 @@ private class ResolveChatOperation : Operation {
     }
     
     let recipients = vc.recipientsDisplayController.recipientsBar.recipients as! [ChatRecipient]
-    
-    let recipientAliases = recipients.flatMap { $0.aliases }
+    let recipientAliases = recipients.map { $0.alias }
     
     if recipientAliases.isEmpty {
       return
@@ -1854,8 +1827,7 @@ private class ValidateRecipientOperation : Operation {
   
   override func execute() {
 
-    //FIXME: search for all aliases
-    MessageAPI.findUserInfoWithAlias(recipient.aliases.first!).then { info -> Void in
+    MessageAPI.findUserInfoWithAlias(recipient.alias).then { info -> Void in
       
       if info == nil {
         
@@ -1864,19 +1836,15 @@ private class ValidateRecipientOperation : Operation {
         let invite = InviteOperation(recipient: self.recipient, vc: self.vc)
         
         self.produceOperation(invite)
-
-      }
-      
-      GCD.mainQueue.async {
-        self.vc.updateToolbar()
       }
       
       self.finish()
-    
-    }.recover { error in
-        
+    }
+    .error { error in
+      
       self.finishWithError(error as NSError)
-        
+      
+      return
     }
     
   }
@@ -1917,113 +1885,114 @@ private class InviteOperation : Operation {
       ask.addActionWithTitle("Invite", style: .Default)
     
       self.vc.promiseViewController(ask)
-        .then { action -> Promise<(Recipient, NSNumber?)> in
       
-          let inviterRecipient = Recipient()
-          inviterRecipient.name = self.recipient.recipientTitle
-
-          //FIXME:
+      self.finish()
+      
+        //FIXME:
+//        .then { action -> Promise<(ChatRecipient, NSNumber?)> in
+//      
+//          let inviterRecipient = Recipient()
+//          inviterRecipient.name = self.recipient.recipientTitle
+//
 //          inviterRecipient.alias = self.recipient.alias
 //          inviterRecipient.aliasType = self.recipient.alias.typeOfAlias()
 //          
 //          return RTAppDelegate.showViralSheetWithViewController(self.vc, initialRecipient: inviterRecipient).then(on: zalgo) { loaded in
 //            return (inviterRecipient, loaded as? NSNumber)
 //          }
-          
-          return Promise<(Recipient, NSNumber?)>((Recipient(), nil as NSNumber?))
-      
-        }.then { recipient, loaded -> Promise<Any?> in
-          
-          guard let loaded = loaded where loaded == false else {
-            return Promise(true)
-          }
-          
-        switch recipient.aliasType {
-        case .PhoneNumber:
-          
-          if !MFMessageComposeViewController.canSendText() {
-            return Promise(error: Error.CannotSendSMS)
-          }
-
-          return Promise<Any?>(nil)
-          //FIXME: invites are no longer part of messageapi
-  //        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
-  //          
-  //          guard let invite = invite as? RTInvite else {
-  //            return Promise(error: Error.Failed)
-  //          }
-  //          
-  //          let composer = MFMessageComposeViewController()
-  //          
-  //          composer.recipients = [recipient.alias]
-  //          composer.body = invite.bodyText
-  //          
-  //          return self.vc.promiseViewController(composer).then { () -> Any? in
-  //
-  //            return true
-  //          }
-  //          
-  //        }
-          
-        case .EMailAddress:
-          
-          if !MFMailComposeViewController.canSendMail() {
-            return Promise(error: Error.CannotSendEmail)
-          }
-
-          return Promise<Any?>(nil)
-          //FIXME: invites are no longer part of messageapi
-  //        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
-  //          
-  //          guard let invite = invite as? RTInvite else {
-  //            return Promise(error: Error.Failed)
-  //          }
-  //          
-  //          let composer = MFMailComposeViewController()
-  //          
-  //          composer.setToRecipients([recipient.alias])
-  //          composer.setSubject(invite.subject)
-  //          composer.setMessageBody(invite.bodyHtml ?? invite.bodyText, isHTML: invite.bodyHtml != nil)
-  //          
-  //          return self.vc.promiseViewController(composer).then { result -> Any? in
-  //            
-  //            return true
-  //          }
-  //          
-  //        }
-          
-        }
-          
-      }
-      .recover { error -> Promise<Any?> in
-      
-        switch error {
-          
-        case Error.CannotSendSMS:
-          return self.showErrorAlertWithTitle("Invite",
-            message: "Unfortunately your device is not setup to send SMS messages.")
-          
-        case Error.CannotSendEmail:
-          return self.showErrorAlertWithTitle("Invite",
-            message: "Unfortunately your device is not setup to send e-mail messages.")
-          
-        case let err as CancellableErrorType:
-          if err.cancelled {
-            return Promise(true)
-          }
-          fallthrough
-          
-        default:
-          return self.showErrorAlertWithTitle("Invite",
-            message: "An error occurred trying to invite. Please try again.")
-        }
-        
-      }
-      .always {
-        
-        self.finish()
-          
-      }
+//          
+//          return Promise<(Recipient, NSNumber?)>((Recipient(), nil as NSNumber?))
+//      
+//        }.then { recipient, loaded -> Promise<Any?> in
+//          
+//          guard let loaded = loaded where loaded == false else {
+//            return Promise(true)
+//          }
+//          
+//        switch recipient.aliasType {
+//        case .PhoneNumber:
+//          
+//          if !MFMessageComposeViewController.canSendText() {
+//            return Promise(error: Error.CannotSendSMS)
+//          }
+//
+//          return Promise<Any?>(nil)
+//        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
+//          
+//          guard let invite = invite as? RTInvite else {
+//            return Promise(error: Error.Failed)
+//          }
+//          
+//          let composer = MFMessageComposeViewController()
+//          
+//          composer.recipients = [recipient.alias]
+//          composer.body = invite.bodyText
+//          
+//          return self.vc.promiseViewController(composer).then { () -> Any? in
+//
+//            return true
+//          }
+//          
+//        }
+//          
+//        case .EMailAddress:
+//          
+//          if !MFMailComposeViewController.canSendMail() {
+//            return Promise(error: Error.CannotSendEmail)
+//          }
+//
+//          return Promise<Any?>(nil)
+//        return self.vc.messageAPI.createInvite(recipient.alias).then { invite -> Promise<Any?> in
+//          
+//          guard let invite = invite as? RTInvite else {
+//            return Promise(error: Error.Failed)
+//          }
+//          
+//          let composer = MFMailComposeViewController()
+//          
+//          composer.setToRecipients([recipient.alias])
+//          composer.setSubject(invite.subject)
+//          composer.setMessageBody(invite.bodyHtml ?? invite.bodyText, isHTML: invite.bodyHtml != nil)
+//          
+//          return self.vc.promiseViewController(composer).then { result -> Any? in
+//            
+//            return true
+//          }
+//          
+//        }
+//          
+//        }
+//      
+//      }
+//      .recover { error -> Promise<Any?> in
+//      
+//        switch error {
+//          
+//        case Error.CannotSendSMS:
+//          return self.showErrorAlertWithTitle("Invite",
+//            message: "Unfortunately your device is not setup to send SMS messages.")
+//          
+//        case Error.CannotSendEmail:
+//          return self.showErrorAlertWithTitle("Invite",
+//            message: "Unfortunately your device is not setup to send e-mail messages.")
+//          
+//        case let err as CancellableErrorType:
+//          if err.cancelled {
+//            return Promise(true)
+//          }
+//          fallthrough
+//          
+//        default:
+//          return self.showErrorAlertWithTitle("Invite",
+//            message: "An error occurred trying to invite. Please try again.")
+//        }
+//        
+//      }
+//      .always {
+//        
+//        self.finish()
+//          
+//      }
       
     }
     

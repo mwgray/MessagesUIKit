@@ -56,6 +56,7 @@
 		AA6328A31CF4D18D00DD6034 /* ChatToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */; };
 		AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */; };
 		AA6328AF1CF4ECC300DD6034 /* ChatToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */; };
+		AA8AEDF71CF7AA68007338C1 /* AddressBookPickRecipientOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8AEDF61CF7AA68007338C1 /* AddressBookPickRecipientOperation.swift */; };
 		AAA251271CF181C600EB2706 /* PieProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA251261CF181C600EB2706 /* PieProgressView.swift */; };
 		AAAB5AD81CF767C6006B631B /* AddressBookContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAB5AD71CF767C6006B631B /* AddressBookContacts.swift */; };
 		AAB535C61CE8DF7D00A38281 /* MessagesUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AAB535C51CE8DF7D00A38281 /* MessagesUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,6 +75,8 @@
 		AAC425A11CF0F6B600145EDB /* MessagesViewTimeHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC4259B1CF0F6B600145EDB /* MessagesViewTimeHeader.xib */; };
 		AAC425A31CF0F9BA00145EDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC425A21CF0F9BA00145EDB /* Images.xcassets */; };
 		AAC425A51CF14EE300145EDB /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC425A41CF14EE300145EDB /* BubbleView.swift */; };
+		AAC4E91B1CF7F0560059AC0C /* ContactSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC4E91A1CF7F0560059AC0C /* ContactSearchCell.xib */; };
+		AAC4E91D1CF7F1DD0059AC0C /* ContactSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC4E91C1CF7F1DD0059AC0C /* ContactSearchCell.swift */; };
 		AAD4DC1C1CE9A7E20032B5CE /* UserBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4DC1B1CE9A7E20032B5CE /* UserBadgeView.swift */; };
 		AAD4DC1E1CE9B2830032B5CE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4DC1D1CE9B2830032B5CE /* String.swift */; };
 		AAD4DC211CE9B8B40032B5CE /* NSBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4DC201CE9B8B40032B5CE /* NSBundle.swift */; };
@@ -186,6 +189,7 @@
 		AA63289F1CF4CCC200DD6034 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatToolBarView.xib; sourceTree = "<group>"; };
 		AA6328A41CF4D2E500DD6034 /* MessagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
+		AA8AEDF61CF7AA68007338C1 /* AddressBookPickRecipientOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookPickRecipientOperation.swift; sourceTree = "<group>"; };
 		AAA251261CF181C600EB2706 /* PieProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieProgressView.swift; sourceTree = "<group>"; };
 		AAAB5AD71CF767C6006B631B /* AddressBookContacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookContacts.swift; sourceTree = "<group>"; };
 		AAB535C21CE8DF7D00A38281 /* MessagesUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessagesUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +211,8 @@
 		AAC4259B1CF0F6B600145EDB /* MessagesViewTimeHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesViewTimeHeader.xib; sourceTree = "<group>"; };
 		AAC425A21CF0F9BA00145EDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AAC425A41CF14EE300145EDB /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		AAC4E91A1CF7F0560059AC0C /* ContactSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactSearchCell.xib; sourceTree = "<group>"; };
+		AAC4E91C1CF7F1DD0059AC0C /* ContactSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSearchCell.swift; sourceTree = "<group>"; };
 		AAD4DC1B1CE9A7E20032B5CE /* UserBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBadgeView.swift; sourceTree = "<group>"; };
 		AAD4DC1D1CE9B2830032B5CE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		AAD4DC201CE9B8B40032B5CE /* NSBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundle.swift; sourceTree = "<group>"; };
@@ -351,7 +357,10 @@
 				AA63289B1CF4CC5C00DD6034 /* UIImage+Alpha.m */,
 				AA63289E1CF4CCC200DD6034 /* UIImage+ImageEffects.h */,
 				AA63289F1CF4CCC200DD6034 /* UIImage+ImageEffects.m */,
+				AAC4E91A1CF7F0560059AC0C /* ContactSearchCell.xib */,
 				AA6328A21CF4D18D00DD6034 /* ChatToolBarView.xib */,
+				AA8AEDF61CF7AA68007338C1 /* AddressBookPickRecipientOperation.swift */,
+				AAC4E91C1CF7F1DD0059AC0C /* ContactSearchCell.swift */,
 			);
 			name = "Chat View Controller";
 			sourceTree = "<group>";
@@ -610,6 +619,7 @@
 					};
 					AAD4DC331CEA1E890032B5CE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7J5T2VZQJW;
 					};
 					AAD4DC511CEA1E8A0032B5CE = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -655,6 +665,7 @@
 				AA178DF91CF603C60020C542 /* ImageMessageCell.xib in Resources */,
 				AAC4259D1CF0F6B600145EDB /* MessagesViewActionMenuRight.xib in Resources */,
 				AA178E041CF6046E0020C542 /* ConferenceMessageCell.xib in Resources */,
+				AAC4E91B1CF7F0560059AC0C /* ContactSearchCell.xib in Resources */,
 				AA6328A51CF4D2E500DD6034 /* MessagesViewController.xib in Resources */,
 				AA6328A31CF4D18D00DD6034 /* ChatToolBarView.xib in Resources */,
 				AAC4259F1CF0F6B600145EDB /* MessagesViewSenderHeader.xib in Resources */,
@@ -863,12 +874,14 @@
 				AAA251271CF181C600EB2706 /* PieProgressView.swift in Sources */,
 				AA6328891CF3A16900DD6034 /* ChatRecipients.swift in Sources */,
 				AA0B34581CE9911800DEFE33 /* AutoLayoutCollectionViewCell.swift in Sources */,
+				AAC4E91D1CF7F1DD0059AC0C /* ContactSearchCell.swift in Sources */,
 				AA0B344E1CE9900900DEFE33 /* ImageMessageCell.swift in Sources */,
 				AA0B344B1CE9900900DEFE33 /* ConferenceMessageCell.swift in Sources */,
 				AA0B34521CE9900900DEFE33 /* TextMessageCell.swift in Sources */,
 				AA0B34571CE9911800DEFE33 /* AutoLayoutCollectionReusableView.swift in Sources */,
 				AAD4DC1E1CE9B2830032B5CE /* String.swift in Sources */,
 				AA0B343F1CE98FC300DEFE33 /* UICollectionViewLayoutAttributes.swift in Sources */,
+				AA8AEDF71CF7AA68007338C1 /* AddressBookPickRecipientOperation.swift in Sources */,
 				AA63289D1CF4CC5C00DD6034 /* UIImage+Alpha.m in Sources */,
 				AA6328991CF4CC4B00DD6034 /* UIImage+Extras.m in Sources */,
 				AADB25EA1CF16CF300D86240 /* AspectRatioImageView.swift in Sources */,
@@ -1103,12 +1116,15 @@
 			baseConfigurationReference = C366DE045CC9FB5AF46D18ED /* Pods-MessagesUIKit-MessagesUIKitHost.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MessagesUIKitHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.retxt.ios.MessagesUIKitHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1117,12 +1133,15 @@
 			baseConfigurationReference = F6DB8136C33883A72FC125C4 /* Pods-MessagesUIKit-MessagesUIKitHost.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MessagesUIKitHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.retxt.ios.MessagesUIKitHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -8,17 +8,21 @@
 
 import Foundation
 import MessagesKit
+import AddressBook
 
 
 class AddressBookPersonContactAlias : NSObject, ContactAlias {
   
   let entry : AddressBookMultivalueEntry
   
-  init(entry: AddressBookMultivalueEntry) {
+  init(kind: ContactAliasKind, entry: AddressBookMultivalueEntry) {
+    self.kind = kind
     self.entry = entry
   }
   
-  var type: String? { return entry.label ?? "" }
+  let kind : ContactAliasKind
+  
+  var label: String? { return entry.label != nil ? ABAddressBookCopyLocalizedLabel(entry.label).takeRetainedValue() as String : nil }
   
   var displayValue: String { return entry.value as! String }
   
@@ -30,8 +34,8 @@ extension PersonAliasDisplay : Contact {
   
   public var aliases : [ContactAlias] {
     return
-      (person.phoneNumbers?.map({ AddressBookPersonContactAlias(entry: $0) }) ?? []) +
-        (person.emails?.map({ AddressBookPersonContactAlias(entry: $0) }) ?? [])
+      (person.phoneNumbers?.map({ AddressBookPersonContactAlias(kind: .Phone, entry: $0) }) ?? []) +
+      (person.emails?.map({ AddressBookPersonContactAlias(kind: .Email, entry: $0) }) ?? [])
   }
   
 }

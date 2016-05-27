@@ -862,7 +862,7 @@
         <!--Chat Controller-->
         <scene sceneID="Ay0-tu-1WB">
             <objects>
-                <viewController storyboardIdentifier="Chat" id="pCd-4r-toy" userLabel="Chat Controller" customClass="ChatViewController" customModule="MessagesUIKit" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Chat" id="pCd-4r-toy" userLabel="Chat Controller" customClass="TestChatViewController" customModule="MessagesUIKitHost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YKQ-P6-kGc"/>
                         <viewControllerLayoutGuide type="bottom" id="8qU-7g-0tr"/>

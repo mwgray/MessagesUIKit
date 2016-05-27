@@ -10,11 +10,18 @@ import Foundation
 import MessagesKit
 
 
+@objc public enum ContactAliasKind : Int {
+  case Phone
+  case Email
+  case InstantMessage
+  case Other
+}
+
 @objc public protocol ContactAlias {
   
-  var type : String? { get }
+  var kind : ContactAliasKind { get }
   
-  var displayValue : String { get }
+  var label : String? { get }
   
   var value : String { get }
   

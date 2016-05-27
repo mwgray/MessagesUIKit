@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow()
     
+    DDLog.addLogger(DDTTYLogger.sharedInstance())
+    
     JPSimulatorHacks.grantAccessToAddressBook()
     
     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "io.retxt.debug.RandomUniqueDeviceId")
@@ -43,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     switch launchEnvironment["testTarget"] ?? "chat" {
     case "chat":
 
-      let cvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Chat") as! ChatViewController
+      let cvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Chat") as! TestChatViewController
       
       cvc.messageAPI = try! register()
       
@@ -114,11 +116,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
       .then(on: zalgo) { creds -> MessageAPI in
         
-        print("##### Registered account: \(alias)")
+        DDLogError("##### Registered account: \(alias)")
         
         return try MessageAPI(credentials: creds, documentDirectoryURL: self.docDir)
       }
       .wait()
   }
   
+}
+
+
+class TestChatViewController : ChatViewController, ChatViewControllerDelegate {
+  
+  override func awakeFromNib() {
+    delegate = self
+  }
+  
+  func chatViewControllerRequestedPickContactOperation(chatViewController: ChatViewController) -> PickContactOperation {
+    return PickAddressBookContactOperation(viewController: chatViewController)
+  }
+  
+  func chatViewController(chatViewController: ChatViewController, wantsRecipientForContact contact: Contact) -> ChatRecipient? {
+    
+    //TODO: search for aliases already registered
+    
+    guard let contactAlias = contact.aliases.flatMap({ $0.kind == .Email ? $0 : nil }).first else {
+      return nil
+    }
+    
+    return ContactChatRecipient(contact: contact, alias: contactAlias.value)
+  }
+  
+  func chatViewController(chatViewController: ChatViewController, wantsRecipientForProposedAlias proposedAlias: String) -> ChatRecipient? {
+    
+    //TODO: use libphonenumber to transform phone numbers into international format
+    let alias = proposedAlias
+    
+    let chatRecipient : ChatRecipient
+    
+    if let contact = ContactsManager.sharedProvider.searchWithAliases([alias]).first {
+      chatRecipient = ContactChatRecipient(contact: contact, alias: alias)
+    }
+    else {
+      let aliasDisplay = AliasDisplayManager.sharedProvider.displayForAlias(alias)
+      chatRecipient = AliasChatRecipient(alias: alias, title: aliasDisplay.fullName)
+    }
+    
+    return chatRecipient
+  }
+
 }

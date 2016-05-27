@@ -64,7 +64,6 @@
 #import "OpenSSLCertificationRequest.h"
 #import "OpenSSLKeyPair.h"
 #import "Reachability.h"
-#import "Recipient.h"
 #import "ServerAPI.h"
 #import "Settings.h"
 #import "SQLBuilder.h"
