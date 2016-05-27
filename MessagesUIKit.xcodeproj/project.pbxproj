@@ -43,7 +43,7 @@
 		AA1AA3A91CEBBE7A005B127C /* test.db in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3A71CEBBE69005B127C /* test.db */; };
 		AA1AA3AB1CED126B005B127C /* MessagesUIKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */; };
 		AA6328891CF3A16900DD6034 /* ChatRecipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328851CF3A16900DD6034 /* ChatRecipients.swift */; };
-		AA63288A1CF3A16900DD6034 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328861CF3A16900DD6034 /* ChatViewController.swift */; };
+		AA63288A1CF3A16900DD6034 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6328861CF3A16900DD6034 /* ChatController.swift */; };
 		AA63288F1CF3A1EF00DD6034 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63288E1CF3A1EF00DD6034 /* Contacts.swift */; };
 		AA6328921CF49B8800DD6034 /* MessageTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6328901CF49B8800DD6034 /* MessageTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA6328931CF49B8800DD6034 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6328911CF49B8800DD6034 /* MessageTextView.m */; };
@@ -176,7 +176,7 @@
 		AA1AA3A71CEBBE69005B127C /* test.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.db; path = MessagesUIKitHost/test.db; sourceTree = SOURCE_ROOT; };
 		AA1AA3AA1CED126B005B127C /* MessagesUIKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = MessagesUIKit.podspec; sourceTree = "<group>"; };
 		AA6328851CF3A16900DD6034 /* ChatRecipients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRecipients.swift; sourceTree = "<group>"; };
-		AA6328861CF3A16900DD6034 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		AA6328861CF3A16900DD6034 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA63288E1CF3A1EF00DD6034 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		AA6328901CF49B8800DD6034 /* MessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
 		AA6328911CF49B8800DD6034 /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 		AAD4DC201CE9B8B40032B5CE /* NSBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundle.swift; sourceTree = "<group>"; };
 		AAD4DC221CE9B9B10032B5CE /* InternalStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalStyle.swift; sourceTree = "<group>"; };
 		AAD4DC341CEA1E890032B5CE /* MessagesUIKitHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessagesUIKitHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAD4DC361CEA1E890032B5CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AAD4DC361CEA1E890032B5CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAD4DC3B1CEA1E890032B5CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAD4DC3D1CEA1E890032B5CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAD4DC401CEA1E890032B5CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				AA6328851CF3A16900DD6034 /* ChatRecipients.swift */,
-				AA6328861CF3A16900DD6034 /* ChatViewController.swift */,
+				AA6328861CF3A16900DD6034 /* ChatController.swift */,
 				AA6328941CF49FCE00DD6034 /* ChatToolBarView.swift */,
 				AA6328901CF49B8800DD6034 /* MessageTextView.h */,
 				AA6328911CF49B8800DD6034 /* MessageTextView.m */,
@@ -888,7 +888,7 @@
 				AA0B34391CE98F6700DEFE33 /* CGRect.swift in Sources */,
 				AA0B34511CE9900900DEFE33 /* StatusCell.swift in Sources */,
 				AA0B34531CE9900900DEFE33 /* VideoMessageCell.swift in Sources */,
-				AA63288A1CF3A16900DD6034 /* ChatViewController.swift in Sources */,
+				AA63288A1CF3A16900DD6034 /* ChatController.swift in Sources */,
 				AA0B34341CE98D9F00DEFE33 /* MessagesViewLayout.swift in Sources */,
 				AAC425A51CF14EE300145EDB /* BubbleView.swift in Sources */,
 				AA0B344A1CE9900900DEFE33 /* AudioMessageCell.swift in Sources */,

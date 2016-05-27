@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  ChatController.swift
 //  MessagesUIKit
 //
 //  Created by Kevin Wooten on 9/22/15.
@@ -31,13 +31,13 @@ import CoreLocation
   
 }
 
-@objc public protocol ChatViewControllerDelegate {
+@objc public protocol ChatControllerDelegate {
   
-  optional func chatViewController(chatViewController: ChatViewController, wantsRecipientForContact contact: Contact) -> ChatRecipient?
-  optional func chatViewController(chatViewController: ChatViewController, wantsRecipientForProposedAlias proposedAlias: String) -> ChatRecipient?
+  optional func chatController(chatController: ChatController, wantsRecipientForContact contact: Contact) -> ChatRecipient?
+  optional func chatController(chatController: ChatController, wantsRecipientForProposedAlias proposedAlias: String) -> ChatRecipient?
   
-  optional func chatViewControllerRequestedPickContactOperation(chatViewController: ChatViewController) -> PickContactOperation
-  optional func chatViewControllerRequestedPickImageOperation(chatViewController: ChatViewController) -> PickImageOperation
+  optional func chatControllerRequestedPickContactOperation(chatController: ChatController) -> PickContactOperation
+  optional func chatControllerRequestedPickImageOperation(chatController: ChatController) -> PickImageOperation
   
 }
 
@@ -54,7 +54,7 @@ enum MessageData {
 
 
 
-public class ChatViewController: UIViewController {
+public class ChatController: UIViewController {
   
   
   let insetPadding = CGFloat(5)
@@ -68,7 +68,7 @@ public class ChatViewController: UIViewController {
 
   public var messageAPI : MessageAPI!
 
-  public var delegate : ChatViewControllerDelegate?
+  public var delegate : ChatControllerDelegate?
   
   public var localAlias : String?
   
@@ -587,7 +587,7 @@ public class ChatViewController: UIViewController {
 }
 
 // MARK: Toolbar Delegate
-extension ChatViewController : ChatToolBarViewDelegate {
+extension ChatController : ChatToolBarViewDelegate {
   
   public func chatToolBarViewDidTapSend(chatToolBarView: ChatToolBarView) {
     
@@ -839,7 +839,7 @@ extension ChatViewController : ChatToolBarViewDelegate {
 
 
 // MARK: Audio Player/Recorder Delegates
-extension ChatViewController : AVAudioPlayerDelegate, AVAudioRecorderDelegate {
+extension ChatController : AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 
   // MARK: Audio Recording
   
@@ -1049,7 +1049,7 @@ private let OpenSettingsCellIdentifier = "Settings"
 private let SearchCellIdentifier = "Search"
 
 // MARK: Recipient Display Delegate
-extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSource, UITableViewDelegate {
+extension ChatController : TURecipientsDisplayDelegate, UITableViewDataSource, UITableViewDelegate {
   
   public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -1153,7 +1153,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
     
     let contact = results[indexPath.row]
     
-    guard let recipient = delegate?.chatViewController?(self, wantsRecipientForContact: contact) else {
+    guard let recipient = delegate?.chatController?(self, wantsRecipientForContact: contact) else {
       return
     }
     
@@ -1169,7 +1169,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
     
     recipientsBar.text = nil
     
-    guard let pickOp = delegate?.chatViewControllerRequestedPickContactOperation?(self) else {
+    guard let pickOp = delegate?.chatControllerRequestedPickContactOperation?(self) else {
       return
     }
     
@@ -1179,7 +1179,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
         return
       }
       
-      guard let recipient = self.delegate?.chatViewController?(self, wantsRecipientForContact: contact) else {
+      guard let recipient = self.delegate?.chatController?(self, wantsRecipientForContact: contact) else {
         return
       }
       
@@ -1235,7 +1235,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
       return nil
     }
     
-    guard let recipient = delegate?.chatViewController?(self, wantsRecipientForProposedAlias: proposedAlias) else {
+    guard let recipient = delegate?.chatController?(self, wantsRecipientForProposedAlias: proposedAlias) else {
       return nil
     }
     
@@ -1274,7 +1274,7 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
 
 
 // MARK: Messages View Controller Delegate
-//extension ChatViewController : MessagesViewControllerDelegate {
+//extension ChatController : MessagesViewControllerDelegate {
 //  
 //  func messageActionRequestedAtIndexPath(indexPath: NSIndexPath!) {
 //
@@ -1328,12 +1328,12 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
 //private class PickMedia : Operation, RTImagePickerControllerDelegate {
 //  
 //  
-//  let vc : ChatViewController
+//  let vc : ChatController
 //  
 //  let type : RTImagePickerControllerType
 //  
 //  
-//  init(vc: ChatViewController, type: RTImagePickerControllerType) {
+//  init(vc: ChatController, type: RTImagePickerControllerType) {
 //    self.vc = vc
 //    self.type = type
 //    
@@ -1382,10 +1382,10 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
 //private class PickLocation : Operation, RTLocationViewControllerDelegate {
 //  
 //  
-//  let vc : ChatViewController
+//  let vc : ChatController
 //  
 //  
-//  init(vc: ChatViewController) {
+//  init(vc: ChatController) {
 //    self.vc = vc
 //
 //    super.init()
@@ -1428,9 +1428,9 @@ extension ChatViewController : TURecipientsDisplayDelegate, UITableViewDataSourc
 //
 //private class PickContact : Operation, ABPeoplePickerNavigationControllerDelegate {
 //  
-//  let vc : ChatViewController
+//  let vc : ChatController
 //  
-//  init(vc: ChatViewController) {
+//  init(vc: ChatController) {
 //
 //    self.vc = vc
 //    
@@ -1486,10 +1486,10 @@ private class SaveOperation : Operation {
   
   let previousMessage : Message?
   
-  let vc : ChatViewController
+  let vc : ChatController
   
   
-  init(data: MessageData, previousMessage: Message?, vc: ChatViewController) {
+  init(data: MessageData, previousMessage: Message?, vc: ChatController) {
     
     self.data = data
     self.previousMessage = previousMessage
@@ -1731,10 +1731,10 @@ private class ChatResolvedCondition : OperationCondition {
   static let isMutuallyExclusive = false
   
   
-  let vc : ChatViewController
+  let vc : ChatController
   
   
-  init(vc: ChatViewController) {
+  init(vc: ChatController) {
     self.vc = vc
   }
   
@@ -1758,9 +1758,9 @@ private class ChatResolvedCondition : OperationCondition {
 
 private class ResolveChatOperation : Operation {
   
-  let vc : ChatViewController
+  let vc : ChatController
   
-  init(vc: ChatViewController) {
+  init(vc: ChatController) {
     
     self.vc = vc
     
@@ -1813,9 +1813,9 @@ private class ResolveChatOperation : Operation {
 private class ValidateRecipientOperation : Operation {
   
   let recipient : ChatRecipient
-  let vc : ChatViewController
+  let vc : ChatController
   
-  init(recipient: ChatRecipient, vc: ChatViewController) {
+  init(recipient: ChatRecipient, vc: ChatController) {
     
     self.recipient = recipient
     self.vc = vc
@@ -1861,9 +1861,9 @@ private class InviteOperation : Operation {
   }
   
   let recipient : ChatRecipient
-  let vc : ChatViewController
+  let vc : ChatController
   
-  init(recipient: ChatRecipient, vc: ChatViewController) {
+  init(recipient: ChatRecipient, vc: ChatController) {
     
     self.recipient = recipient
     self.vc = vc

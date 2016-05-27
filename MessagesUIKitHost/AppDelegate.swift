@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     switch launchEnvironment["testTarget"] ?? "chat" {
     case "chat":
 
-      let cvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Chat") as! TestChatViewController
+      let cvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Chat") as! TestChatController
       
       cvc.messageAPI = try! register()
       
@@ -126,17 +126,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-class TestChatViewController : ChatViewController, ChatViewControllerDelegate {
+class TestChatController : ChatController, ChatControllerDelegate {
   
   override func awakeFromNib() {
     delegate = self
   }
   
-  func chatViewControllerRequestedPickContactOperation(chatViewController: ChatViewController) -> PickContactOperation {
-    return PickAddressBookContactOperation(viewController: chatViewController)
+  func chatControllerRequestedPickContactOperation(chatController: ChatController) -> PickContactOperation {
+    return PickAddressBookContactOperation(viewController: chatController)
   }
   
-  func chatViewController(chatViewController: ChatViewController, wantsRecipientForContact contact: Contact) -> ChatRecipient? {
+  func chatController(chatController: ChatController, wantsRecipientForContact contact: Contact) -> ChatRecipient? {
     
     //TODO: search for aliases already registered
     
@@ -147,7 +147,7 @@ class TestChatViewController : ChatViewController, ChatViewControllerDelegate {
     return ContactChatRecipient(contact: contact, alias: contactAlias.value)
   }
   
-  func chatViewController(chatViewController: ChatViewController, wantsRecipientForProposedAlias proposedAlias: String) -> ChatRecipient? {
+  func chatController(chatController: ChatController, wantsRecipientForProposedAlias proposedAlias: String) -> ChatRecipient? {
     
     //TODO: use libphonenumber to transform phone numbers into international format
     let alias = proposedAlias
